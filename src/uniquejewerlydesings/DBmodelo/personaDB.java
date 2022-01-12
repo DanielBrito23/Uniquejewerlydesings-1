@@ -33,7 +33,7 @@ private Conexion conecta = new Conexion();
 
     public boolean insertarPersona() {
 
-        String sql = "insert into persona (id_persona, cedula, nombres, direccion, telefono, correo) "
+        String sql = "insert into persona (id_persona, cedula, nombres, direccion, telefono, correo,estado) "
                 + "values (" + getId_persona() + ", '" + getCedula() + "', '" + getNombres() + "','" + getDireccion() + "','" + getTelefono() + "','" + getCorreo() + "');";
 
         System.out.println("insert Persona: " + sql);

@@ -5,6 +5,7 @@
  */
 package uniquejewerlydesings.DBmodelo;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ import uniquejewerlydesings.modelo.producto;
 
 /**
  *
- * @author LENOVO
+ * @author Corin
  */
 public class productoDB extends producto {
 
@@ -31,6 +32,23 @@ public class productoDB extends producto {
     public productoDB(int id_producto, int calculo_utilidad, String descripcion, Date fecha, int cantidad, double peso_metal, String tipo_metal, double precio_unitario, String tipo_producto) {
         super(id_producto, calculo_utilidad, descripcion, fecha, cantidad, peso_metal, tipo_metal, precio_unitario, tipo_producto);
     }
+       public boolean insertarProducto() {
+
+        String sql = "insert into persona (id_producto, calculo_utilidad, descripcion, fecha_compra, cantidad, peso_metal,tipo_metal,precio_unitario,estado) "
+                + "values (" + getId_producto()+ ", '" + getCalculo_utilidad()+ "', '" + getDescripcion()+ "','" + getFecha()+ "','" + getCantidad()+ "','" + getPeso_metal()+ "', '"+ getPrecio_unitario()+ "');";
+
+        System.out.println("insert producto: " + sql);
+        PreparedStatement ps = conecta.getPs(sql);
+
+        try {
+            conecta.noQuery(ps);
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error insertar producto: "+e.getMessage());
+            return false;
+        }
+    }
+
 
     public List<producto> listaProductos() {
 
