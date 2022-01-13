@@ -15,7 +15,7 @@ public class producto  {
     private int id_producto;
     private int calculo_utilidad;//preguntar al tio si va eso 
     private String descripcion;
-    private Date fecha;
+    private String fecha;
     private int cantidad;
     private double peso_metal;
     private String tipo_metal;
@@ -25,7 +25,7 @@ public class producto  {
     public producto() {
     }
 
-    public producto(int id_producto, int calculo_utilidad, String descripcion, Date fecha, int cantidad, double peso_metal, String tipo_metal, double precio_unitario, String tipo_producto) {
+    public producto(int id_producto, int calculo_utilidad, String descripcion, String fecha, int cantidad, double peso_metal, String tipo_metal, double precio_unitario, String tipo_producto) {
         this.id_producto = id_producto;
         this.calculo_utilidad = calculo_utilidad;
         this.descripcion = descripcion;
@@ -65,11 +65,11 @@ public class producto  {
         this.descripcion = descripcion;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

@@ -24,7 +24,7 @@ public class proveedor extends producto {
     public proveedor() {
     }
 
-    public proveedor(int id_proveedor, int id_producto, int calculo_utilidad, String descripcion, Date fecha, int cantidad, double peso_metal, String tipo_metal, double precio_unitario, String tipo_producto) {
+    public proveedor(int id_proveedor, int id_producto, int calculo_utilidad, String descripcion, String fecha, int cantidad, double peso_metal, String tipo_metal, double precio_unitario, String tipo_producto) {
         super(id_producto, calculo_utilidad, descripcion, fecha, cantidad, peso_metal, tipo_metal, precio_unitario, tipo_producto);
         this.id_proveedor = id_proveedor;
     }
