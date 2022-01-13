@@ -39,13 +39,15 @@ public class Factura extends javax.swing.JFrame {
         this.btnNewUser = btnNewUser;
     }
 
-    public JButton getjButton1() {
-        return jButton1;
+    public JButton getBtnbuscar() {
+        return btnbuscar;
     }
 
-    public void setjButton1(JButton jButton1) {
-        this.jButton1 = jButton1;
+    public void setBtnbuscar(JButton btnbuscar) {
+        this.btnbuscar = btnbuscar;
     }
+
+   
 
     public JLabel getjLabel1() {
         return jLabel1;
@@ -317,7 +319,7 @@ public class Factura extends javax.swing.JFrame {
         txtdireccion = new javax.swing.JTextField();
         txttelefono = new javax.swing.JTextField();
         txtcorreo = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnbuscar = new javax.swing.JButton();
         btnNewUser = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
 
@@ -391,9 +393,9 @@ public class Factura extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconsbotones/buscar.png"))); // NOI18N
-        jButton1.setText(" Search");
+        btnbuscar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        btnbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconsbotones/buscar.png"))); // NOI18N
+        btnbuscar.setText(" Search");
 
         btnNewUser.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnNewUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconsbotones/adduser.png"))); // NOI18N
@@ -428,7 +430,7 @@ public class Factura extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
-                        .addComponent(jButton1)
+                        .addComponent(btnbuscar)
                         .addGap(18, 18, 18)
                         .addComponent(btnNewUser)))
                 .addContainerGap(86, Short.MAX_VALUE))
@@ -440,7 +442,7 @@ public class Factura extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
+                    .addComponent(btnbuscar)
                     .addComponent(btnNewUser))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -613,7 +615,7 @@ public class Factura extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNewUser;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnbuscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
