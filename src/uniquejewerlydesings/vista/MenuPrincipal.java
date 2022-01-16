@@ -6,7 +6,12 @@
 package uniquejewerlydesings.vista;
 
 import javax.swing.JButton;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JSeparator;
 
 /**
  *
@@ -24,6 +29,190 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     public JMenuItem getBtnNewCustom() {
         return btnNewCustom;
+    }
+
+    public JMenuItem getJDeleteCustom() {
+        return JDeleteCustom;
+    }
+
+    public void setJDeleteCustom(JMenuItem JDeleteCustom) {
+        this.JDeleteCustom = JDeleteCustom;
+    }
+
+    public JMenuItem getJDeleteProduct() {
+        return JDeleteProduct;
+    }
+
+    public void setJDeleteProduct(JMenuItem JDeleteProduct) {
+        this.JDeleteProduct = JDeleteProduct;
+    }
+
+    public JMenuItem getJEditCustom() {
+        return JEditCustom;
+    }
+
+    public void setJEditCustom(JMenuItem JEditCustom) {
+        this.JEditCustom = JEditCustom;
+    }
+
+    public JMenuItem getJEditProduct() {
+        return JEditProduct;
+    }
+
+    public void setJEditProduct(JMenuItem JEditProduct) {
+        this.JEditProduct = JEditProduct;
+    }
+
+    public JMenu getJMCustoms() {
+        return JMCustoms;
+    }
+
+    public void setJMCustoms(JMenu JMCustoms) {
+        this.JMCustoms = JMCustoms;
+    }
+
+    public JMenu getJMInvoice() {
+        return JMInvoice;
+    }
+
+    public void setJMInvoice(JMenu JMInvoice) {
+        this.JMInvoice = JMInvoice;
+    }
+
+    public JMenu getJProducts() {
+        return JProducts;
+    }
+
+    public void setJProducts(JMenu JProducts) {
+        this.JProducts = JProducts;
+    }
+
+    public JMenuItem getJmInvoiceList() {
+        return JmInvoiceList;
+    }
+
+    public void setJmInvoiceList(JMenuItem JmInvoiceList) {
+        this.JmInvoiceList = JmInvoiceList;
+    }
+
+    public JMenu getJminventory() {
+        return Jminventory;
+    }
+
+    public void setJminventory(JMenu Jminventory) {
+        this.Jminventory = Jminventory;
+    }
+
+    public JMenuItem getJnewInvoice() {
+        return JnewInvoice;
+    }
+
+    public void setJnewInvoice(JMenuItem JnewInvoice) {
+        this.JnewInvoice = JnewInvoice;
+    }
+
+    public JMenuItem getBtnNewProduct() {
+        return btnNewProduct;
+    }
+
+    public void setBtnNewProduct(JMenuItem btnNewProduct) {
+        this.btnNewProduct = btnNewProduct;
+    }
+
+    public JMenuBar getjMenuBar1() {
+        return jMenuBar1;
+    }
+
+    public void setjMenuBar1(JMenuBar jMenuBar1) {
+        this.jMenuBar1 = jMenuBar1;
+    }
+
+    public JMenuItem getjMenuItem1() {
+        return jMenuItem1;
+    }
+
+    public void setjMenuItem1(JMenuItem jMenuItem1) {
+        this.jMenuItem1 = jMenuItem1;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public void setjPanel1(JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    public JPopupMenu.Separator getjSeparator1() {
+        return jSeparator1;
+    }
+
+    public void setjSeparator1(JPopupMenu.Separator jSeparator1) {
+        this.jSeparator1 = jSeparator1;
+    }
+
+    public JPopupMenu.Separator getjSeparator2() {
+        return jSeparator2;
+    }
+
+    public void setjSeparator2(JPopupMenu.Separator jSeparator2) {
+        this.jSeparator2 = jSeparator2;
+    }
+
+    public JSeparator getjSeparator3() {
+        return jSeparator3;
+    }
+
+    public void setjSeparator3(JSeparator jSeparator3) {
+        this.jSeparator3 = jSeparator3;
+    }
+
+    public JPopupMenu.Separator getjSeparator4() {
+        return jSeparator4;
+    }
+
+    public void setjSeparator4(JPopupMenu.Separator jSeparator4) {
+        this.jSeparator4 = jSeparator4;
+    }
+
+    public JSeparator getjSeparator5() {
+        return jSeparator5;
+    }
+
+    public void setjSeparator5(JSeparator jSeparator5) {
+        this.jSeparator5 = jSeparator5;
+    }
+
+    public JPopupMenu.Separator getjSeparator6() {
+        return jSeparator6;
+    }
+
+    public void setjSeparator6(JPopupMenu.Separator jSeparator6) {
+        this.jSeparator6 = jSeparator6;
+    }
+
+    public JPopupMenu.Separator getjSeparator7() {
+        return jSeparator7;
+    }
+
+    public void setjSeparator7(JPopupMenu.Separator jSeparator7) {
+        this.jSeparator7 = jSeparator7;
+    }
+
+    public JPopupMenu.Separator getjSeparator8() {
+        return jSeparator8;
+    }
+
+    public void setjSeparator8(JPopupMenu.Separator jSeparator8) {
+        this.jSeparator8 = jSeparator8;
+    }
+
+    public JPopupMenu.Separator getjSeparator9() {
+        return jSeparator9;
+    }
+
+    public void setjSeparator9(JPopupMenu.Separator jSeparator9) {
+        this.jSeparator9 = jSeparator9;
     }
 
     public void setBtnNewCustom(JMenuItem btnNewCustom) {
@@ -66,7 +255,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
         BtnListProducts = new javax.swing.JMenuItem();
         JProducts = new javax.swing.JMenu();
-        JNewProducto = new javax.swing.JMenuItem();
+        btnNewProduct = new javax.swing.JMenuItem();
         jSeparator8 = new javax.swing.JPopupMenu.Separator();
         JEditProduct = new javax.swing.JMenuItem();
         jSeparator9 = new javax.swing.JPopupMenu.Separator();
@@ -116,14 +305,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         JProducts.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconsMenu/products.png"))); // NOI18N
         JProducts.setText("Products");
 
-        JNewProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconsMenu/plus.png"))); // NOI18N
-        JNewProducto.setText("New Product");
-        JNewProducto.addActionListener(new java.awt.event.ActionListener() {
+        btnNewProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconsMenu/plus.png"))); // NOI18N
+        btnNewProduct.setText("New Product");
+        btnNewProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JNewProductoActionPerformed(evt);
+                btnNewProductActionPerformed(evt);
             }
         });
-        JProducts.add(JNewProducto);
+        JProducts.add(btnNewProduct);
 
         jSeparator8.setForeground(new java.awt.Color(0, 0, 0));
         JProducts.add(jSeparator8);
@@ -242,9 +431,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         fac.setVisible(true);
     }//GEN-LAST:event_JnewInvoiceActionPerformed
 
-    private void JNewProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JNewProductoActionPerformed
+    private void btnNewProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewProductActionPerformed
         
-    }//GEN-LAST:event_JNewProductoActionPerformed
+    }//GEN-LAST:event_btnNewProductActionPerformed
 
     private void BtnListProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnListProductsActionPerformed
         // TODO add your handling code here:
@@ -294,12 +483,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem JListCustom;
     private javax.swing.JMenu JMCustoms;
     private javax.swing.JMenu JMInvoice;
-    private javax.swing.JMenuItem JNewProducto;
     private javax.swing.JMenu JProducts;
     private javax.swing.JMenuItem JmInvoiceList;
     private javax.swing.JMenu Jminventory;
     private javax.swing.JMenuItem JnewInvoice;
     private javax.swing.JMenuItem btnNewCustom;
+    private javax.swing.JMenuItem btnNewProduct;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;

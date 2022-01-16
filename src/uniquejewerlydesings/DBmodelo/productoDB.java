@@ -35,8 +35,8 @@ public class productoDB extends producto {
 
     public boolean insertarProducto() {
 
-        String sql = "insert into persona (id_producto, calculo_utilidad, descripcion, fecha_compra, cantidad, peso_metal,precio_unitario,estado) "
-                + "values (" + getId_producto() + ", '" + getCalculo_utilidad() + "', '" + getDescripcion() + "','" + getFecha() + "','" + getCantidad() + "','" + getPeso_metal() + "', '" + getPrecio_unitario() + "','" + "a" + "');";
+        String sql = "insert into producto (id_producto, calculo_utilidad, descripcion, fecha_compra, cantidad, peso_metal, tipo_metal, precio_unitario, estado) "
+                + "values (" + getId_producto() + ", '" + getCalculo_utilidad() + "', '" + getDescripcion() + "','" + getFecha() + "'," + getCantidad() + "," + getPeso_metal() + ",'" + getTipo_metal() + "'," + getPrecio_unitario() + ",'" + "a" + "');";
 
         System.out.println("insert producto: " + sql);
         PreparedStatement ps = conecta.getPs(sql);
@@ -113,6 +113,28 @@ public class productoDB extends producto {
         } else {
             return false;
         }
+    }
+
+    public int id_autopro() {
+        PreparedStatement ps = null;
+        ResultSet re = null;
+        int id = 1;
+        try {
+            ps = conecta.conectarBD().prepareStatement("select max(id_producto) from producto");
+            re = ps.executeQuery();
+            while (re.next()) {
+                id = re.getInt(1) + 1;
+            }
+        } catch (Exception e) {
+            System.out.println("error" + e.getMessage());
+        } finally {
+            try {
+                ps.close();
+                re.close();
+            } catch (Exception e) {
+            }
+        }
+        return id;
     }
 
 }
