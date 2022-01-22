@@ -111,6 +111,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.JnewInvoice = JnewInvoice;
     }
 
+   
+
+    
     public JMenuItem getBtnNewProduct() {
         return btnNewProduct;
     }
@@ -427,8 +430,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_JmInvoiceListActionPerformed
 
     private void JnewInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JnewInvoiceActionPerformed
-        Factura fac = new Factura();
-        fac.setVisible(true);
+        
     }//GEN-LAST:event_JnewInvoiceActionPerformed
 
     private void btnNewProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewProductActionPerformed

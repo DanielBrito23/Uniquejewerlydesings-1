@@ -3,9 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/LENOVO/Videos/Uniquejewerlydesings/src/uniquejewerlydesings/control/personaControl.java</file>
-            <file>file:/C:/Users/LENOVO/Videos/Uniquejewerlydesings/src/uniquejewerlydesings/control/productsStocksControl.java</file>
-            <file>file:/C:/Users/LENOVO/Videos/Uniquejewerlydesings/src/uniquejewerlydesings/control/registrarProductoControl.java</file>
+            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/control/productsStocksControl.java</file>
+            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/control/facturaControl.java</file>
+            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/vista/MenuPrincipal.java</file>
+            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/control/personaControl.java</file>
+            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/DBmodelo/personaDB.java</file>
+            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/vista/Factura.java</file>
+            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/DBmodelo/facturaDB.java</file>
+            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/control/inicioControl.java</file>
+            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/UniqueJewerlyDesings.java</file>
+            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/control/menuControl.java</file>
         </group>
     </open-files>
 </project-private>

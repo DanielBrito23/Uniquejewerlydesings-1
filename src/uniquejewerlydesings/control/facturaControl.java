@@ -5,8 +5,10 @@
  */
 package uniquejewerlydesings.control;
 
+import java.util.List;
 import javax.swing.JOptionPane;
 import uniquejewerlydesings.DBmodelo.facturaDB;
+import uniquejewerlydesings.modelo.persona;
 import uniquejewerlydesings.vista.Factura;
 import uniquejewerlydesings.vista.PersonaIngreso;
 
@@ -16,17 +18,15 @@ import uniquejewerlydesings.vista.PersonaIngreso;
  */
 public class facturaControl {
 
-     private Factura vistaFactura ;
-    private PersonaIngreso vistaPersona ;
-    private facturaDB factura ;
+    private Factura vistaFactura;
+    private PersonaIngreso vistaPersona;
+    private facturaDB factura;
 
     public facturaControl(Factura vistaFactura, PersonaIngreso vistaPersona, facturaDB factura) {
         this.vistaFactura = vistaFactura;
         this.vistaPersona = vistaPersona;
         this.factura = factura;
     }
-    
-    
 
     public void iniciarControl() {
         vistaFactura.getBtnNewUser().addActionListener(e -> formularioPersona());
@@ -47,15 +47,16 @@ public class facturaControl {
     }
 
     public void buscar() {
-        if (vistaFactura.getTxtid().getText().equals("")) {
+        if (vistaFactura.getTxtcedula().getText().equals("")) {
             JOptionPane.showConfirmDialog(null, "el campo esta vacio");
         } else {
-            factura.buscar(vistaFactura.getTxtid().getText());
-           vistaFactura.getTxtcedula().setText(factura.getCedula());
-           vistaFactura.getTxtnombres().setText(factura.getNombres());
-       
+        
+            factura.buscar(vistaFactura.getTxtcedula().getText());
+            vistaFactura.getTxtnombres().setText(factura.getNombres());
+            vistaFactura.getTxtdireccion().setText(factura.getDireccion());
+
+
         }
     }
 
 }
-

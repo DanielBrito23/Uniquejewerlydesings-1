@@ -5,9 +5,11 @@
  */
 package uniquejewerlydesings.control;
 
+import uniquejewerlydesings.DBmodelo.facturaDB;
 import uniquejewerlydesings.DBmodelo.personaDB;
 import uniquejewerlydesings.DBmodelo.productoDB;
 import uniquejewerlydesings.modelo.persona;
+import uniquejewerlydesings.vista.Factura;
 import uniquejewerlydesings.vista.ListaPersonas;
 import uniquejewerlydesings.vista.ListaProductos;
 import uniquejewerlydesings.vista.MenuPrincipal;
@@ -19,8 +21,7 @@ import uniquejewerlydesings.vista.RegistroProductos;
  * @author LENOVO
  */
 public class menuControl {
-
-    MenuPrincipal menu = new MenuPrincipal();
+  MenuPrincipal menu = new MenuPrincipal();
 
     //Registro de persona
     persona personaModelo = new persona();
@@ -29,7 +30,7 @@ public class menuControl {
     ListaPersonas vista=new ListaPersonas();
     personaControl controlPersona = new personaControl(personaModelo, personaDB, vistaPersona);
     
-    
+    //lista de personas
     listaControl listaPersona=new listaControl(personaDB, vista);
 
     //instancias para el funcionamiento de la lista de productos
@@ -37,10 +38,13 @@ public class menuControl {
     productoDB productodb = new productoDB();
     productsStocksControl controlProductos = new productsStocksControl(productodb, listaProductos);
     
+    //instancias para la factura 
+    Factura vistaFactura=new Factura();
+    facturaDB factura=new facturaDB();
     
-    // instancias para el funcionamiento del boton nuevo producto
-    RegistroProductos vistaRegistroPro = new RegistroProductos();
-   registrarProductoControl controRegistrarProduc = new  registrarProductoControl(vistaRegistroPro, productodb);
+    facturaControl controlfactura=new facturaControl(vistaFactura,vistaPersona,factura);
+    
+    
     
     public void iniciarControl() {
         menu.setVisible(true);
@@ -48,7 +52,7 @@ public class menuControl {
         menu.getBtnNewCustom().addActionListener(e -> btnPersona());
         menu.getJListCustom().addActionListener(e -> listaPersona());
         menu.getBtnListProducts().addActionListener(e -> listaProdcutos());
-        menu.getBtnNewProduct().addActionListener(e -> btnNuevoProducto());
+        menu.getJnewInvoice().addActionListener(e -> factura());
     }
 
     public void btnPersona() {
@@ -61,8 +65,10 @@ public class menuControl {
      public void listaProdcutos(){
         controlProductos.iniciarControl();
     }
+      public void factura(){
+        controlfactura.iniciarControl();
+    }
 
-     public void btnNuevoProducto(){
-         controRegistrarProduc.iniciarControl();
-     }
+
 }
+
