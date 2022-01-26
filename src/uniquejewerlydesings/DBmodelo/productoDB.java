@@ -105,6 +105,24 @@ public class productoDB extends producto {
         }
     }
 
+    public boolean actualizarProducto() {
+        String sql = "update  producto set "
+                + "calculo_utilidad = " + getCalculo_utilidad() + ","
+                + "descripcion = '" + getDescripcion() + "', "
+                + "fecha_compra = '" + getFecha() + "', "
+                + "cantidad = " + getCantidad() + ", "
+                + "peso_metal=" + getPeso_metal() + ", "
+                + "precio_unitario=" + getPrecio_unitario() + ", "
+                + "tipo_metal='" + getTipo_metal()+ "', "
+                + "estado = 'a' "
+                + "where id_producto = " + getId_producto() + "";
+        if (conecta.noQuery(sql) == null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public boolean eliminar() {
         String sql = "UPDATE producto SET estado = 'd' WHERE id_producto='" + getId_producto() + "'";
         System.out.println(getId_producto());
