@@ -19,15 +19,16 @@ import uniquejewerlydesings.modelo.persona;
  *
  * @author corin
  */
-public class facturaDB  extends encabezadoFactura{
+public class facturaDB extends encabezadoFactura {
+
     private Conexion conecta = new Conexion();
 
-        public List<persona>buscar(String id)  {
+    public List<persona> buscar(String aguja) {
         List<persona> listaPersonas = new ArrayList();
-        
-        String sql = "SELECT * FROM persona WHERE cedula="+id;
-         System.out.println(sql);
-         ResultSet rs = conecta.query(sql);
+
+        String sql = "SELECT * FROM persona WHERE cedula LIKE '"+aguja+"%'";
+        System.out.println(sql);
+        ResultSet rs = conecta.query(sql);
         try {
             while (rs.next()) {
                 persona p = new persona();
@@ -40,13 +41,13 @@ public class facturaDB  extends encabezadoFactura{
                 listaPersonas.add(p);
             }
             rs.close();
+            System.out.println(listaPersonas);
             return listaPersonas;
-           
+
         } catch (SQLException ex) {
-            
+
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
 }
-

@@ -103,13 +103,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.Jminventory = Jminventory;
     }
 
-    public JMenuItem getJnewInvoice() {
-        return JnewInvoice;
-    }
-
-    public void setJnewInvoice(JMenuItem JnewInvoice) {
-        this.JnewInvoice = JnewInvoice;
-    }
+   
 
     public JMenuItem getBtnNewProduct() {
         return btnNewProduct;
@@ -235,6 +229,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.BtnListProducts = BtnListProducts;
     }
 
+    public JMenuItem getBtnnewInvoice() {
+        return btnnewInvoice;
+    }
+
+    public void setBtnnewInvoice(JMenuItem btnnewInvoice) {
+        this.btnnewInvoice = btnnewInvoice;
+    }
+
     
 
     /**
@@ -269,7 +271,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         JListCustom = new javax.swing.JMenuItem();
         JMInvoice = new javax.swing.JMenu();
-        JnewInvoice = new javax.swing.JMenuItem();
+        btnnewInvoice = new javax.swing.JMenuItem();
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
         JmInvoiceList = new javax.swing.JMenuItem();
 
@@ -375,14 +377,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         JMInvoice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconsMenu/new Invoice.png"))); // NOI18N
         JMInvoice.setText("Invoice");
 
-        JnewInvoice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconsMenu/new Invoice.png"))); // NOI18N
-        JnewInvoice.setText("New Invoice");
-        JnewInvoice.addActionListener(new java.awt.event.ActionListener() {
+        btnnewInvoice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconsMenu/new Invoice.png"))); // NOI18N
+        btnnewInvoice.setText("New Invoice");
+        btnnewInvoice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JnewInvoiceActionPerformed(evt);
+                btnnewInvoiceActionPerformed(evt);
             }
         });
-        JMInvoice.add(JnewInvoice);
+        JMInvoice.add(btnnewInvoice);
 
         jSeparator7.setForeground(new java.awt.Color(0, 0, 0));
         JMInvoice.add(jSeparator7);
@@ -427,8 +429,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_JmInvoiceListActionPerformed
 
     private void JnewInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JnewInvoiceActionPerformed
-        Factura fac = new Factura();
-        fac.setVisible(true);
+        
     }//GEN-LAST:event_JnewInvoiceActionPerformed
 
     private void btnNewProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewProductActionPerformed
@@ -438,6 +439,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void BtnListProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnListProductsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnListProductsActionPerformed
+
+    private void btnnewInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnewInvoiceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnnewInvoiceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -486,9 +491,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu JProducts;
     private javax.swing.JMenuItem JmInvoiceList;
     private javax.swing.JMenu Jminventory;
-    private javax.swing.JMenuItem JnewInvoice;
     private javax.swing.JMenuItem btnNewCustom;
     private javax.swing.JMenuItem btnNewProduct;
+    private javax.swing.JMenuItem btnnewInvoice;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
