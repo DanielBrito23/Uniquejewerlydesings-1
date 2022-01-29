@@ -22,7 +22,8 @@ import javax.swing.JOptionPane;
  * @author LENOVO
  */
 public class personaDB extends persona {
-private Conexion conecta = new Conexion();
+
+    private Conexion conecta = new Conexion();
 
     public personaDB() {
     }
@@ -34,7 +35,7 @@ private Conexion conecta = new Conexion();
     public boolean insertarPersona() {
 
         String sql = "insert into persona (id_persona, cedula, nombres, direccion, telefono, correo,estado) "
-                + "values (" + getId_persona() + ", '" + getCedula() + "', '" + getNombres() + "','" + getDireccion() + "','" + getTelefono() + "','" + getCorreo() + "');";
+                + "values (" + getId_persona() + ", '" + getCedula() + "', '" + getNombres() + "','" + getDireccion() + "','" + getTelefono() + "','" + getCorreo() + "', '" + "a" + "');";
 
         System.out.println("insert Persona: " + sql);
         PreparedStatement ps = conecta.getPs(sql);
@@ -43,7 +44,7 @@ private Conexion conecta = new Conexion();
             conecta.noQuery(ps);
             return true;
         } catch (Exception e) {
-            System.out.println("Error insertar persona: "+e.getMessage());
+            System.out.println("Error insertar persona: " + e.getMessage());
             return false;
         }
     }
@@ -73,14 +74,13 @@ private Conexion conecta = new Conexion();
             return null;
         }
     }
-    
-    
-     public List<persona> buscar(String aguja)  {
+
+    public List<persona> buscar(String aguja) {
         List<persona> listaPersonas = new ArrayList();
-        
-        String sql = "SELECT * FROM persona WHERE estado='a' and nombres LIKE '"+aguja+"%' or cedula LIKE '"+aguja+"%'";
-         System.out.println(sql);
-         ResultSet rs = conecta.query(sql);
+
+        String sql = "SELECT * FROM persona WHERE estado='a' and nombres LIKE '" + aguja + "%' or cedula LIKE '" + aguja + "%'";
+        System.out.println(sql);
+        ResultSet rs = conecta.query(sql);
         try {
             while (rs.next()) {
                 persona p = new persona();
@@ -94,15 +94,16 @@ private Conexion conecta = new Conexion();
             }
             rs.close();
             return listaPersonas;
-           
+
         } catch (SQLException ex) {
-            
+
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
-      public boolean eliminarPersona() {
-        String sql = "UPDATE persona SET estado = 'd' WHERE id_persona='" + getId_persona()+ "'";
+
+    public boolean eliminarPersona() {
+        String sql = "UPDATE persona SET estado = 'd' WHERE id_persona='" + getId_persona() + "'";
         System.out.println(getId_persona());
         if (conecta.noQuery(sql) == null) {
             return true;
@@ -110,7 +111,7 @@ private Conexion conecta = new Conexion();
             return false;
         }
     }
-     
+
     public int id_autoper() {
         PreparedStatement ps = null;
         ResultSet re = null;

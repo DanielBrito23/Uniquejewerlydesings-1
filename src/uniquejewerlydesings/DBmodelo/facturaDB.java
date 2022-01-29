@@ -26,7 +26,7 @@ public class facturaDB extends encabezadoFactura {
     public List<persona> buscar(String aguja) {
         List<persona> listaPersonas = new ArrayList();
 
-        String sql = "SELECT * FROM persona WHERE cedula LIKE '"+aguja+"%'";
+        String sql = "SELECT * FROM persona WHERE cedula LIKE '" + aguja + "%'";
         System.out.println(sql);
         ResultSet rs = conecta.query(sql);
         try {
@@ -49,5 +49,25 @@ public class facturaDB extends encabezadoFactura {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
+    }
+
+    public persona buscarPersonaId(String id) {
+        String sql = "Select * from persona where cedula = '" + id + "'";
+        ResultSet rs = conecta.query(sql);
+        System.out.println("burcar por cedula: " + sql);
+        persona p = new persona();
+        try {
+            if (rs.next()) {
+                p.setId_persona(rs.getInt("id_persona"));
+                p.setCedula(rs.getString("cedula"));
+                p.setNombres(rs.getString("nombres"));
+                p.setCorreo(rs.getString("correo"));
+                p.setTelefono(rs.getString("telefono"));
+                p.setDireccion(rs.getString("direccion"));
+            }
+        } catch (SQLException e) {
+            System.out.println("error buscar por id en sql: " + e.getMessage());
+        }
+        return p;
     }
 }
