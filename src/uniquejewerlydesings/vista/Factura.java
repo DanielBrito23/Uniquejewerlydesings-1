@@ -9,6 +9,7 @@ import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -280,6 +281,41 @@ public class Factura extends javax.swing.JFrame {
     public void setTxttelefono(JTextField txttelefono) {
         this.txttelefono = txttelefono;
     }
+
+    public JButton getBuscarProdcuto() {
+        return buscarProdcuto;
+    }
+
+    public JDialog getDialiogproducto() {
+        return dialiogproducto;
+    }
+
+    
+    public void setDialiogproducto(JDialog dialiogproducto) {
+        this.dialiogproducto = dialiogproducto;
+    }
+
+    public JTable getTablaProductos() {
+        return tablaProductos;
+    }
+
+    public void setTablaProductos(JTable tablaProductos) {
+        this.tablaProductos = tablaProductos;
+    }
+    
+
+    public void setBuscarProdcuto(JButton buscarProdcuto) {
+        this.buscarProdcuto = buscarProdcuto;
+    }
+
+    public JButton getBtnselecionado() {
+        return jButton1;
+    }
+
+    public void setBtnselecionado(JButton btnselecionado) {
+        this.jButton1 = btnselecionado;
+    }
+    
     
 
     /**
@@ -291,6 +327,10 @@ public class Factura extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dialiogproducto = new javax.swing.JDialog();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tablaProductos = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
@@ -322,6 +362,55 @@ public class Factura extends javax.swing.JFrame {
         btnbuscar = new javax.swing.JButton();
         btnNewUser = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
+        buscarProdcuto = new javax.swing.JButton();
+
+        tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID Producto", "Calculo utilidad", "Descripcion", "Fecha Compra", "Cantidad", "Peso metal", "Tipo metal", "Precio unitario"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaProductos.setToolTipText("");
+        jScrollPane3.setViewportView(tablaProductos);
+
+        jButton1.setText("Pass selected data");
+
+        javax.swing.GroupLayout dialiogproductoLayout = new javax.swing.GroupLayout(dialiogproducto.getContentPane());
+        dialiogproducto.getContentPane().setLayout(dialiogproductoLayout);
+        dialiogproductoLayout.setHorizontalGroup(
+            dialiogproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialiogproductoLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(593, Short.MAX_VALUE))
+            .addGroup(dialiogproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(dialiogproductoLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(22, Short.MAX_VALUE)))
+        );
+        dialiogproductoLayout.setVerticalGroup(
+            dialiogproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialiogproductoLayout.createSequentialGroup()
+                .addContainerGap(227, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(52, 52, 52))
+            .addGroup(dialiogproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(dialiogproductoLayout.createSequentialGroup()
+                    .addGap(18, 18, 18)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(117, Short.MAX_VALUE)))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(" Invoice");
@@ -470,15 +559,24 @@ public class Factura extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jLabel13.setText("Invoice");
 
+        buscarProdcuto.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        buscarProdcuto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconsbotones/buscar.png"))); // NOI18N
+        buscarProdcuto.setText("Search Product");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator2)
             .addComponent(jSeparator4)
+            .addComponent(jSeparator1)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(buscarProdcuto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane2)
                         .addContainerGap())
@@ -509,7 +607,6 @@ public class Factura extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
-            .addComponent(jSeparator1)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -527,9 +624,14 @@ public class Factura extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buscarProdcuto)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -616,6 +718,9 @@ public class Factura extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNewUser;
     private javax.swing.JButton btnbuscar;
+    private javax.swing.JButton buscarProdcuto;
+    private javax.swing.JDialog dialiogproducto;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -633,12 +738,14 @@ public class Factura extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
+    public javax.swing.JTable tablaProductos;
     private javax.swing.JTextField txtcedula;
     private javax.swing.JTextField txtcorreo;
     private javax.swing.JTextField txtdireccion;

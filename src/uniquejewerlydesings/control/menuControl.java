@@ -46,7 +46,7 @@ public class menuControl {
     Factura vistaFactura = new Factura();
     facturaDB factura = new facturaDB();
 
-    facturaControl controlfactura = new facturaControl(vistaFactura, vistaPersona, factura);
+    facturaControl controlfactura = new facturaControl(vistaFactura, vistaPersona, factura,listaProductos);
 
     public void iniciarControl() {
         menu.setVisible(true);
