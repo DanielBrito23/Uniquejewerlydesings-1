@@ -13,6 +13,7 @@ import uniquejewerlydesings.DBmodelo.personaDB;
 import uniquejewerlydesings.DBmodelo.productoDB;
 import uniquejewerlydesings.modelo.persona;
 import uniquejewerlydesings.modelo.producto;
+import uniquejewerlydesings.modelo.validacion;
 import uniquejewerlydesings.vista.Factura;
 import uniquejewerlydesings.vista.ListaProductos;
 import uniquejewerlydesings.vista.PersonaIngreso;
@@ -21,11 +22,11 @@ import uniquejewerlydesings.vista.PersonaIngreso;
  *
  * @author LENOVO
  */
-public class facturaControl {
+public class facturaControl extends validacion {
 
     // ** vista
     private Factura vistaFactura;
-    private PersonaIngreso vistaPersona;
+//    private PersonaIngreso vistaPersona;
 
     //**modelos base de datos
     private facturaDB factura;
@@ -35,21 +36,27 @@ public class facturaControl {
     //** tabla para los datos
     DefaultTableModel modeloTab;
 
-    public facturaControl(Factura vistaFactura, PersonaIngreso vistaPersona, facturaDB factura, productoDB modelo, personaDB personaDB) {
+    //***validaciones
+    private validacion b;
+
+    public facturaControl(Factura vistaFactura, facturaDB factura, productoDB modelo, personaDB personaDB) {
         this.vistaFactura = vistaFactura;
-        this.vistaPersona = vistaPersona;
         this.factura = factura;
         this.modelo = modelo;
         this.personaDB = personaDB;
     }
 
     public void iniciarControl() {
+        
         vistaFactura.getBtnNewUser().addActionListener(e -> formularioPersona());
         vistaFactura.getBtnbuscar().addActionListener(e -> buscar());
-        vistaFactura.getBuscarProdcuto().addActionListener(e -> listaProductoDialogo());
         vistaFactura.getBtnselecionado().addActionListener(e -> seleccion());
-//        vistaFactura.getBtnactualizar().addActionListener(e -> actualizarDatos());
 
+        //mostrar dialogo de producto y persona ingresp
+        vistaFactura.getBuscarProdcuto().addActionListener(e -> listaProductoDialogo());
+        vistaFactura.getBtnGuardar().addActionListener(e -> ingresoPersonaDialogo());
+
+        validarCampos();
         cargarLista();
         ventana();
 
@@ -62,10 +69,11 @@ public class facturaControl {
     }
 
     public void formularioPersona() {
-        vistaPersona.setVisible(true);
-        vistaPersona.setLocationRelativeTo(null);
-        vistaPersona.setTitle("New Customer");
-        vistaPersona.getTxtID().setText(String.valueOf(idper()));
+        vistaFactura.getDialogoPersona().setVisible(true);
+        vistaFactura.getDialogoPersona().setLocationRelativeTo(null);
+        vistaFactura.getDialogoPersona().setTitle("New Person");
+        vistaFactura.getDialogoPersona().setSize(349, 349);
+        vistaFactura.getTxtID().setText(String.valueOf(idper()));
 
     }
 
@@ -137,7 +145,9 @@ public class facturaControl {
                 descripcion = vistaFactura.getTablaProductos().getValueAt(filaSleccionada, 2).toString();
 //                cantidad = vistaFactura.getTablaProductos().getValueAt(filaSleccionada, 4).toString();
                 precio = vistaFactura.getTablaProductos().getValueAt(filaSleccionada, 7).toString();
-                cantidad=vistaFactura.getTxtcantidad().getText();
+                cantidad = vistaFactura.getTxtcantidad().getText();
+                //borra la cantidad del textfield
+                vistaFactura.getTxtcantidad().setText("");
                 // metodos para calcular el precio 
                 x = (Double.parseDouble(precio) * Integer.parseInt(cantidad));
                 total = String.valueOf(x);
@@ -153,7 +163,40 @@ public class facturaControl {
 
     }
 
-    public void actualizarDatos() {
-       modelo.actualizarProducto();
+    public void ingresoPersonaDialogo() {
+
+        if (vistaFactura.getTxtCedula().getText().equals("") || vistaFactura.getTxtNombres().getText().equals("") || vistaFactura.getTxtCorreo().getText().equals("")
+                || vistaFactura.getTxtTelefono().getText().equals("") || vistaFactura.getTxtCorreo().getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Empty data please enter");
+        } else {
+            personaDB.setId_persona(Integer.parseInt(vistaFactura.getTxtID().getText()));
+            personaDB.setCedula(vistaFactura.getTxtCedula().getText());
+            personaDB.setNombres(vistaFactura.getTxtNombres().getText());
+            personaDB.setDireccion(vistaFactura.getTxtDireccion().getText());
+            personaDB.setTelefono(vistaFactura.getTxtTelefono().getText());
+            personaDB.setCorreo(vistaFactura.getTxtCorreo().getText());
+            if (personaDB.insertarPersona()) {
+                JOptionPane.showMessageDialog(null, "Added successfully");
+                limparCampos();
+            } else {
+                JOptionPane.showMessageDialog(null, "Data entry error");
+            }
+        }
+
+    }
+
+    public void limparCampos() {
+        vistaFactura.getTxtCedula().setText("");
+        vistaFactura.getTxtNombres().setText("");
+        vistaFactura.getTxtCorreo().setText("");
+        vistaFactura.getTxtTelefono().setText("");
+        vistaFactura.getTxtDireccion().setText("");
+    }
+
+    public void validarCampos() {
+        vistaFactura.getTxtNombres().addKeyListener(validarLetras(vistaFactura.getTxtNombres()));
+        vistaFactura.getTxtDireccion().addKeyListener(validarLetras(vistaFactura.getTxtDireccion()));
+        vistaFactura.getTxtTelefono().addKeyListener(validarCelular(vistaFactura.getTxtTelefono()));
+        vistaFactura.getTxtNombres().addKeyListener(validarLetras(vistaFactura.getTxtNombres()));
     }
 }
