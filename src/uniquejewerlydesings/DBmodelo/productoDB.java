@@ -51,7 +51,6 @@ public class productoDB extends producto {
     }
 
     public List<producto> listaProductos() {
-
         System.out.println("Entra a lista sql");
         List<producto> listaProducto = new ArrayList<producto>();
         String sql = "select * from producto WHERE estado = 'a'";

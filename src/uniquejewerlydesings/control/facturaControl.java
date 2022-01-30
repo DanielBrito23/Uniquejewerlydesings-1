@@ -23,28 +23,33 @@ import uniquejewerlydesings.vista.PersonaIngreso;
  */
 public class facturaControl {
 
+    // ** vista
     private Factura vistaFactura;
     private PersonaIngreso vistaPersona;
+
+    //**modelos base de datos
     private facturaDB factura;
     private productoDB modelo;
     private personaDB personaDB;
-    private ListaProductos listaProducto;
+
+    
+    //** tabla para los datos
     DefaultTableModel modeloTab;
 
-    public facturaControl(Factura vistaFactura, PersonaIngreso vistaPersona, facturaDB factura, ListaProductos listaProducto) {
+    public facturaControl(Factura vistaFactura, PersonaIngreso vistaPersona, facturaDB factura, productoDB modelo, personaDB personaDB) {
         this.vistaFactura = vistaFactura;
         this.vistaPersona = vistaPersona;
         this.factura = factura;
-        this.listaProducto = listaProducto;
+        this.modelo = modelo;
+        this.personaDB = personaDB;
     }
 
     public void iniciarControl() {
         vistaFactura.getBtnNewUser().addActionListener(e -> formularioPersona());
         vistaFactura.getBtnbuscar().addActionListener(e -> buscar());
-        vistaFactura.getBuscarProdcuto().addActionListener(e -> cargarLista());
-        vistaFactura.getBuscarProdcuto().addActionListener(e -> listaProducto());
+        vistaFactura.getBuscarProdcuto().addActionListener(e -> listaProductoDialogo());
+        cargarLista();
         ventana();
-       
 
     }
 
@@ -62,16 +67,11 @@ public class facturaControl {
 
     }
 
-    public void listaProducto() {
-//        listaProducto.setVisible(true);
-//        listaProducto.setLocationRelativeTo(null);
-//        listaProducto.setTitle("Product List");
+    public void listaProductoDialogo() {
         vistaFactura.getDialiogproducto().setVisible(true);
         vistaFactura.getDialiogproducto().setLocationRelativeTo(null);
         vistaFactura.getDialiogproducto().setTitle("Product List");
-       
-//        listaProducto.getTxtID().setText(String.valueOf(idper()));
-
+        vistaFactura.getDialiogproducto().setSize(755, 302);
     }
 
     public int idper() {
@@ -101,10 +101,9 @@ public class facturaControl {
                 vistaFactura.getTablaProductos().setValueAt(lista.get(i).getTipo_metal(), i, 6);
                 vistaFactura.getTablaProductos().setValueAt(lista.get(i).getPrecio_unitario(), i, 7);
             }
-//            vistaFactura.getLbCantidad().setText("Cargados: " + lista.size() + " registros");
 
         } catch (Exception ex) {
-            System.out.println("Error en el buscar control: " + ex.getMessage());
+            System.out.println("Error en el listar control: " + ex.getMessage());
         }
     }
 
