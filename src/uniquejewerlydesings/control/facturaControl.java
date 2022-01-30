@@ -32,7 +32,6 @@ public class facturaControl {
     private productoDB modelo;
     private personaDB personaDB;
 
-    
     //** tabla para los datos
     DefaultTableModel modeloTab;
 
@@ -48,6 +47,9 @@ public class facturaControl {
         vistaFactura.getBtnNewUser().addActionListener(e -> formularioPersona());
         vistaFactura.getBtnbuscar().addActionListener(e -> buscar());
         vistaFactura.getBuscarProdcuto().addActionListener(e -> listaProductoDialogo());
+        vistaFactura.getBtnselecionado().addActionListener(e -> seleccion());
+//        vistaFactura.getBtnactualizar().addActionListener(e -> actualizarDatos());
+
         cargarLista();
         ventana();
 
@@ -119,5 +121,39 @@ public class facturaControl {
             vistaFactura.getTxtcorreo().setText(p.getCorreo() + "");
         }
     }
+// metodo para pasar los datos de una tabla a otra
 
+    public void seleccion() {
+        int filaSleccionada = vistaFactura.getTablaProductos().getSelectedRow();
+        try {
+            String cantidad, descripcion, precio, total;
+            double x = 0.0;
+            int canti = 0;
+
+            if (filaSleccionada == -1) {
+                JOptionPane.showMessageDialog(null, "Select a row", "check", JOptionPane.WARNING_MESSAGE);
+            } else {
+                modeloTab = (DefaultTableModel) vistaFactura.getTablaProductos().getModel();
+                descripcion = vistaFactura.getTablaProductos().getValueAt(filaSleccionada, 2).toString();
+//                cantidad = vistaFactura.getTablaProductos().getValueAt(filaSleccionada, 4).toString();
+                precio = vistaFactura.getTablaProductos().getValueAt(filaSleccionada, 7).toString();
+                cantidad=vistaFactura.getTxtcantidad().getText();
+                // metodos para calcular el precio 
+                x = (Double.parseDouble(precio) * Integer.parseInt(cantidad));
+                total = String.valueOf(x);
+
+                //muestra los datos en la tabla 
+                modeloTab = (DefaultTableModel) vistaFactura.getTablaFactura().getModel();
+                String filaSeleelemto[] = {descripcion, cantidad, precio, total};
+                modeloTab.addRow(filaSeleelemto);
+            }
+        } catch (Exception e) {
+
+        }
+
+    }
+
+    public void actualizarDatos() {
+       modelo.actualizarProducto();
+    }
 }
