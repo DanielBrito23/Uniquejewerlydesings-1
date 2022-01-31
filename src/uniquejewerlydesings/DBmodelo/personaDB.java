@@ -75,6 +75,23 @@ public class personaDB extends persona {
         }
     }
 
+    public boolean actualizarPersona() {
+        String sql = "update  persona set "
+                + "cedula = '" + getCedula() + "',"
+                + "nombres = '" + getNombres() + "', "
+                + "direccion = '" + getDireccion() + "', "
+                + "telefono = '" + getTelefono() + "', "
+                + "correo= '" + getCorreo() + "', "
+                + "estado = 'a' "
+                + "where id_persona = " + getId_persona() + "";
+        System.out.println("update: " + sql);
+        if (conecta.noQuery(sql) == null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public List<persona> buscar(String aguja) {
         List<persona> listaPersonas = new ArrayList();
 
