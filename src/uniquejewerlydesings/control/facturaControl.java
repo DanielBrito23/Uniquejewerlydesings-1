@@ -47,7 +47,7 @@ public class facturaControl extends validacion {
     }
 
     public void iniciarControl() {
-        
+
         vistaFactura.getBtnNewUser().addActionListener(e -> formularioPersona());
         vistaFactura.getBtnbuscar().addActionListener(e -> buscar());
         vistaFactura.getBtnselecionado().addActionListener(e -> seleccion());
@@ -182,7 +182,12 @@ public class facturaControl extends validacion {
                 JOptionPane.showMessageDialog(null, "Data entry error");
             }
         }
-
+        vistaFactura.getTxtid().setText(personaDB.getId_persona() + "");
+        vistaFactura.getTxtcedula().setText(personaDB.getCedula()+ "");
+        vistaFactura.getTxtnombres().setText(personaDB.getNombres() + "");
+        vistaFactura.getTxtdireccion().setText(personaDB.getDireccion() + "");
+        vistaFactura.getTxttelefono().setText(personaDB.getTelefono() + "");
+        vistaFactura.getTxtcorreo().setText(personaDB.getCorreo() + "");
     }
 
     public void limparCampos() {
