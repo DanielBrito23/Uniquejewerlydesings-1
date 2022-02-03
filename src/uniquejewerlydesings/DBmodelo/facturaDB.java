@@ -5,6 +5,7 @@
  */
 package uniquejewerlydesings.DBmodelo;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,6 +23,14 @@ import uniquejewerlydesings.modelo.persona;
 public class facturaDB extends encabezadoFactura {
 
     private Conexion conecta = new Conexion();
+
+    public facturaDB(int id_encabezado, int id_cliente, int id_persona, String cedula, String nombres, String direccion, String telefono, String correo) {
+        super(id_encabezado, id_cliente, id_persona, cedula, nombres, direccion, telefono, correo);
+    }
+
+    public facturaDB() {
+
+    }
 
     public List<persona> buscar(String aguja) {
         List<persona> listaPersonas = new ArrayList();
@@ -69,5 +78,44 @@ public class facturaDB extends encabezadoFactura {
             System.out.println("error buscar por id en sql: " + e.getMessage());
         }
         return p;
+    }
+
+    public boolean insertarFactura() {
+
+        String sql = "insert into encabezado_fac (id_encabezado, id_cliente, id_empleado) "
+                + "values (" + getId_encabezado() + ", '" + getId_cliente() + "');";
+
+        System.out.println("insert factura: " + sql);
+        PreparedStatement ps = conecta.getPs(sql);
+
+        try {
+            conecta.noQuery(ps);
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error insertar factura: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public int id_autofactur() {
+        PreparedStatement ps = null;
+        ResultSet re = null;
+        int id = 1;
+        try {
+            ps = conecta.conectarBD().prepareStatement("select max(id_encabezado_fac) from factura");
+            re = ps.executeQuery();
+            while (re.next()) {
+                id = re.getInt(1) + 1;
+            }
+        } catch (Exception e) {
+            System.out.println("error" + e.getMessage());
+        } finally {
+            try {
+                ps.close();
+                re.close();
+            } catch (Exception e) {
+            }
+        }
+        return id;
     }
 }

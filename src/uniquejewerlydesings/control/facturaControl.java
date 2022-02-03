@@ -5,7 +5,9 @@
  */
 package uniquejewerlydesings.control;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import uniquejewerlydesings.DBmodelo.facturaDB;
@@ -55,6 +57,7 @@ public class facturaControl extends validacion {
         //mostrar dialogo de producto y persona ingresp
         vistaFactura.getBuscarProdcuto().addActionListener(e -> listaProductoDialogo());
         vistaFactura.getBtnGuardar().addActionListener(e -> ingresoPersonaDialogo());
+        vistaFactura.getBtnimprimir().addActionListener(e -> ingresoFactura());
 
         validarCampos();
         cargarLista();
@@ -183,7 +186,7 @@ public class facturaControl extends validacion {
             }
         }
         vistaFactura.getTxtid().setText(personaDB.getId_persona() + "");
-        vistaFactura.getTxtcedula().setText(personaDB.getCedula()+ "");
+        vistaFactura.getTxtcedula().setText(personaDB.getCedula() + "");
         vistaFactura.getTxtnombres().setText(personaDB.getNombres() + "");
         vistaFactura.getTxtdireccion().setText(personaDB.getDireccion() + "");
         vistaFactura.getTxttelefono().setText(personaDB.getTelefono() + "");
@@ -204,4 +207,23 @@ public class facturaControl extends validacion {
         vistaFactura.getTxtTelefono().addKeyListener(validarCelular(vistaFactura.getTxtTelefono()));
         vistaFactura.getTxtNombres().addKeyListener(validarLetras(vistaFactura.getTxtNombres()));
     }
+
+    public void imprimir() {
+
+    }
+    public void ingresoFactura(){
+         factura.setId_persona(Integer.parseInt(vistaFactura.getTxtid().getText()));
+//            personaDB.setCedula(vistaPersona.getTxtCedula().getText());
+//            personaDB.setNombres(vistaPersona.getTxtNombres().getText());
+//            personaDB.setDireccion(vistaPersona.getTxtDireccion().getText());
+//            personaDB.setTelefono(vistaPersona.getTxtTelefono().getText());
+//            personaDB.setCorreo(vistaPersona.getTxtCorreo().getText());
+            if (factura.insertarFactura()) {
+                JOptionPane.showMessageDialog(null, "Added successfully");
+                limparCampos();
+            } else {
+                JOptionPane.showMessageDialog(null, "Data entry error");
+            }
+    }
+
 }
