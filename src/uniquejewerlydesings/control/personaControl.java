@@ -39,8 +39,8 @@ public class personaControl extends validacion{
 
     public void iniciarControl() {
         //abrir la ventana
-        vistaPersona.setVisible(true);
-        vistaPersona.setLocationRelativeTo(null);
+//        vistaPersona.setVisible(true);
+//        vistaPersona.setLocationRelativeTo(null);
         vistaPersona.getTxtID().setText(String.valueOf(idper()));
 
         //acciones a los botones de la vistaPersona

@@ -49,7 +49,7 @@ public class listaControl extends validacion {
         ///////
         placeHolder();
         cargarLista();
-        ventana();
+        //ventana();
         validarCampos();
     }
 

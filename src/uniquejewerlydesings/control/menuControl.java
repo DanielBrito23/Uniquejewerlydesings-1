@@ -5,6 +5,8 @@
  */
 package uniquejewerlydesings.control;
 
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
 import uniquejewerlydesings.DBmodelo.facturaDB;
 import uniquejewerlydesings.DBmodelo.personaDB;
 import uniquejewerlydesings.DBmodelo.productoDB;
@@ -57,11 +59,26 @@ public class menuControl {
         menu.getBtnnewInvoice().addActionListener(e -> factura());
     }
 
+    private void showPanel(JPanel p){
+        p.setSize(1015, 646);
+        p.setLocation(0,0 );
+        
+        menu.getContent().removeAll();
+        menu.getContent().add(p, BorderLayout.CENTER);
+        menu.getContent().revalidate();
+        menu.getContent().repaint();
+    }
+    
+    
     public void btnPersona() {
+        
+        showPanel(vistaPersona.getPanelIngreso());
         controlPersona.iniciarControl();
     }
 
     public void listaPersona() {
+        
+        showPanel(vista.getjPanel1());
         listaPersona.iniciaControl();
     }
 
