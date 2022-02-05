@@ -60,7 +60,7 @@
                     </Property>
                   </Properties>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="JEditProduct">
+                <MenuItem class="javax.swing.JMenuItem" name="btnEditPro">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/images/iconsMenu/edit product.png"/>
@@ -75,7 +75,7 @@
                     </Property>
                   </Properties>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="JDeleteProduct">
+                <MenuItem class="javax.swing.JMenuItem" name="btnDeletePro">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/images/iconsMenu/delete product.png"/>

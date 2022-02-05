@@ -45,7 +45,7 @@ public class productsStocksControl extends validacion {
         vista.getBtnEditPro().addActionListener(e -> abrirDialogo(1));
 
         //inicia metodos
-        ventana();
+        //ventana();
         cargarLista();
         placeHolder();
         placeHolderFecha();

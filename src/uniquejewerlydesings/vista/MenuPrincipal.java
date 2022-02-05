@@ -31,6 +31,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.content = content;
     }
 
+    public JMenuItem getBtnEditPro() {
+        return btnEditPro;
+    }
+
+    public void setBtnEditPro(JMenuItem btnEditPro) {
+        this.btnEditPro = btnEditPro;
+    }
+
+    public JMenuItem getBtnDeletePro() {
+        return btnDeletePro;
+    }
+
+    public void setBtnDeletePro(JMenuItem btnDeletePro) {
+        this.btnDeletePro = btnDeletePro;
+    }
+    
     public MenuPrincipal() {
         initComponents();
         setLocationRelativeTo(null);
@@ -49,11 +65,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     public JMenuItem getJDeleteProduct() {
-        return JDeleteProduct;
+        return btnDeletePro;
     }
 
     public void setJDeleteProduct(JMenuItem JDeleteProduct) {
-        this.JDeleteProduct = JDeleteProduct;
+        this.btnDeletePro = JDeleteProduct;
     }
 
     public JMenuItem getJEditCustom() {
@@ -65,11 +81,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     public JMenuItem getJEditProduct() {
-        return JEditProduct;
+        return btnEditPro;
     }
 
     public void setJEditProduct(JMenuItem JEditProduct) {
-        this.JEditProduct = JEditProduct;
+        this.btnEditPro = JEditProduct;
     }
 
     public JMenu getJMCustoms() {
@@ -268,9 +284,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         JProducts = new javax.swing.JMenu();
         btnNewProduct = new javax.swing.JMenuItem();
         jSeparator8 = new javax.swing.JPopupMenu.Separator();
-        JEditProduct = new javax.swing.JMenuItem();
+        btnEditPro = new javax.swing.JMenuItem();
         jSeparator9 = new javax.swing.JPopupMenu.Separator();
-        JDeleteProduct = new javax.swing.JMenuItem();
+        btnDeletePro = new javax.swing.JMenuItem();
         JMCustoms = new javax.swing.JMenu();
         btnNewCustom = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
@@ -328,16 +344,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jSeparator8.setForeground(new java.awt.Color(0, 0, 0));
         JProducts.add(jSeparator8);
 
-        JEditProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconsMenu/edit product.png"))); // NOI18N
-        JEditProduct.setText("Edit Product");
-        JProducts.add(JEditProduct);
+        btnEditPro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconsMenu/edit product.png"))); // NOI18N
+        btnEditPro.setText("Edit Product");
+        JProducts.add(btnEditPro);
 
         jSeparator9.setForeground(new java.awt.Color(0, 0, 0));
         JProducts.add(jSeparator9);
 
-        JDeleteProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconsMenu/delete product.png"))); // NOI18N
-        JDeleteProduct.setText("Delete Product");
-        JProducts.add(JDeleteProduct);
+        btnDeletePro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconsMenu/delete product.png"))); // NOI18N
+        btnDeletePro.setText("Delete Product");
+        JProducts.add(btnDeletePro);
 
         Jminventory.add(JProducts);
 
@@ -491,15 +507,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem BtnListProducts;
     private javax.swing.JMenuItem JDeleteCustom;
-    private javax.swing.JMenuItem JDeleteProduct;
     private javax.swing.JMenuItem JEditCustom;
-    private javax.swing.JMenuItem JEditProduct;
     private javax.swing.JMenuItem JListCustom;
     private javax.swing.JMenu JMCustoms;
     private javax.swing.JMenu JMInvoice;
     private javax.swing.JMenu JProducts;
     private javax.swing.JMenuItem JmInvoiceList;
     private javax.swing.JMenu Jminventory;
+    private javax.swing.JMenuItem btnDeletePro;
+    private javax.swing.JMenuItem btnEditPro;
     private javax.swing.JMenuItem btnNewCustom;
     private javax.swing.JMenuItem btnNewProduct;
     private javax.swing.JMenuItem btnnewInvoice;

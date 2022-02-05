@@ -47,7 +47,7 @@ public class menuControl {
     //instancias para la factura 
     Factura vistaFactura = new Factura();
     facturaDB factura = new facturaDB();
-    facturaControl controlfactura = new facturaControl(vistaFactura,factura, productodb, personaDB);
+    facturaControl controlfactura = new facturaControl(vistaFactura, factura, productodb, personaDB);
 
     public void iniciarControl() {
         menu.setVisible(true);
@@ -55,41 +55,67 @@ public class menuControl {
         menu.getBtnNewCustom().addActionListener(e -> btnPersona());
         menu.getJListCustom().addActionListener(e -> listaPersona());
         menu.getBtnListProducts().addActionListener(e -> listaProdcutos());
-        menu.getBtnNewProduct().addActionListener(e -> btnNuevoProducto());
         menu.getBtnnewInvoice().addActionListener(e -> factura());
+        
+        //botones para las opcines del producto
+        menu.getBtnNewProduct().addActionListener(e -> btnNuevoProducto());
+        menu.getBtnEditPro().addActionListener(e -> listaProdcutosEdit());
+        menu.getBtnDeletePro().addActionListener(e -> listaProdcutosDelete());
+        
     }
 
-    private void showPanel(JPanel p){
+    private void showPanel(JPanel p) {
         p.setSize(1015, 646);
-        p.setLocation(0,0 );
-        
+        p.setLocation(0, 0);
+
         menu.getContent().removeAll();
         menu.getContent().add(p, BorderLayout.CENTER);
         menu.getContent().revalidate();
         menu.getContent().repaint();
     }
-    
-    
+
     public void btnPersona() {
-        
+
         showPanel(vistaPersona.getPanelIngreso());
         controlPersona.iniciarControl();
     }
 
     public void listaPersona() {
-        
+
         showPanel(vista.getjPanel1());
         listaPersona.iniciaControl();
     }
 
+    
+    // --- metodos inicia opciones para el producto
     public void listaProdcutos() {
+        showPanel(listaProductos.getPnlContPro());
+        listaProductos.getBtnDelete().setVisible(false);
+        listaProductos.getBtnNewPro().setVisible(false);
+        listaProductos.getBtnEditPro().setVisible(false);
+        controlProductos.iniciarControl();
+    }
+
+    public void listaProdcutosEdit() {
+        listaProductos.getBtnDelete().setVisible(false);
+        listaProductos.getBtnNewPro().setVisible(false);
+        listaProductos.getBtnEditPro().setVisible(true);
+        showPanel(listaProductos.getPnlContPro());
+        controlProductos.iniciarControl();
+    }
+    
+      public void listaProdcutosDelete() {
+        listaProductos.getBtnDelete().setVisible(true);
+        listaProductos.getBtnNewPro().setVisible(false);
+        listaProductos.getBtnEditPro().setVisible(false);
+        showPanel(listaProductos.getPnlContPro());
         controlProductos.iniciarControl();
     }
 
     public void btnNuevoProducto() {
         controRegistrarProduc.iniciarControl();
     }
-
+   // --- metodos finaliza opciones para el prodcuto
     public void factura() {
         controlfactura.iniciarControl();
     }
