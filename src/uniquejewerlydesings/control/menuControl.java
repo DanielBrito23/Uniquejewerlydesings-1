@@ -7,6 +7,7 @@ package uniquejewerlydesings.control;
 
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
+import uniquejewerlydesings.DBmodelo.clienteDB;
 import uniquejewerlydesings.DBmodelo.facturaDB;
 import uniquejewerlydesings.DBmodelo.personaDB;
 import uniquejewerlydesings.DBmodelo.productoDB;
@@ -47,7 +48,8 @@ public class menuControl {
     //instancias para la factura 
     Factura vistaFactura = new Factura();
     facturaDB factura = new facturaDB();
-    facturaControl controlfactura = new facturaControl(vistaFactura, factura, productodb, personaDB);
+    clienteDB clienteDB=new clienteDB();
+    facturaControl controlfactura = new facturaControl(vistaFactura, factura, productodb, personaDB,clienteDB);
 
     public void iniciarControl() {
         menu.setVisible(true);

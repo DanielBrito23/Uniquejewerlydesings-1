@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import uniquejewerlydesings.DBmodelo.clienteDB;
 import uniquejewerlydesings.DBmodelo.facturaDB;
 import uniquejewerlydesings.DBmodelo.personaDB;
 import uniquejewerlydesings.DBmodelo.productoDB;
@@ -34,6 +35,7 @@ public class facturaControl extends validacion {
     private facturaDB factura;
     private productoDB modelo;
     private personaDB personaDB;
+    private clienteDB clienteDB;
 
     //** tabla para los datos
     DefaultTableModel modeloTab;
@@ -41,12 +43,15 @@ public class facturaControl extends validacion {
     //***validaciones
     private validacion b;
 
-    public facturaControl(Factura vistaFactura, facturaDB factura, productoDB modelo, personaDB personaDB) {
+    public facturaControl(Factura vistaFactura, facturaDB factura, productoDB modelo, personaDB personaDB, clienteDB clienteDB) {
         this.vistaFactura = vistaFactura;
         this.factura = factura;
         this.modelo = modelo;
         this.personaDB = personaDB;
+        this.clienteDB = clienteDB;
     }
+
+   
 
     public void iniciarControl() {
 
@@ -57,7 +62,7 @@ public class facturaControl extends validacion {
         //mostrar dialogo de producto y persona ingresp
         vistaFactura.getBuscarProdcuto().addActionListener(e -> listaProductoDialogo());
         vistaFactura.getBtnGuardar().addActionListener(e -> ingresoPersonaDialogo());
-        vistaFactura.getBtnimprimir().addActionListener(e -> ingresoFactura());
+        vistaFactura.getBtnimprimir().addActionListener(e -> ingresoCliente());
 
         validarCampos();
         cargarLista();
@@ -69,6 +74,8 @@ public class facturaControl extends validacion {
         vistaFactura.setVisible(true);
         vistaFactura.setLocationRelativeTo(null);
         vistaFactura.setTitle("Invoice");
+        vistaFactura.getTxtIdCliente().setText(String.valueOf(IdCli()));
+
     }
 
     public void formularioPersona() {
@@ -89,6 +96,11 @@ public class facturaControl extends validacion {
 
     public int idper() {
         int id = personaDB.id_autoper();
+        return id;
+    }
+
+    public int IdCli() {
+        int id = clienteDB.id_autoCli();
         return id;
     }
 
@@ -211,19 +223,16 @@ public class facturaControl extends validacion {
     public void imprimir() {
 
     }
-    public void ingresoFactura(){
-         factura.setId_persona(Integer.parseInt(vistaFactura.getTxtid().getText()));
-//            personaDB.setCedula(vistaPersona.getTxtCedula().getText());
-//            personaDB.setNombres(vistaPersona.getTxtNombres().getText());
-//            personaDB.setDireccion(vistaPersona.getTxtDireccion().getText());
-//            personaDB.setTelefono(vistaPersona.getTxtTelefono().getText());
-//            personaDB.setCorreo(vistaPersona.getTxtCorreo().getText());
-            if (factura.insertarFactura()) {
-                JOptionPane.showMessageDialog(null, "Added successfully");
-                limparCampos();
-            } else {
-                JOptionPane.showMessageDialog(null, "Data entry error");
-            }
+
+    public void ingresoCliente() {
+        clienteDB.setId_persona(Integer.parseInt(vistaFactura.getTxtid().getText()));
+        clienteDB.setId_cliente(Integer.parseInt(vistaFactura.getTxtIdCliente().getText()));
+        if (clienteDB.insertarCliente()) {
+            JOptionPane.showMessageDialog(null, "Added successfully");
+            limparCampos();
+        } else {
+            JOptionPane.showMessageDialog(null, "Data entry error");
+        }
     }
 
 }
