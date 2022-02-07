@@ -5,15 +5,33 @@
  */
 package uniquejewerlydesings.control;
 
+import java.awt.HeadlessException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import uniquejewerlydesings.DBmodelo.clienteDB;
 import uniquejewerlydesings.DBmodelo.facturaDB;
 import uniquejewerlydesings.DBmodelo.personaDB;
 import uniquejewerlydesings.DBmodelo.productoDB;
+import uniquejewerlydesings.UniqueJewerlyDesings;
+import uniquejewerlydesings.conexion.Conexion;
 import uniquejewerlydesings.modelo.persona;
 import uniquejewerlydesings.modelo.producto;
 import uniquejewerlydesings.modelo.validacion;
@@ -26,6 +44,9 @@ import uniquejewerlydesings.vista.PersonaIngreso;
  * @author LENOVO
  */
 public class facturaControl extends validacion {
+//*** conxion 
+
+    private Conexion conecta = new Conexion();
 
     // ** vista
     private Factura vistaFactura;
@@ -51,8 +72,6 @@ public class facturaControl extends validacion {
         this.clienteDB = clienteDB;
     }
 
-   
-
     public void iniciarControl() {
 
         vistaFactura.getBtnNewUser().addActionListener(e -> formularioPersona());
@@ -63,6 +82,7 @@ public class facturaControl extends validacion {
         vistaFactura.getBuscarProdcuto().addActionListener(e -> listaProductoDialogo());
         vistaFactura.getBtnGuardar().addActionListener(e -> ingresoPersonaDialogo());
         vistaFactura.getBtnimprimir().addActionListener(e -> ingresoCliente());
+        vistaFactura.getBtnimprimir().addActionListener(e -> imprimir());
 
         validarCampos();
         cargarLista();
@@ -222,6 +242,25 @@ public class facturaControl extends validacion {
 
     public void imprimir() {
 
+//        try {
+//            String ruta="scr/uniuniquejewerlydesings/factura/factura.jrxml";
+//            Map parametros=new HashMap();
+//            parametros.put("cedula",vistaFactura.getTxtcedula().getText());
+//            JasperPrint informe=JasperFillManager.fillReport(ruta, parametros,conecta.conectarBD());
+//            JasperViewer ventanavisor=new JasperViewer(informe,false);
+//            ventanavisor.setTitle("FACTURA");
+//            ventanavisor.setVisible(true);
+//            
+//        } catch (HeadlessException| JRException e) {
+//            JOptionPane.showConfirmDialog(null,"Error en el reporte","error",JOptionPane.ERROR_MESSAGE);
+//        }
+        try {
+            JasperReport jr = JasperCompileManager.compileReport("src/uniuniquejewerlydesings/factura/factura.jrxml");
+            JasperPrint jp = JasperFillManager.fillReport(jr, null, conecta.conectarBD());
+            JasperViewer ventanavisor = new JasperViewer(jp);
+            ventanavisor.setVisible(true);
+        } catch (JRException e) {
+        }
     }
 
     public void ingresoCliente() {
