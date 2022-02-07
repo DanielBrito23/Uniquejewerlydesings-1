@@ -82,7 +82,7 @@ public class facturaControl extends validacion {
         vistaFactura.getBuscarProdcuto().addActionListener(e -> listaProductoDialogo());
         vistaFactura.getBtnGuardar().addActionListener(e -> ingresoPersonaDialogo());
         vistaFactura.getBtnimprimir().addActionListener(e -> ingresoCliente());
-        vistaFactura.getBtnimprimir().addActionListener(e -> imprimir());
+        //vistaFactura.getBtnimprimir().addActionListener(e -> imprimir());
 
         validarCampos();
         cargarLista();

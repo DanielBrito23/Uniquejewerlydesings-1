@@ -262,6 +262,38 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.btnnewInvoice = btnnewInvoice;
     }
 
+    public JMenuItem getBtnDeleteEmple() {
+        return btnDeleteEmple;
+    }
+
+    public void setBtnDeleteEmple(JMenuItem btnDeleteEmple) {
+        this.btnDeleteEmple = btnDeleteEmple;
+    }
+
+    public JMenuItem getBtnEditEmple() {
+        return btnEditEmple;
+    }
+
+    public void setBtnEditEmple(JMenuItem btnEditEmple) {
+        this.btnEditEmple = btnEditEmple;
+    }
+
+    public JMenuItem getBtnListEmple() {
+        return btnListEmple;
+    }
+
+    public void setBtnListEmple(JMenuItem btnListEmple) {
+        this.btnListEmple = btnListEmple;
+    }
+
+    public JMenuItem getBtnNewEmple() {
+        return btnNewEmple;
+    }
+
+    public void setBtnNewEmple(JMenuItem btnNewEmple) {
+        this.btnNewEmple = btnNewEmple;
+    }
+
     
 
     /**
@@ -276,6 +308,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
+        jMenuItem2 = new javax.swing.JMenuItem();
         content = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         Jminventory = new javax.swing.JMenu();
@@ -299,8 +332,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btnnewInvoice = new javax.swing.JMenuItem();
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
         JmInvoiceList = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        btnNewEmple = new javax.swing.JMenuItem();
+        btnEditEmple = new javax.swing.JMenuItem();
+        btnDeleteEmple = new javax.swing.JMenuItem();
+        btnListEmple = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
+
+        jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Unique Jewerly Desings");
@@ -425,6 +465,37 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(JMInvoice);
 
+        jMenu1.setText("Employee");
+
+        btnNewEmple.setText("New employee");
+        btnNewEmple.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewEmpleActionPerformed(evt);
+            }
+        });
+        jMenu1.add(btnNewEmple);
+
+        btnEditEmple.setText("Edit employee");
+        jMenu1.add(btnEditEmple);
+
+        btnDeleteEmple.setText("Delete employee");
+        btnDeleteEmple.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteEmpleActionPerformed(evt);
+            }
+        });
+        jMenu1.add(btnDeleteEmple);
+
+        btnListEmple.setText("List employee");
+        btnListEmple.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListEmpleActionPerformed(evt);
+            }
+        });
+        jMenu1.add(btnListEmple);
+
+        jMenuBar1.add(jMenu1);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -468,6 +539,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void btnnewInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnewInvoiceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnnewInvoiceActionPerformed
+
+    private void btnNewEmpleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewEmpleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNewEmpleActionPerformed
+
+    private void btnListEmpleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListEmpleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnListEmpleActionPerformed
+
+    private void btnDeleteEmpleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteEmpleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeleteEmpleActionPerformed
 
     /**
      * @param args the command line arguments
@@ -514,14 +597,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu JProducts;
     private javax.swing.JMenuItem JmInvoiceList;
     private javax.swing.JMenu Jminventory;
+    private javax.swing.JMenuItem btnDeleteEmple;
     private javax.swing.JMenuItem btnDeletePro;
+    private javax.swing.JMenuItem btnEditEmple;
     private javax.swing.JMenuItem btnEditPro;
+    private javax.swing.JMenuItem btnListEmple;
     private javax.swing.JMenuItem btnNewCustom;
+    private javax.swing.JMenuItem btnNewEmple;
     private javax.swing.JMenuItem btnNewProduct;
     private javax.swing.JMenuItem btnnewInvoice;
     private javax.swing.JPanel content;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JSeparator jSeparator3;

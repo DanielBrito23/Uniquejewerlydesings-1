@@ -8,6 +8,7 @@ package uniquejewerlydesings.control;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import uniquejewerlydesings.DBmodelo.clienteDB;
+import uniquejewerlydesings.DBmodelo.empleadoDB;
 import uniquejewerlydesings.DBmodelo.facturaDB;
 import uniquejewerlydesings.DBmodelo.personaDB;
 import uniquejewerlydesings.DBmodelo.productoDB;
@@ -18,6 +19,8 @@ import uniquejewerlydesings.vista.ListaProductos;
 import uniquejewerlydesings.vista.MenuPrincipal;
 import uniquejewerlydesings.vista.PersonaIngreso;
 import uniquejewerlydesings.vista.RegistroProductos;
+import uniquejewerlydesings.vista.VistaListaEmple;
+import uniquejewerlydesings.vista.VistaNuevoEmpleado;
 
 /**
  *
@@ -48,8 +51,17 @@ public class menuControl {
     //instancias para la factura 
     Factura vistaFactura = new Factura();
     facturaDB factura = new facturaDB();
-    clienteDB clienteDB=new clienteDB();
-    facturaControl controlfactura = new facturaControl(vistaFactura, factura, productodb, personaDB,clienteDB);
+    clienteDB clienteDB = new clienteDB();
+    facturaControl controlfactura = new facturaControl(vistaFactura, factura, productodb, personaDB, clienteDB);
+
+    // instancias para el empleado
+    empleadoDB modeloEmple = new empleadoDB();
+    VistaNuevoEmpleado nuevoEmple = new VistaNuevoEmpleado();
+    empleadoControl controlEmple = new empleadoControl(modeloEmple, nuevoEmple);
+
+    //instancias para el crud del empleado
+    VistaListaEmple vistaCrudEmple = new VistaListaEmple();
+    empleadoCrudControl controlCrudEmple = new empleadoCrudControl(modeloEmple, vistaCrudEmple);
 
     public void iniciarControl() {
         menu.setVisible(true);
@@ -58,12 +70,15 @@ public class menuControl {
         menu.getJListCustom().addActionListener(e -> listaPersona());
         menu.getBtnListProducts().addActionListener(e -> listaProdcutos());
         menu.getBtnnewInvoice().addActionListener(e -> factura());
-        
+
         //botones para las opcines del producto
         menu.getBtnNewProduct().addActionListener(e -> btnNuevoProducto());
         menu.getBtnEditPro().addActionListener(e -> listaProdcutosEdit());
         menu.getBtnDeletePro().addActionListener(e -> listaProdcutosDelete());
-        
+
+        //botones para las opciones del empleado
+        menu.getBtnNewEmple().addActionListener(e -> btnNuevoEmpleado());
+        menu.getBtnListEmple().addActionListener(e -> listaEmpleados());
     }
 
     private void showPanel(JPanel p) {
@@ -88,7 +103,6 @@ public class menuControl {
         listaPersona.iniciaControl();
     }
 
-    
     // --- metodos inicia opciones para el producto
     public void listaProdcutos() {
         showPanel(listaProductos.getPnlContPro());
@@ -105,8 +119,8 @@ public class menuControl {
         showPanel(listaProductos.getPnlContPro());
         controlProductos.iniciarControl();
     }
-    
-      public void listaProdcutosDelete() {
+
+    public void listaProdcutosDelete() {
         listaProductos.getBtnDelete().setVisible(true);
         listaProductos.getBtnNewPro().setVisible(false);
         listaProductos.getBtnEditPro().setVisible(false);
@@ -117,8 +131,19 @@ public class menuControl {
     public void btnNuevoProducto() {
         controRegistrarProduc.iniciarControl();
     }
-   // --- metodos finaliza opciones para el prodcuto
+    // --- metodos finaliza opciones para el prodcuto
+
     public void factura() {
         controlfactura.iniciarControl();
     }
+
+    //-- metodos para el empleado
+    public void btnNuevoEmpleado() {
+        controlEmple.iniciarControl();
+    }
+
+    public void listaEmpleados() {
+        controlCrudEmple.iniciarControl();
+    }
+    // -- fin metodos para el empleado
 }
