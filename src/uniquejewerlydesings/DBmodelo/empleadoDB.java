@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import uniquejewerlydesings.modelo.persona;
-import uniquejewerlydesings.modelo.producto;
 
 /**
  *
@@ -70,18 +69,20 @@ public class empleadoDB extends empleado {
     public List<empleado> listaEmpleados() {
         System.out.println("Entra a lista sql");
         List<empleado> listaEmpleados = new ArrayList<empleado>();
-        String sql = "select id_empleado,cargo, p.nombres from empleado e, persona p where e.id_persona = p.cedula";
+        String sql = "select e.id_empleado, e.cargo, per.nombres from empleado e, persona per where e.id_persona = per.cedula";
         ResultSet rs = conecta.query(sql);
+        System.out.println(sql);
         try {
             while (rs.next()) {
                 empleado emple = new empleado();
                 emple.setId_empleado(rs.getInt("id_empleado"));
-                emple.setNombres(rs.getString("p.nombres"));
                 emple.setCargo(rs.getString("cargo"));
+                emple.setNombres(rs.getString("nombres"));
                 listaEmpleados.add(emple);
+                System.out.println("result de empleados: "+emple);
             }
             rs.close();
-            return listaEmpleados();
+            return listaEmpleados;
         } catch (SQLException e) {
             System.out.println("error en la consulta de la tabla empleados" + e.getMessage().toString());
             JOptionPane.showMessageDialog(null, "error tabla: " + e.getMessage());
