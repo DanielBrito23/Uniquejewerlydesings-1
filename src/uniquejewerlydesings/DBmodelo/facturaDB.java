@@ -82,8 +82,8 @@ public class facturaDB extends encabezadoFactura {
 
     public boolean insertarFactura() {
 
-        String sql = "insert into encabezado_fac (id_encabezado, id_cliente, id_empleado) "
-                + "values (" + getId_encabezado() + ", '" + getId_cliente() + "');";
+        String sql = "insert into encabezado (id_encabezado, id_cliente) "
+                + "values (" + getId_encabezado() + "," + getId_cliente() + ");";
 
         System.out.println("insert factura: " + sql);
         PreparedStatement ps = conecta.getPs(sql);
@@ -102,7 +102,7 @@ public class facturaDB extends encabezadoFactura {
         ResultSet re = null;
         int id = 1;
         try {
-            ps = conecta.conectarBD().prepareStatement("select max(id_encabezado_fac) from factura");
+            ps = conecta.conectarBD().prepareStatement("select max(id_encabezado) from encabezado");
             re = ps.executeQuery();
             while (re.next()) {
                 id = re.getInt(1) + 1;

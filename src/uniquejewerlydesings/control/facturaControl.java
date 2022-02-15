@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -38,6 +39,7 @@ import uniquejewerlydesings.modelo.validacion;
 import uniquejewerlydesings.vista.Factura;
 import uniquejewerlydesings.vista.ListaProductos;
 import uniquejewerlydesings.vista.PersonaIngreso;
+import java.sql.Connection;
 
 /**
  *
@@ -47,6 +49,7 @@ public class facturaControl extends validacion {
 //*** conxion 
 
     private Conexion conecta = new Conexion();
+    Connection cn = conecta.conectarBD();
 
     // ** vista
     private Factura vistaFactura;
@@ -82,7 +85,7 @@ public class facturaControl extends validacion {
         vistaFactura.getBuscarProdcuto().addActionListener(e -> listaProductoDialogo());
         vistaFactura.getBtnGuardar().addActionListener(e -> ingresoPersonaDialogo());
         vistaFactura.getBtnimprimir().addActionListener(e -> ingresoCliente());
-        //vistaFactura.getBtnimprimir().addActionListener(e -> imprimir());
+//        vistaFactura.getBtnimprimir().addActionListener(e -> reporte());
 
         validarCampos();
         cargarLista();
@@ -95,7 +98,7 @@ public class facturaControl extends validacion {
         vistaFactura.setLocationRelativeTo(null);
         vistaFactura.setTitle("Invoice");
         vistaFactura.getTxtIdCliente().setText(String.valueOf(IdCli()));
-
+        vistaFactura.getTxtidfac().setText(String.valueOf(IdFac()));
     }
 
     public void formularioPersona() {
@@ -121,6 +124,11 @@ public class facturaControl extends validacion {
 
     public int IdCli() {
         int id = clienteDB.id_autoCli();
+        return id;
+    }
+
+    public int IdFac() {
+        int id = factura.id_autofactur();
         return id;
     }
 
@@ -240,26 +248,24 @@ public class facturaControl extends validacion {
         vistaFactura.getTxtNombres().addKeyListener(validarLetras(vistaFactura.getTxtNombres()));
     }
 
-    public void imprimir() {
+    public void reporte() {
+        JasperReport reporte;
+        String path = "/factura/factura.jasper";
 
-//        try {
-//            String ruta="scr/uniuniquejewerlydesings/factura/factura.jrxml";
-//            Map parametros=new HashMap();
-//            parametros.put("cedula",vistaFactura.getTxtcedula().getText());
-//            JasperPrint informe=JasperFillManager.fillReport(ruta, parametros,conecta.conectarBD());
-//            JasperViewer ventanavisor=new JasperViewer(informe,false);
-//            ventanavisor.setTitle("FACTURA");
-//            ventanavisor.setVisible(true);
-//            
-//        } catch (HeadlessException| JRException e) {
-//            JOptionPane.showConfirmDialog(null,"Error en el reporte","error",JOptionPane.ERROR_MESSAGE);
-//        }
+//        String path = "F:\\ARCHIVOS\\programacion Visual\\CrudMvc1\\src\\Reporte\\Ejemplo_Reporte.jasper";
         try {
-            JasperReport jr = JasperCompileManager.compileReport("src/uniuniquejewerlydesings/factura/factura.jrxml");
-            JasperPrint jp = JasperFillManager.fillReport(jr, null, conecta.conectarBD());
-            JasperViewer ventanavisor = new JasperViewer(jp);
-            ventanavisor.setVisible(true);
-        } catch (JRException e) {
+            reporte = (JasperReport) JRLoader.loadObject(getClass().getResource(path)); //Cargo el reporte al objeto
+            Map<String, Object> params = new HashMap<String, Object>();
+//            String aguja = vistaFactura.getTxtparametro().getText();
+            params.put("cedula", vistaFactura.getTxtcedula());
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, params, cn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
+            JasperViewer viewer = new JasperViewer(jprint, false); //Creamos la vista del Reporte
+            viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Le agregamos que se cierre solo el reporte cuando lo cierre el usuario
+            viewer.setVisible(true); //Inicializamos la vista del Reporte
+
+            //mapaa de parametros
+        } catch (JRException ex) {
+            Logger.getLogger(UniqueJewerlyDesings.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -272,6 +278,16 @@ public class facturaControl extends validacion {
         } else {
             JOptionPane.showMessageDialog(null, "Data entry error");
         }
+        factura.setId_encabezado(Integer.parseInt(vistaFactura.getTxtidfac().getText()));
+        factura.setId_cliente(Integer.parseInt(vistaFactura.getTxtIdCliente().getText()));
+        if (factura.insertarFactura()) {
+            // JOptionPane.showMessageDialog(null, "Added successfully");
+            limparCampos();
+        }
+    }
+
+    public void ingresoEncabezado() {
+
     }
 
 }
