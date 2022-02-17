@@ -78,7 +78,6 @@ public class menuControl {
 
         //botones para las opciones del empleado
         menu.getBtnNewEmple().addActionListener(e -> btnNuevoEmpleado());
-        menu.getBtnListEmple().addActionListener(e -> listaEmpleados());
     }
 
     private void showPanel(JPanel p) {

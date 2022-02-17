@@ -202,36 +202,21 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/images/iconsMenu/empleados.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Employee"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="btnNewEmple">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/images/iconsMenu/new_employee.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="New employee"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNewEmpleActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="btnEditEmple">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Edit employee"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="btnDeleteEmple">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Delete employee"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteEmpleActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="btnListEmple">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="List employee"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnListEmpleActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

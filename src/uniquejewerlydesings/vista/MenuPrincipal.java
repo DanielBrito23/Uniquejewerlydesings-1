@@ -262,29 +262,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.btnnewInvoice = btnnewInvoice;
     }
 
-    public JMenuItem getBtnDeleteEmple() {
-        return btnDeleteEmple;
-    }
-
-    public void setBtnDeleteEmple(JMenuItem btnDeleteEmple) {
-        this.btnDeleteEmple = btnDeleteEmple;
-    }
-
-    public JMenuItem getBtnEditEmple() {
-        return btnEditEmple;
-    }
-
-    public void setBtnEditEmple(JMenuItem btnEditEmple) {
-        this.btnEditEmple = btnEditEmple;
-    }
-
-    public JMenuItem getBtnListEmple() {
-        return btnListEmple;
-    }
-
-    public void setBtnListEmple(JMenuItem btnListEmple) {
-        this.btnListEmple = btnListEmple;
-    }
 
     public JMenuItem getBtnNewEmple() {
         return btnNewEmple;
@@ -334,9 +311,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         JmInvoiceList = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         btnNewEmple = new javax.swing.JMenuItem();
-        btnEditEmple = new javax.swing.JMenuItem();
-        btnDeleteEmple = new javax.swing.JMenuItem();
-        btnListEmple = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -465,8 +439,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(JMInvoice);
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconsMenu/empleados.png"))); // NOI18N
         jMenu1.setText("Employee");
 
+        btnNewEmple.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconsMenu/new_employee.png"))); // NOI18N
         btnNewEmple.setText("New employee");
         btnNewEmple.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -474,25 +450,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(btnNewEmple);
-
-        btnEditEmple.setText("Edit employee");
-        jMenu1.add(btnEditEmple);
-
-        btnDeleteEmple.setText("Delete employee");
-        btnDeleteEmple.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteEmpleActionPerformed(evt);
-            }
-        });
-        jMenu1.add(btnDeleteEmple);
-
-        btnListEmple.setText("List employee");
-        btnListEmple.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListEmpleActionPerformed(evt);
-            }
-        });
-        jMenu1.add(btnListEmple);
 
         jMenuBar1.add(jMenu1);
 
@@ -544,14 +501,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnNewEmpleActionPerformed
 
-    private void btnListEmpleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListEmpleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnListEmpleActionPerformed
-
-    private void btnDeleteEmpleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteEmpleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDeleteEmpleActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -597,11 +546,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu JProducts;
     private javax.swing.JMenuItem JmInvoiceList;
     private javax.swing.JMenu Jminventory;
-    private javax.swing.JMenuItem btnDeleteEmple;
     private javax.swing.JMenuItem btnDeletePro;
-    private javax.swing.JMenuItem btnEditEmple;
     private javax.swing.JMenuItem btnEditPro;
-    private javax.swing.JMenuItem btnListEmple;
     private javax.swing.JMenuItem btnNewCustom;
     private javax.swing.JMenuItem btnNewEmple;
     private javax.swing.JMenuItem btnNewProduct;
