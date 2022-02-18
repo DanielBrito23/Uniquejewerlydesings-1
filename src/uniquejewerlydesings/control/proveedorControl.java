@@ -8,6 +8,7 @@ package uniquejewerlydesings.control;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import uniquejewerlydesings.DBmodelo.proveedorDB;
+import uniquejewerlydesings.modelo.persona;
 import uniquejewerlydesings.modelo.proveedor;
 import uniquejewerlydesings.vista.RegistroProveedor;
 
@@ -17,52 +18,64 @@ import uniquejewerlydesings.vista.RegistroProveedor;
  */
 public class proveedorControl {
 
-    private proveedor proveedorModelo;
     private proveedorDB proveedorDB;
     private RegistroProveedor vistaProveedor;
 
-    public proveedorControl(proveedor proveedorModelo, proveedorDB proveedorDB, RegistroProveedor vistaProveedor) {
-        this.proveedorModelo = proveedorModelo;
+    public proveedorControl(proveedorDB proveedorDB, RegistroProveedor vistaProveedor) {
+
         this.proveedorDB = proveedorDB;
         this.vistaProveedor = vistaProveedor;
     }
 
     public void iniciarControl() {
         //abrir la ventana
-        vistaProveedor.setVisible(true);
+        //vistaProveedor.setVisible(true);
         vistaProveedor.setLocationRelativeTo(null);
-//        vistaProveedor.getTxtID().setText(String.valueOf(idpro()));
 //        vistaProveedor.getTxtidpersona().setText(String.valueOf(idper()));
         //acciones a los botones de la vistaPersona
         vistaProveedor.getBtnGuardar().addActionListener(e -> ingreso());
+        vistaProveedor.getBtnCancelar().addActionListener(e -> limpiarCampos());
+        // metodos de inicio
+        vistaProveedor.getBtnbuscar().addActionListener(e -> buscar());
+        vistaProveedor.getTxtIdPerson().setVisible(false);
+        incrementarId();
+    }
+
+    public void buscar() {
+        if (vistaProveedor.getTxtIdpersona().getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Data not found");
+        } else {
+            persona p = proveedorDB.buscarPersonaId(vistaProveedor.getTxtIdpersona().getText());
+            vistaProveedor.getTxtNombres().setText(p.getNombres() + "");
+            vistaProveedor.getTxtIdPerson().setText(p.getId_persona() + "");
+        }
     }
 
     public void ingreso() {
-//        if (vistaProveedor.getTxtCedula().getText().equals("") || vistaProveedor.getTxtNombres().getText().equals("") || vistaProveedor.getTxtCorreo().getText().equals("")
-//                || vistaProveedor.getTxtTelefono().getText().equals("") || vistaProveedor.getTxtCorreo().getText().equals("")) {
-//            JOptionPane.showMessageDialog(null, "Empty data please enter");
-//        } else {
-//            proveedorDB.setId_proveedor(Integer.parseInt(vistaProveedor.getTxtID().getText()));
-//            proveedorDB.setCedula(vistaProveedor.getTxtCedula().getText());
-//            proveedorDB.setNombres(vistaProveedor.getTxtNombres().getText());
-//            proveedorDB.setDireccion(vistaProveedor.getTxtDireccion().getText());
-//            proveedorDB.setTelefono(vistaProveedor.getTxtTelefono().getText());
-//            proveedorDB.setCorreo(vistaProveedor.getTxtCorreo().getText());
-//            if (proveedorDB.insertarProveedor()) {
-//                JOptionPane.showMessageDialog(null, "Added successfully");
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Data entry error");
-//            }
-//        }
+        if (vistaProveedor.getTxtIdpersona().getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Empty data please enter");
+        } else {
+            proveedorDB.setId_proveedor(Integer.parseInt(vistaProveedor.getTxtIdProveedor().getText()));
+            proveedorDB.setId_persona(Integer.parseInt(vistaProveedor.getTxtIdPerson().getText()));
+            proveedorDB.insertarProveedor();
+            limpiarCampos();
+            incrementarId();
+        }
     }
 
-//    public int idpro() {
-//        int id = proveedorDB.id_auto();
-//        return id;
-//    }
-//
-//    public int idper() {
-//        int id = proveedorDB.id_autoper();
-//        return id;
-//    }
+    public int idpro() {
+        int id = proveedorDB.id_auto();
+        return id;
+    }
+
+    public void limpiarCampos() {
+        vistaProveedor.getTxtIdPerson().setText("");
+        vistaProveedor.getTxtNombres().setText("");
+        vistaProveedor.getTxtIdpersona().setText("");
+    }
+
+    
+    public void incrementarId(){
+        vistaProveedor.getTxtIdProveedor().setText(String.valueOf(idpro()));
+    }
 }

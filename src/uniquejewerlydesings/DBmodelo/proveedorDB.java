@@ -31,32 +31,31 @@ public class proveedorDB extends proveedor {
     public boolean insertarProveedor() {
 
         conn = new Conexion();
-        sql = "insert into proveedor (id_proveedor,id_producto,nombre_proveedor,correo_proveedor,telefono,direccion)"
-                + "values (" + getId_proveedor() + "," + getId_producto()+  "," + getNombre_proveedor()+  "," + getCorreo_proveedor()+  "," + getTelefono()+  "," + getDireccion()+ ");"; 
-        System.out.println("insert Persona: " + sql);
-   
+        sql = "insert into proveedor (id_proveedor,id_persona)"
+                + "values (" + getId_proveedor() + "," + getId_persona() + ");";
+        System.out.println("insert Proveedor: " + sql);
+
         PreparedStatement ps = conn.getPs(sql);
-        
+
         if (conn.noQuery(sql) == null) {
             return true;
         } else {
             return false;
         }
     }
-    
-    public int id_auto(){
+
+    public int id_auto() {
         conn = new Conexion();
-        int id=1;
+        int id = 1;
         try {
-            ps=conn.conectarBD().prepareStatement("select max(id_proveedor) from proveedor");
-             re=ps.executeQuery();
-        while(re.next()){
-            id=re.getInt(1)+1;
-        }
+            ps = conn.conectarBD().prepareStatement("select max(id_proveedor) from proveedor");
+            re = ps.executeQuery();
+            while (re.next()) {
+                id = re.getInt(1) + 1;
+            }
         } catch (Exception e) {
-            System.out.println("error"+e.getMessage());
-        }
-        finally{
+            System.out.println("error" + e.getMessage());
+        } finally {
             try {
                 ps.close();
                 re.close();
@@ -65,26 +64,25 @@ public class proveedorDB extends proveedor {
         }
         return id;
     }
-     public int id_autoper(){
-        conn = new Conexion();
-        int id=1;
+
+      public persona buscarPersonaId(String id) {
+        String sql = "Select * from persona where cedula = '" + id + "'";
+        ResultSet rs = conn.query(sql);
+        System.out.println("burcar por cedula: " + sql);
+        persona p = new persona();
         try {
-            ps=conn.conectarBD().prepareStatement("select max(id_persona) from persona");
-             re=ps.executeQuery();
-        while(re.next()){
-            id=re.getInt(1)+1;
-        }
-        } catch (Exception e) {
-            System.out.println("error"+e.getMessage());
-        }
-        finally{
-            try {
-                ps.close();
-                re.close();
-            } catch (Exception e) {
+            if (rs.next()) {
+                p.setId_persona(rs.getInt("id_persona"));
+                p.setCedula(rs.getString("cedula"));
+                p.setNombres(rs.getString("nombres"));
+                p.setCorreo(rs.getString("correo"));
+                p.setTelefono(rs.getString("telefono"));
+                p.setDireccion(rs.getString("direccion"));
             }
+        } catch (SQLException e) {
+            System.out.println("error buscar por id en sql: " + e.getMessage());
         }
-        return id;
+        return p;
     }
-    
+
 }

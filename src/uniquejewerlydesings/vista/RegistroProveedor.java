@@ -25,6 +25,15 @@ public class RegistroProveedor extends javax.swing.JFrame {
         initComponents();
     }
 
+    public JTextField getTxtIdPerson() {
+        return txtIdPerson;
+    }
+
+    public void setTxtIdPerson(JTextField txtIdPerson) {
+        this.txtIdPerson = txtIdPerson;
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,45 +43,41 @@ public class RegistroProveedor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        pnlRegisProvedor = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtCorreo = new javax.swing.JTextField();
-        txtTelefono = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
+        txtIdpersona = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
-        txtidpersona = new javax.swing.JTextField();
+        txtIdProveedor = new javax.swing.JTextField();
         txtNombres = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        listProducto = new javax.swing.JComboBox<>();
+        btnCancelar = new javax.swing.JButton();
+        btnbuscar = new javax.swing.JButton();
+        txtIdPerson = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("ID :");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel6.setText("Email :");
-
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel5.setText("Phome number :");
+        jLabel5.setText("ID Person:");
 
         btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconsbotones/guardar.png"))); // NOI18N
         btnGuardar.setText("Save");
 
-        txtidpersona.setEditable(false);
-        txtidpersona.setBackground(new java.awt.Color(204, 204, 204));
-        txtidpersona.addActionListener(new java.awt.event.ActionListener() {
+        txtIdProveedor.setEditable(false);
+        txtIdProveedor.setBackground(new java.awt.Color(204, 204, 204));
+        txtIdProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtidpersonaActionPerformed(evt);
+                txtIdProveedorActionPerformed(evt);
             }
         });
 
+        txtNombres.setEditable(false);
         txtNombres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombresActionPerformed(evt);
@@ -85,102 +90,105 @@ public class RegistroProveedor extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jLabel13.setText("Provider Registration");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconsbotones/cancel.png"))); // NOI18N
-        jButton1.setText("Cancel");
+        btnCancelar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconsbotones/cancel.png"))); // NOI18N
+        btnCancelar.setText("Cancel");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel3.setText("Product List:");
+        btnbuscar.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        btnbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconsbotones/buscar.png"))); // NOI18N
+        btnbuscar.setText(" Search");
 
-        listProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        txtIdPerson.setEditable(false);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout pnlRegisProvedorLayout = new javax.swing.GroupLayout(pnlRegisProvedor);
+        pnlRegisProvedor.setLayout(pnlRegisProvedorLayout);
+        pnlRegisProvedorLayout.setHorizontalGroup(
+            pnlRegisProvedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(109, 109, 109)
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(197, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(pnlRegisProvedorLayout.createSequentialGroup()
+                .addGroup(pnlRegisProvedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlRegisProvedorLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(pnlRegisProvedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel5))
+                        .addGap(63, 63, 63))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlRegisProvedorLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)))
+                .addGroup(pnlRegisProvedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlRegisProvedorLayout.createSequentialGroup()
+                        .addComponent(txtIdProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIdPerson, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(pnlRegisProvedorLayout.createSequentialGroup()
+                        .addComponent(txtIdpersona, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnbuscar))
+                    .addComponent(txtNombres))
+                .addGap(44, 44, 44))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlRegisProvedorLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnGuardar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addGap(21, 21, 21))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCorreo)
-                            .addComponent(txtNombres)
-                            .addComponent(txtTelefono)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtidpersona, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(15, 15, 15))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(listProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addComponent(btnCancelar)
+                .addGap(43, 43, 43))
+            .addGroup(pnlRegisProvedorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        pnlRegisProvedorLayout.setVerticalGroup(
+            pnlRegisProvedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlRegisProvedorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlRegisProvedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtidpersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtIdProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdPerson, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlRegisProvedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtIdpersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnbuscar))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlRegisProvedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(listProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlRegisProvedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlRegisProvedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(pnlRegisProvedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public JButton getBtnCancelar() {
+        return btnCancelar;
+    }
+
+    public void setBtnCancelar(JButton btnCancelar) {
+        this.btnCancelar = btnCancelar;
+    }
 
     public JButton getBtnGuardar() {
         return btnGuardar;
@@ -190,12 +198,12 @@ public class RegistroProveedor extends javax.swing.JFrame {
         this.btnGuardar = btnGuardar;
     }
 
-    public JButton getjButton1() {
-        return jButton1;
+    public JButton getBtnbuscar() {
+        return btnbuscar;
     }
 
-    public void setjButton1(JButton jButton1) {
-        this.jButton1 = jButton1;
+    public void setBtnbuscar(JButton btnbuscar) {
+        this.btnbuscar = btnbuscar;
     }
 
     public JLabel getjLabel1() {
@@ -226,51 +234,8 @@ public class RegistroProveedor extends javax.swing.JFrame {
         return jLabel5;
     }
 
-    public JComboBox<String> getListProducto() {
-        return listProducto;
-    }
-
-    public void setListProducto(JComboBox<String> listProducto) {
-        this.listProducto = listProducto;
-    }
-
-   
-
-    public JTextField getTxtid() {
-        return txtidpersona;
-    }
-
-    public void setTxtid(JTextField txtid) {
-        this.txtidpersona = txtid;
-    }
-
-    public JTextField getTxtidpersona() {
-        return txtidpersona;
-    }
-
-    public void setTxtidpersona(JTextField txtidpersona) {
-        this.txtidpersona = txtidpersona;
-    }
-
-    
     public void setjLabel5(JLabel jLabel5) {
         this.jLabel5 = jLabel5;
-    }
-
-    public JLabel getjLabel6() {
-        return jLabel6;
-    }
-
-    public void setjLabel6(JLabel jLabel6) {
-        this.jLabel6 = jLabel6;
-    }
-
-    public JPanel getjPanel1() {
-        return jPanel1;
-    }
-
-    public void setjPanel1(JPanel jPanel1) {
-        this.jPanel1 = jPanel1;
     }
 
     public JSeparator getjSeparator1() {
@@ -281,24 +246,28 @@ public class RegistroProveedor extends javax.swing.JFrame {
         this.jSeparator1 = jSeparator1;
     }
 
-    
-
-    public JTextField getTxtCorreo() {
-        return txtCorreo;
+    public JPanel getPnlRegisProvedor() {
+        return pnlRegisProvedor;
     }
 
-    public void setTxtCorreo(JTextField txtCorreo) {
-        this.txtCorreo = txtCorreo;
+    public void setPnlRegisProvedor(JPanel pnlRegisProvedor) {
+        this.pnlRegisProvedor = pnlRegisProvedor;
     }
 
-    
-
-    public JTextField getTxtId() {
-        return txtidpersona;
+    public JTextField getTxtIdProveedor() {
+        return txtIdProveedor;
     }
 
-    public void setTxtId(JTextField txtID) {
-        this.txtidpersona = txtID;
+    public void setTxtIdProveedor(JTextField txtIdProveedor) {
+        this.txtIdProveedor = txtIdProveedor;
+    }
+
+    public JTextField getTxtIdpersona() {
+        return txtIdpersona;
+    }
+
+    public void setTxtIdpersona(JTextField txtIdpersona) {
+        this.txtIdpersona = txtIdpersona;
     }
 
     public JTextField getTxtNombres() {
@@ -308,16 +277,6 @@ public class RegistroProveedor extends javax.swing.JFrame {
     public void setTxtNombres(JTextField txtNombres) {
         this.txtNombres = txtNombres;
     }
-
-    public JTextField getTxtTelefono() {
-        return txtTelefono;
-    }
-
-    public void setTxtTelefono(JTextField txtTelefono) {
-        this.txtTelefono = txtTelefono;
-    }
-
-    
 
 
    
@@ -330,9 +289,9 @@ public class RegistroProveedor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombresActionPerformed
 
-    private void txtidpersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidpersonaActionPerformed
+    private void txtIdProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdProveedorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtidpersonaActionPerformed
+    }//GEN-LAST:event_txtIdProveedorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -370,20 +329,18 @@ public class RegistroProveedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnbuscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JComboBox<String> listProducto;
-    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JPanel pnlRegisProvedor;
+    private javax.swing.JTextField txtIdPerson;
+    private javax.swing.JTextField txtIdProveedor;
+    private javax.swing.JTextField txtIdpersona;
     private javax.swing.JTextField txtNombres;
-    private javax.swing.JTextField txtTelefono;
-    private javax.swing.JTextField txtidpersona;
     // End of variables declaration//GEN-END:variables
 }

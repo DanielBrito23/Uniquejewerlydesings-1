@@ -311,6 +311,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         JmInvoiceList = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         btnNewEmple = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        btnListProveedor = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -453,6 +455,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setText("Provider");
+
+        btnListProveedor.setText("New Provider");
+        btnListProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListProveedorActionPerformed(evt);
+            }
+        });
+        jMenu2.add(btnListProveedor);
+
+        jMenuBar1.add(jMenu2);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -501,6 +515,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnNewEmpleActionPerformed
 
+    private void btnListProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListProveedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnListProveedorActionPerformed
+
+    public JMenuItem getBtnListProveedor() {
+        return btnListProveedor;
+    }
+
+    public void setBtnListProveedor(JMenuItem btnListProveedor) {
+        this.btnListProveedor = btnListProveedor;
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -548,12 +574,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu Jminventory;
     private javax.swing.JMenuItem btnDeletePro;
     private javax.swing.JMenuItem btnEditPro;
+    private javax.swing.JMenuItem btnListProveedor;
     private javax.swing.JMenuItem btnNewCustom;
     private javax.swing.JMenuItem btnNewEmple;
     private javax.swing.JMenuItem btnNewProduct;
     private javax.swing.JMenuItem btnnewInvoice;
     private javax.swing.JPanel content;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;

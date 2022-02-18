@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author corin
  */
-public class producto  {
+public class producto extends proveedor{
     private int id_producto;
     private int calculo_utilidad;//preguntar al tio si va eso 
     private String descripcion;
@@ -21,7 +21,7 @@ public class producto  {
     private String tipo_metal;
     private double precio_unitario;
     private String tipo_producto;
-
+    
     public producto() {
     }
 

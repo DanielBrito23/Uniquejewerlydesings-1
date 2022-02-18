@@ -12,6 +12,7 @@ import uniquejewerlydesings.DBmodelo.empleadoDB;
 import uniquejewerlydesings.DBmodelo.facturaDB;
 import uniquejewerlydesings.DBmodelo.personaDB;
 import uniquejewerlydesings.DBmodelo.productoDB;
+import uniquejewerlydesings.DBmodelo.proveedorDB;
 import uniquejewerlydesings.modelo.persona;
 import uniquejewerlydesings.vista.Factura;
 import uniquejewerlydesings.vista.ListaPersonas;
@@ -19,6 +20,7 @@ import uniquejewerlydesings.vista.ListaProductos;
 import uniquejewerlydesings.vista.MenuPrincipal;
 import uniquejewerlydesings.vista.PersonaIngreso;
 import uniquejewerlydesings.vista.RegistroProductos;
+import uniquejewerlydesings.vista.RegistroProveedor;
 import uniquejewerlydesings.vista.VistaListaEmple;
 import uniquejewerlydesings.vista.VistaNuevoEmpleado;
 
@@ -63,6 +65,11 @@ public class menuControl {
     VistaListaEmple vistaCrudEmple = new VistaListaEmple();
     empleadoCrudControl controlCrudEmple = new empleadoCrudControl(modeloEmple, vistaCrudEmple);
 
+    //isntancias pra el crud del proveedor
+    proveedorDB proveedorDB = new proveedorDB();
+    RegistroProveedor vistaProveedor = new RegistroProveedor();
+    proveedorControl controlProvee = new proveedorControl(proveedorDB, vistaProveedor);
+
     public void iniciarControl() {
         menu.setVisible(true);
         //accion para que inicie el btn de persona ubicado en el menu item
@@ -78,12 +85,14 @@ public class menuControl {
 
         //botones para las opciones del empleado
         menu.getBtnNewEmple().addActionListener(e -> btnNuevoEmpleado());
+
+        //botones para las opciones del proveedor 
+        menu.getBtnListProveedor().addActionListener(e -> btnNuevoProveedor());
     }
 
     private void showPanel(JPanel p) {
         p.setSize(1015, 646);
         p.setLocation(0, 0);
-
         menu.getContent().removeAll();
         menu.getContent().add(p, BorderLayout.CENTER);
         menu.getContent().revalidate();
@@ -145,4 +154,12 @@ public class menuControl {
         controlCrudEmple.iniciarControl();
     }
     // -- fin metodos para el empleado
+
+    // -- metodos para el proveedor 
+    public void btnNuevoProveedor() {
+        showPanel(vistaProveedor.getPnlRegisProvedor());
+        controlProvee.iniciarControl();
+    }
+
+    // fin metodos para el proveedor 
 }

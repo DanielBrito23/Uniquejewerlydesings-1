@@ -41,15 +41,19 @@ public class personaControl extends validacion{
         //abrir la ventana
 //        vistaPersona.setVisible(true);
 //        vistaPersona.setLocationRelativeTo(null);
-        vistaPersona.getTxtID().setText(String.valueOf(idper()));
+        
 
         //acciones a los botones de la vistaPersona
         vistaPersona.getBtnGuardar().addActionListener(e -> ingresoPersona());
         
-        
+        incrementarId();
         validarCampos();
     }
 
+    public void incrementarId(){
+        vistaPersona.getTxtID().setText(String.valueOf(idper()));
+    }
+    
     public void validarCampos() {
           vistaPersona.getTxtNombres().addKeyListener(validarLetras(vistaPersona.getTxtNombres()));
           vistaPersona.getTxtDireccion().addKeyListener(validarLetras(vistaPersona.getTxtDireccion()));
@@ -72,6 +76,7 @@ public class personaControl extends validacion{
             if (personaDB.insertarPersona()) {
                 JOptionPane.showMessageDialog(null, "Added successfully");
                 limparCampos();
+                incrementarId();
             } else {
                 JOptionPane.showMessageDialog(null, "Data entry error");
             }
