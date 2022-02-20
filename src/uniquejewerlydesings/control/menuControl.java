@@ -8,6 +8,7 @@ package uniquejewerlydesings.control;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import uniquejewerlydesings.DBmodelo.clienteDB;
+import uniquejewerlydesings.DBmodelo.cuerpoFacturaDB;
 import uniquejewerlydesings.DBmodelo.empleadoDB;
 import uniquejewerlydesings.DBmodelo.facturaDB;
 import uniquejewerlydesings.DBmodelo.personaDB;
@@ -54,7 +55,8 @@ public class menuControl {
     Factura vistaFactura = new Factura();
     facturaDB factura = new facturaDB();
     clienteDB clienteDB = new clienteDB();
-    facturaControl controlfactura = new facturaControl(vistaFactura, factura, productodb, personaDB, clienteDB);
+    cuerpoFacturaDB cuerpoDB=new cuerpoFacturaDB();
+    facturaControl controlfactura = new facturaControl(vistaFactura, factura, productodb, personaDB, clienteDB,cuerpoDB);
 
     // instancias para el empleado
     empleadoDB modeloEmple = new empleadoDB();

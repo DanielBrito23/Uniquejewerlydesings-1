@@ -40,6 +40,7 @@ import uniquejewerlydesings.vista.Factura;
 import uniquejewerlydesings.vista.ListaProductos;
 import uniquejewerlydesings.vista.PersonaIngreso;
 import java.sql.Connection;
+import uniquejewerlydesings.DBmodelo.cuerpoFacturaDB;
 
 /**
  *
@@ -60,6 +61,7 @@ public class facturaControl extends validacion {
     private productoDB modelo;
     private personaDB personaDB;
     private clienteDB clienteDB;
+    private cuerpoFacturaDB cuerpoDB;
 
     //** tabla para los datos
     DefaultTableModel modeloTab;
@@ -67,12 +69,13 @@ public class facturaControl extends validacion {
     //***validaciones
     private validacion b;
 
-    public facturaControl(Factura vistaFactura, facturaDB factura, productoDB modelo, personaDB personaDB, clienteDB clienteDB) {
+    public facturaControl(Factura vistaFactura, facturaDB factura, productoDB modelo, personaDB personaDB, clienteDB clienteDB, cuerpoFacturaDB cuerpoDB) {
         this.vistaFactura = vistaFactura;
         this.factura = factura;
         this.modelo = modelo;
         this.personaDB = personaDB;
         this.clienteDB = clienteDB;
+        this.cuerpoDB = cuerpoDB;
     }
 
     public void iniciarControl() {
@@ -98,7 +101,12 @@ public class facturaControl extends validacion {
         vistaFactura.setLocationRelativeTo(null);
         vistaFactura.setTitle("Invoice");
         vistaFactura.getTxtIdCliente().setText(String.valueOf(IdCli()));
-        vistaFactura.getTxtidfac().setText(String.valueOf(IdFac()));
+        vistaFactura.getTxtcuerpo().setText(String.valueOf(IdCuerpo()));
+        vistaFactura.getTxtidfac().setVisible(false);
+        vistaFactura.getTxtcuerpo().setVisible(false);
+        vistaFactura.getTxtIdCliente().setVisible(false);
+        incrementarId();
+
     }
 
     public void formularioPersona() {
@@ -129,6 +137,11 @@ public class facturaControl extends validacion {
 
     public int IdFac() {
         int id = factura.id_autofactur();
+        return id;
+    }
+
+    public int IdCuerpo() {
+        int id = cuerpoDB.id_autoCuerpo();
         return id;
     }
 
@@ -177,7 +190,7 @@ public class facturaControl extends validacion {
     public void seleccion() {
         int filaSleccionada = vistaFactura.getTablaProductos().getSelectedRow();
         try {
-            String cantidad, descripcion, precio, total;
+            String cantidad, descripcion, precio, total, id;
             double x = 0.0;
             int canti = 0;
 
@@ -186,7 +199,7 @@ public class facturaControl extends validacion {
             } else {
                 modeloTab = (DefaultTableModel) vistaFactura.getTablaProductos().getModel();
                 descripcion = vistaFactura.getTablaProductos().getValueAt(filaSleccionada, 2).toString();
-//                cantidad = vistaFactura.getTablaProductos().getValueAt(filaSleccionada, 4).toString();
+                id = vistaFactura.getTablaProductos().getValueAt(filaSleccionada, 0).toString();
                 precio = vistaFactura.getTablaProductos().getValueAt(filaSleccionada, 7).toString();
                 cantidad = vistaFactura.getTxtcantidad().getText();
                 //borra la cantidad del textfield
@@ -197,7 +210,7 @@ public class facturaControl extends validacion {
 
                 //muestra los datos en la tabla 
                 modeloTab = (DefaultTableModel) vistaFactura.getTablaFactura().getModel();
-                String filaSeleelemto[] = {descripcion, cantidad, precio, total};
+                String filaSeleelemto[] = {id, descripcion, cantidad, precio, total};
                 modeloTab.addRow(filaSeleelemto);
             }
         } catch (Exception e) {
@@ -270,23 +283,32 @@ public class facturaControl extends validacion {
     }
 
     public void ingresoCliente() {
+        //ingerso cliente
         clienteDB.setId_persona(Integer.parseInt(vistaFactura.getTxtid().getText()));
         clienteDB.setId_cliente(Integer.parseInt(vistaFactura.getTxtIdCliente().getText()));
         if (clienteDB.insertarCliente()) {
             JOptionPane.showMessageDialog(null, "Added successfully");
-            limparCampos();
         } else {
             JOptionPane.showMessageDialog(null, "Data entry error");
         }
+        //ingreso encabezado
         factura.setId_encabezado(Integer.parseInt(vistaFactura.getTxtidfac().getText()));
         factura.setId_cliente(Integer.parseInt(vistaFactura.getTxtIdCliente().getText()));
         if (factura.insertarFactura()) {
             // JOptionPane.showMessageDialog(null, "Added successfully");
-            limparCampos();
+        }
+        //ingreso cuerpo
+        cuerpoDB.setId_cuerpo(Integer.parseInt(vistaFactura.getTxtcuerpo().getText()));
+        cuerpoDB.setId_encabezado(Integer.parseInt(vistaFactura.getTxtidfac().getText()));
+//        modelo.setId_encabezado(Integer.parseInt(vistaFactura.getTxtidfac().getText()));
+        cuerpoDB.setReparacion(vistaFactura.getTxtreparaciones().getText());
+        if (cuerpoDB.insertarCuerpo()) {
+            // JOptionPane.showMessageDialog(null, "Added successfully");
         }
     }
 
-    public void ingresoEncabezado() {
+    public void incrementarId() {
+        vistaFactura.getTxtidfac().setText(String.valueOf(IdFac()));
 
     }
 
