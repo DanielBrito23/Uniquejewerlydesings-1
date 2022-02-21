@@ -24,6 +24,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         return content;
     }
 
+    public JMenuItem getBtnListProvider() {
+        return btnListProvider;
+    }
+
+    public void setBtnListProvider(JMenuItem btnListProvider) {
+        this.btnListProvider = btnListProvider;
+    }
+
     /**
      * Creates new form MenuPrincipal
      */
@@ -313,6 +321,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btnNewEmple = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         btnListProveedor = new javax.swing.JMenuItem();
+        btnListProvider = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -465,6 +474,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(btnListProveedor);
 
+        btnListProvider.setText("List Provider");
+        jMenu2.add(btnListProvider);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -575,6 +587,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem btnDeletePro;
     private javax.swing.JMenuItem btnEditPro;
     private javax.swing.JMenuItem btnListProveedor;
+    private javax.swing.JMenuItem btnListProvider;
     private javax.swing.JMenuItem btnNewCustom;
     private javax.swing.JMenuItem btnNewEmple;
     private javax.swing.JMenuItem btnNewProduct;

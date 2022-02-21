@@ -29,6 +29,13 @@ public class persona {
         this.correo = correo;
     }
 
+    public persona(String cedula, String nombres, String correo) {
+        this.cedula = cedula;
+        this.nombres = nombres;
+        this.correo = correo;
+    }
+    
+
     public persona(int id_persona, String nombres) {
         this.id_persona = id_persona;
         this.nombres = nombres;

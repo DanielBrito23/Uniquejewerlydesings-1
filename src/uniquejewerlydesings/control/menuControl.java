@@ -14,6 +14,7 @@ import uniquejewerlydesings.DBmodelo.personaDB;
 import uniquejewerlydesings.DBmodelo.productoDB;
 import uniquejewerlydesings.DBmodelo.proveedorDB;
 import uniquejewerlydesings.modelo.persona;
+import uniquejewerlydesings.vista.CrudProveedor;
 import uniquejewerlydesings.vista.Factura;
 import uniquejewerlydesings.vista.ListaPersonas;
 import uniquejewerlydesings.vista.ListaProductos;
@@ -70,6 +71,11 @@ public class menuControl {
     RegistroProveedor vistaProveedor = new RegistroProveedor();
     proveedorControl controlProvee = new proveedorControl(proveedorDB, vistaProveedor);
 
+    
+     proveedorDB proveedorDB2 = new proveedorDB();
+    CrudProveedor vistaCrudProvee = new CrudProveedor();
+    crudProveedorControl ctlCrudProve = new crudProveedorControl(proveedorDB2, vistaCrudProvee);
+    
     public void iniciarControl() {
         menu.setVisible(true);
         //accion para que inicie el btn de persona ubicado en el menu item
@@ -88,6 +94,7 @@ public class menuControl {
 
         //botones para las opciones del proveedor 
         menu.getBtnListProveedor().addActionListener(e -> btnNuevoProveedor());
+        menu.getBtnListProvider().addActionListener(e -> btnListarProve());
     }
 
     private void showPanel(JPanel p) {
@@ -99,6 +106,7 @@ public class menuControl {
         menu.getContent().repaint();
     }
 
+    
     public void btnPersona() {
 
         showPanel(vistaPersona.getPanelIngreso());
@@ -161,5 +169,8 @@ public class menuControl {
         controlProvee.iniciarControl();
     }
 
+    public void btnListarProve(){
+        ctlCrudProve.iniciarControl();
+    }
     // fin metodos para el proveedor 
 }

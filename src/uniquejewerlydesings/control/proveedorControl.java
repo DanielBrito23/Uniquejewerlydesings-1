@@ -74,6 +74,8 @@ public class proveedorControl {
         vistaProveedor.getTxtIdpersona().setText("");
     }
 
+   
+
     
     public void incrementarId(){
         vistaProveedor.getTxtIdProveedor().setText(String.valueOf(idpro()));

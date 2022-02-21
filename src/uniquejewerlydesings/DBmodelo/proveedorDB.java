@@ -9,8 +9,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 import uniquejewerlydesings.conexion.Conexion;
 import uniquejewerlydesings.modelo.persona;
+import uniquejewerlydesings.modelo.producto;
 import uniquejewerlydesings.modelo.proveedor;
 import uniquejewerlydesings.vista.RegistroProveedor;
 
@@ -28,6 +31,13 @@ public class proveedorDB extends proveedor {
     String sql1 = "";
 
 // metodo para ingresar una persona 
+    public proveedorDB(String cedula, String nombres, String correo) {
+        super(cedula, nombres, correo);
+    }
+
+    public proveedorDB() {
+    }
+
     public boolean insertarProveedor() {
 
         conn = new Conexion();
@@ -65,7 +75,7 @@ public class proveedorDB extends proveedor {
         return id;
     }
 
-      public persona buscarPersonaId(String id) {
+    public persona buscarPersonaId(String id) {
         String sql = "Select * from persona where cedula = '" + id + "'";
         ResultSet rs = conn.query(sql);
         System.out.println("burcar por cedula: " + sql);
@@ -83,6 +93,30 @@ public class proveedorDB extends proveedor {
             System.out.println("error buscar por id en sql: " + e.getMessage());
         }
         return p;
+    }
+
+    public List<proveedor> listaProveedores() {
+        System.out.println("entra prove sql");
+        List<proveedor> proveedores = new ArrayList<proveedor>();
+        String sql = "select per.cedula, per.nombres, per.correo from  proveedor pro INNER JOIN persona per on per.id_persona = pro.id_persona";
+        
+        try {
+            ResultSet rs = conn.query(sql);
+            while (rs.next()) {
+                proveedor pro = new proveedor();
+                pro.setCedula(rs.getString("cedula"));
+                pro.setNombres(rs.getString("nombres"));
+                pro.setCorreo(rs.getString("correo"));
+                proveedores.add(pro);
+                System.out.println("lista pro:" + pro);
+            }
+            rs.close();
+            return proveedores;
+        } catch (Exception e) {
+            System.out.println("error en la lista pro: " + e.getMessage());
+            return null;
+        }
+
     }
 
 }
