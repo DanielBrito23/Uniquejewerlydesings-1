@@ -5,9 +5,17 @@
  */
 package uniquejewerlydesings.control;
 
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.HeadlessException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
@@ -17,16 +25,6 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.design.JasperDesign;
-import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.engine.xml.JRXmlLoader;
-import net.sf.jasperreports.view.JasperViewer;
 import uniquejewerlydesings.DBmodelo.clienteDB;
 import uniquejewerlydesings.DBmodelo.facturaDB;
 import uniquejewerlydesings.DBmodelo.personaDB;
@@ -40,6 +38,15 @@ import uniquejewerlydesings.vista.Factura;
 import uniquejewerlydesings.vista.ListaProductos;
 import uniquejewerlydesings.vista.PersonaIngreso;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.text.Document;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import uniquejewerlydesings.DBmodelo.cuerpoFacturaDB;
 
 /**
@@ -87,7 +94,7 @@ public class facturaControl extends validacion {
         //mostrar dialogo de producto y persona ingresp
         vistaFactura.getBuscarProdcuto().addActionListener(e -> listaProductoDialogo());
         vistaFactura.getBtnGuardar().addActionListener(e -> ingresoPersonaDialogo());
-        vistaFactura.getBtnimprimir().addActionListener(e -> ingresoCliente());
+        vistaFactura.getBtnimprimir().addActionListener(e -> datosImprimir());
 //        vistaFactura.getBtnimprimir().addActionListener(e -> reporte());
 
         validarCampos();
@@ -298,18 +305,81 @@ public class facturaControl extends validacion {
             // JOptionPane.showMessageDialog(null, "Added successfully");
         }
         //ingreso cuerpo
-        cuerpoDB.setId_cuerpo(Integer.parseInt(vistaFactura.getTxtcuerpo().getText()));
-        cuerpoDB.setId_encabezado(Integer.parseInt(vistaFactura.getTxtidfac().getText()));
-//        modelo.setId_encabezado(Integer.parseInt(vistaFactura.getTxtidfac().getText()));
-        cuerpoDB.setReparacion(vistaFactura.getTxtreparaciones().getText());
-        if (cuerpoDB.insertarCuerpo()) {
-            // JOptionPane.showMessageDialog(null, "Added successfully");
-        }
+//        cuerpoDB.setId_cuerpo(Integer.parseInt(vistaFactura.getTxtcuerpo().getText()));
+//        cuerpoDB.setId_encabezado(Integer.parseInt(vistaFactura.getTxtidfac().getText()));
+////        modelo.setId_encabezado(Integer.parseInt(vistaFactura.getTxtidfac().getText()));
+//        cuerpoDB.setReparacion(vistaFactura.getTxtreparaciones().getText());
+//        if (cuerpoDB.insertarCuerpo()) {
+//            // JOptionPane.showMessageDialog(null, "Added successfully");
+//        }
     }
 
     public void incrementarId() {
         vistaFactura.getTxtidfac().setText(String.valueOf(IdFac()));
 
+    }
+
+    // metodo imprimir datos test
+    public void datosImprimir() {
+        com.itextpdf.text.Document documento = new com.itextpdf.text.Document();
+
+        try {
+
+            String ruta = System.getProperty("user.home");
+            PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Desktop/" + vistaFactura.getTxtnombres().getText() + ".pdf"));
+
+            com.itextpdf.text.Image header = com.itextpdf.text.Image.getInstance("src/images/logo.jpg");
+            header.scaleToFit(650, 1000);
+            header.setAlignment(Chunk.ALIGN_CENTER);
+
+            //datos para el cliente
+            Paragraph parrafo = new Paragraph();
+            parrafo.setAlignment(Paragraph.ALIGN_CENTER);
+            parrafo.add("Información del cliente. \n \n");
+            parrafo.setFont(FontFactory.getFont("Tahoma", 14, Font.BOLD, BaseColor.DARK_GRAY));
+
+            documento.open();
+            documento.add(header);
+            documento.add(parrafo);
+
+            PdfPTable tablaCliente = new PdfPTable(5);
+            tablaCliente.addCell("Cedula");
+            tablaCliente.addCell("Nombre");
+            tablaCliente.addCell("email");
+            tablaCliente.addCell("Télefono");
+            tablaCliente.addCell("Dirección");
+
+            try {
+                PreparedStatement pst = cn.prepareStatement(
+                        "select * from persona where cedula = '" + vistaFactura.getTxtcedula().getText() + "'");
+                ResultSet rs = pst.executeQuery();
+
+                if (rs.next()) {
+                    do {
+                        tablaCliente.addCell(rs.getString(1));
+                        tablaCliente.addCell(rs.getString(2));
+                        tablaCliente.addCell(rs.getString(3));
+                        tablaCliente.addCell(rs.getString(4));
+                        tablaCliente.addCell(rs.getString(5));
+
+                    } while (rs.next());
+
+                    documento.add(tablaCliente);
+                }
+
+            } catch (Exception e) {
+                System.out.println("Error de los datos de la persona");
+            }
+
+            documento.close();
+             ingresoCliente();
+            JOptionPane.showMessageDialog(null, "Reporte creado correctamente.");
+           
+        } catch (Exception e) {
+
+            System.err.println("Error en PDF o ruta de imagen" + e);
+            JOptionPane.showMessageDialog(null, "Error al generar PDF, contacte al administrador");
+        }
     }
 
 }
