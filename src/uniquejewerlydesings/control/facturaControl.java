@@ -16,7 +16,6 @@ import java.awt.HeadlessException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,8 +53,14 @@ import uniquejewerlydesings.DBmodelo.cuerpoFacturaDB;
  * @author LENOVO
  */
 public class facturaControl extends validacion {
-//*** conxion 
 
+    // variables para el calculo
+    double precioR;
+    double totalprecio;
+    double abono;
+    double valor_pendiente;
+    String id_producto;
+//*** conxion 
     private Conexion conecta = new Conexion();
     Connection cn = conecta.conectarBD();
 
@@ -197,9 +202,12 @@ public class facturaControl extends validacion {
     public void seleccion() {
         int filaSleccionada = vistaFactura.getTablaProductos().getSelectedRow();
         try {
-            String cantidad, descripcion, precio, total, id;
-            double x = 0.0;
+            String cantidad, descripcion, precio, total, id, in;
+            double x = 0.0, calcula = 0.0, igva = 0.0;
             int canti = 0;
+            precioR = 0;
+            totalprecio = 0;
+            abono = 0;
 
             if (filaSleccionada == -1) {
                 JOptionPane.showMessageDialog(null, "Select a row", "check", JOptionPane.WARNING_MESSAGE);
@@ -214,6 +222,10 @@ public class facturaControl extends validacion {
                 // metodos para calcular el precio 
                 x = (Double.parseDouble(precio) * Integer.parseInt(cantidad));
                 total = String.valueOf(x);
+//                in=vistaFactura.getTxtReparacion().getText();
+//                calcula = (Double.parseDouble(precio)+Integer.parseInt(in));
+//                precioR = totalprecio + calcula;
+                vistaFactura.getTxtpricetotal().setText(id);
 
                 //muestra los datos en la tabla 
                 modeloTab = (DefaultTableModel) vistaFactura.getTablaFactura().getModel();
@@ -305,13 +317,21 @@ public class facturaControl extends validacion {
             // JOptionPane.showMessageDialog(null, "Added successfully");
         }
         //ingreso cuerpo
-//        cuerpoDB.setId_cuerpo(Integer.parseInt(vistaFactura.getTxtcuerpo().getText()));
-//        cuerpoDB.setId_encabezado(Integer.parseInt(vistaFactura.getTxtidfac().getText()));
-////        modelo.setId_encabezado(Integer.parseInt(vistaFactura.getTxtidfac().getText()));
-//        cuerpoDB.setReparacion(vistaFactura.getTxtreparaciones().getText());
-//        if (cuerpoDB.insertarCuerpo()) {
-//            // JOptionPane.showMessageDialog(null, "Added successfully");
-//        }
+
+        for (int i = 0; i < vistaFactura.getTablaFactura().getRowCount(); i++) {
+            id_producto = vistaFactura.getTablaFactura().getValueAt(i, 1).toString();
+
+        }
+        cuerpoDB.setId_cuerpo(Integer.parseInt(vistaFactura.getTxtcuerpo().getText()));
+        cuerpoDB.setId_encabezado(Integer.parseInt(vistaFactura.getTxtidfac().getText()));
+        cuerpoDB.setTotal_reparacion(Double.parseDouble(vistaFactura.getTxtReparacion().getText()));
+        cuerpoDB.setReparacion(vistaFactura.getTxtreparaciones().getText());
+        vistaFactura.getTxtpricetotal().setText(id_producto);
+
+        if (cuerpoDB.insertarCuerpo()) {
+            // JOptionPane.showMessageDialog(null, "Added successfully");
+        }
+
     }
 
     public void incrementarId() {
@@ -372,9 +392,9 @@ public class facturaControl extends validacion {
             }
 
             documento.close();
-             ingresoCliente();
+            ingresoCliente();
             JOptionPane.showMessageDialog(null, "Reporte creado correctamente.");
-           
+
         } catch (Exception e) {
 
             System.err.println("Error en PDF o ruta de imagen" + e);
