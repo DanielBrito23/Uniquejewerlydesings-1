@@ -59,7 +59,9 @@ public class facturaControl extends validacion {
     double totalprecio;
     double abono;
     double valor_pendiente;
-    String id_producto;
+   public static String id_producto;
+    String[] producto2 = new String[4];
+
 //*** conxion 
     private Conexion conecta = new Conexion();
     Connection cn = conecta.conectarBD();
@@ -74,7 +76,6 @@ public class facturaControl extends validacion {
     private personaDB personaDB;
     private clienteDB clienteDB;
     private cuerpoFacturaDB cuerpoDB;
-
     //** tabla para los datos
     DefaultTableModel modeloTab;
 
@@ -202,8 +203,8 @@ public class facturaControl extends validacion {
     public void seleccion() {
         int filaSleccionada = vistaFactura.getTablaProductos().getSelectedRow();
         try {
-            String cantidad, descripcion, precio, total, id, in;
-            double x = 0.0, calcula = 0.0, igva = 0.0;
+            String cantidad, descripcion, precio, total, id, in ,calcula ;
+            double x = 0.0, y = 0.0;
             int canti = 0;
             precioR = 0;
             totalprecio = 0;
@@ -220,12 +221,14 @@ public class facturaControl extends validacion {
                 //borra la cantidad del textfield
                 vistaFactura.getTxtcantidad().setText("");
                 // metodos para calcular el precio 
+                 in=vistaFactura.getTxtReparacion().getText();
                 x = (Double.parseDouble(precio) * Integer.parseInt(cantidad));
-                total = String.valueOf(x);
-//                in=vistaFactura.getTxtReparacion().getText();
-//                calcula = (Double.parseDouble(precio)+Integer.parseInt(in));
+                total = String.valueOf(x)+in;
+               
+//                y = (Double.parseDouble(total)+ Integer.parseInt(in));
 //                precioR = totalprecio + calcula;
-                vistaFactura.getTxtpricetotal().setText(id);
+//                 calcula=total+in;
+                vistaFactura.getTxtpricetotal().setText(total);
 
                 //muestra los datos en la tabla 
                 modeloTab = (DefaultTableModel) vistaFactura.getTablaFactura().getModel();
@@ -319,14 +322,16 @@ public class facturaControl extends validacion {
         //ingreso cuerpo
 
         for (int i = 0; i < vistaFactura.getTablaFactura().getRowCount(); i++) {
-            id_producto = vistaFactura.getTablaFactura().getValueAt(i, 1).toString();
+            id_producto = vistaFactura.getTablaFactura().getValueAt(i, 0).toString();
+            System.out.println("salio id" + producto2[0]);
+            producto2[0]= id_producto;
 
         }
         cuerpoDB.setId_cuerpo(Integer.parseInt(vistaFactura.getTxtcuerpo().getText()));
         cuerpoDB.setId_encabezado(Integer.parseInt(vistaFactura.getTxtidfac().getText()));
         cuerpoDB.setTotal_reparacion(Double.parseDouble(vistaFactura.getTxtReparacion().getText()));
         cuerpoDB.setReparacion(vistaFactura.getTxtreparaciones().getText());
-        vistaFactura.getTxtpricetotal().setText(id_producto);
+//        cuerpoDB.setProducto(vistaFactura.getTxtpricetotal().setText(id_producto));
 
         if (cuerpoDB.insertarCuerpo()) {
             // JOptionPane.showMessageDialog(null, "Added successfully");
