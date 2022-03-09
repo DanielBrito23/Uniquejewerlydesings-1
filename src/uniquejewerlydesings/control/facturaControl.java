@@ -56,10 +56,10 @@ public class facturaControl extends validacion {
 
     // variables para el calculo
     double precioR;
-    double totalprecio=0.0;
+    static double total;
     double abono;
     double valor_pendiente;
-   public static String id_producto;
+    public static String id_producto;
     String[] producto2 = new String[4];
 
 //*** conxion 
@@ -201,42 +201,56 @@ public class facturaControl extends validacion {
 // metodo para pasar los datos de una tabla a otra
 
     public void seleccion() {
+
         int filaSleccionada = vistaFactura.getTablaProductos().getSelectedRow();
         try {
-            String cantidad, descripcion, precio, total, id, in  ;
-            double x = 0.0, y = 0.0,calcula=0.0;
+            String id, descripcion, precioUni, cantidad, importe;
+            double x = 0.0, y = 0.0, calcula = 0.0;
             int canti = 0;
-            precioR = 0;
-            totalprecio = 0;
-            abono = 0;
 
             if (filaSleccionada == -1) {
                 JOptionPane.showMessageDialog(null, "Select a row", "check", JOptionPane.WARNING_MESSAGE);
             } else {
                 modeloTab = (DefaultTableModel) vistaFactura.getTablaProductos().getModel();
-                descripcion = vistaFactura.getTablaProductos().getValueAt(filaSleccionada, 2).toString();
-                id = vistaFactura.getTablaProductos().getValueAt(filaSleccionada, 0).toString();
-                precio = vistaFactura.getTablaProductos().getValueAt(filaSleccionada, 7).toString();
-                cantidad = vistaFactura.getTxtcantidad().getText();
-                //borra la cantidad del textfield
-                vistaFactura.getTxtcantidad().setText("");
-                // metodos para calcular el precio 
-               
-                x = (Double.parseDouble(precio) * Integer.parseInt(cantidad));
-                total = String.valueOf(x);
-                 in=vistaFactura.getTxtReparacion().getText();
-               
-//                 calcula=total+in;
-                
 
-                //muestra los datos en la tabla 
+                // valores que tiene la tabla 
+                id = vistaFactura.getTablaProductos().getValueAt(filaSleccionada, 0).toString();
+                descripcion = vistaFactura.getTablaProductos().getValueAt(filaSleccionada, 2).toString();
+                precioUni = vistaFactura.getTablaProductos().getValueAt(filaSleccionada, 7).toString();
+
+                cantidad = vistaFactura.getTxtcantidad().getText();
+
+                // calculos .... 
+                x = (Double.parseDouble(precioUni) * Integer.parseInt(cantidad));
+                // total del precio uni * cantidad
+                importe = String.valueOf(x);
+
                 modeloTab = (DefaultTableModel) vistaFactura.getTablaFactura().getModel();
-                String filaSeleelemto[] = {id, descripcion, cantidad, precio, total};
-                modeloTab.addRow(filaSeleelemto);
-                
-                calcula = (Double.parseDouble(total)+Integer.parseInt(vistaFactura.getTxtReparacion().getText()));
-                precioR = totalprecio + calcula;
-                vistaFactura.getTxtpricetotal().setText(""+precioR);
+                String filaElementos[] = {id, descripcion, cantidad, precioUni, importe};
+                modeloTab.addRow(filaElementos);
+
+                calcula = (Double.parseDouble(precioUni) * Integer.parseInt(vistaFactura.getTxtcantidad().getText()));
+                System.out.println("calcula.." + calcula);
+
+                System.out.println("total precio ..." + total);
+                vistaFactura.getTxtpricetotal().setText("" + total);
+
+                if (vistaFactura.getTxtAbono().getText().contains("") || vistaFactura.getTxtReparacion().getText().contains("")) {
+                    total = total + calcula;
+                    System.out.println("total precio sin abono y sin repara ..." + total);
+                    vistaFactura.getTxtpricetotal().setText("" + total);
+                } else {
+
+                    precioR = Double.parseDouble(vistaFactura.getTxtReparacion().getText());
+                    total = total + calcula + precioR;
+                    System.out.println("total + repa; " + total);
+
+                    abono = Double.parseDouble(vistaFactura.getTxtAbono().getText());
+                    total = total - abono;
+                    System.out.println("total - abono" + total);
+                    precioR = Double.parseDouble(vistaFactura.getTxtReparacion().getText());
+                }
+
             }
         } catch (Exception e) {
 
