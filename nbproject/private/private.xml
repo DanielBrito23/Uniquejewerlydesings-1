@@ -3,8 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/LENOVO/Videos/Uniquejewerlydesings/src/uniquejewerlydesings/vista/Factura.java</file>
-            <file>file:/C:/Users/LENOVO/Videos/Uniquejewerlydesings/src/uniquejewerlydesings/control/facturaControl.java</file>
+            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/vista/Factura.java</file>
+            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/modelo/persona.java</file>
+            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/modelo/material.java</file>
+            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/modelo/empresa.java</file>
+            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/modelo/cliente.java</file>
+            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/control/facturaControl.java</file>
+            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/DBmodelo/cuerpoFacturaDB.java</file>
+            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/test/uniquejewerlydesings/modelo/cuerpoFacturaTest.java</file>
+            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/modelo/encabezadoFactura.java</file>
+            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/modelo/cuerpoFactura.java</file>
         </group>
     </open-files>
 </project-private>

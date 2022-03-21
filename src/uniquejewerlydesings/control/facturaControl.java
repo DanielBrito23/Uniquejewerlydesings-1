@@ -219,7 +219,7 @@ public class facturaControl extends validacion {
                 precioUni = vistaFactura.getTablaProductos().getValueAt(filaSleccionada, 7).toString();
 
                 cantidad = vistaFactura.getTxtcantidad().getText();
-
+//                vistaFactura.getTxtcantidad().setText("");
                 // calculos .... 
                 x = (Double.parseDouble(precioUni) * Integer.parseInt(cantidad));
                 // total del precio uni * cantidad
@@ -239,16 +239,16 @@ public class facturaControl extends validacion {
                     total = total + calcula;
                     System.out.println("total precio sin abono y sin repara ..." + total);
                     vistaFactura.getTxtpricetotal().setText("" + total);
-                } else {
-
+                    
                     precioR = Double.parseDouble(vistaFactura.getTxtReparacion().getText());
                     total = total + calcula + precioR;
-                    System.out.println("total + repa; " + total);
-
+                    System.out.println("total + repa " + total);
+                } else {
+                    
                     abono = Double.parseDouble(vistaFactura.getTxtAbono().getText());
                     total = total - abono;
                     System.out.println("total - abono" + total);
-                    precioR = Double.parseDouble(vistaFactura.getTxtReparacion().getText());
+//                    precioR = Double.parseDouble(vistaFactura.getTxtReparacion().getText());
                 }
 
             }
