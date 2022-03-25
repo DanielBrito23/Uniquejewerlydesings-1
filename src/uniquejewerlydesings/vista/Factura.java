@@ -445,6 +445,14 @@ public class Factura extends javax.swing.JFrame {
         this.txtIdCliente = txtIdCliente;
     }
 
+    public JLabel getTxtTotal() {
+        return txtTotal;
+    }
+
+    public void setTxtTotal(JLabel txtTotal) {
+        this.txtTotal = txtTotal;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -517,6 +525,7 @@ public class Factura extends javax.swing.JFrame {
         txtReparacion = new javax.swing.JTextField();
         txtpricetotal = new javax.swing.JLabel();
         txtAbono = new javax.swing.JTextField();
+        txtTotal = new javax.swing.JLabel();
 
         tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -958,7 +967,9 @@ public class Factura extends javax.swing.JFrame {
                                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtAbono, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtAbono, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
@@ -1009,7 +1020,11 @@ public class Factura extends javax.swing.JFrame {
                                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtAbono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1147,6 +1162,7 @@ public class Factura extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombres;
     private javax.swing.JTextField txtReparacion;
     private javax.swing.JTextField txtTelefono;
+    private javax.swing.JLabel txtTotal;
     private javax.swing.JTextField txtcantidad;
     private javax.swing.JTextField txtcedula;
     private javax.swing.JTextField txtcorreo;

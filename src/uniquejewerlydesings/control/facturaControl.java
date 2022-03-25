@@ -57,6 +57,9 @@ public class facturaControl extends validacion {
     // variables para el calculo
     double precioR;
     static double total;
+    static double totalp;
+    static double totalabono;
+
     double abono;
     double valor_pendiente;
     public static String id_producto;
@@ -239,15 +242,24 @@ public class facturaControl extends validacion {
                     total = total + calcula;
                     System.out.println("total precio sin abono y sin repara ..." + total);
                     vistaFactura.getTxtpricetotal().setText("" + total);
-                    
+
                     precioR = Double.parseDouble(vistaFactura.getTxtReparacion().getText());
-                    total = total + calcula + precioR;
-                    System.out.println("total + repa " + total);
-                } else {
-                    
+                    totalp = total + precioR;
+                    System.out.println("total + repa " + totalp);
+                    vistaFactura.getTxtpricetotal().setText("" + totalp);
+
                     abono = Double.parseDouble(vistaFactura.getTxtAbono().getText());
-                    total = total - abono;
-                    System.out.println("total - abono" + total);
+                    totalabono = totalp - abono;
+                    vistaFactura.getTxtTotal().setText("" + totalabono);
+
+                    System.out.println("total - abono" + totalabono);
+                } else {
+//
+//                    abono = Double.parseDouble(vistaFactura.getTxtAbono().getText());
+//                    totalabono = total - abono;
+//                    vistaFactura.getTxtTotal().setText("" + totalabono);
+//
+//                    System.out.println("total - abono" + totalabono);
 //                    precioR = Double.parseDouble(vistaFactura.getTxtReparacion().getText());
                 }
 
