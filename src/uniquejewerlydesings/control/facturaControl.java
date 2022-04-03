@@ -249,9 +249,10 @@ public class facturaControl extends validacion {
                     vistaFactura.getTxtpricetotal().setText("" + totalp);
 
                     abono = Double.parseDouble(vistaFactura.getTxtAbono().getText());
+//                    total = total - abono;
                     totalabono = totalp - abono;
-                    vistaFactura.getTxtTotal().setText("" + totalabono);
-
+                    vistaFactura.getTxtValorPediente().setText("" + totalabono);
+//                    vistaFactura.getTxtValorPediente().setText("" + total);
                     System.out.println("total - abono" + totalabono);
                 } else {
 //
@@ -361,6 +362,8 @@ public class facturaControl extends validacion {
         cuerpoDB.setTotal_reparacion(Double.parseDouble(vistaFactura.getTxtReparacion().getText()));
         cuerpoDB.setReparacion(vistaFactura.getTxtreparaciones().getText());
         cuerpoDB.setTotal(Double.parseDouble(vistaFactura.getTxtpricetotal().getText()));
+        cuerpoDB.setAbono(Double.parseDouble(vistaFactura.getTxtAbono().getText()));
+        cuerpoDB.setValor_pendiente(Double.parseDouble(vistaFactura.getTxtValorPediente().getText()));
 //        cuerpoDB.setProducto(vistaFactura.getTxtpricetotal().setText(id_producto));
 
         if (cuerpoDB.insertarCuerpo()) {
@@ -384,42 +387,52 @@ public class facturaControl extends validacion {
             PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Downloads/" + vistaFactura.getTxtnombres().getText() + ".pdf"));
 
             com.itextpdf.text.Image header = com.itextpdf.text.Image.getInstance("src/images/logo.jpg");
-            header.scaleToFit(650, 1000);
-            header.setAlignment(Chunk.ALIGN_CENTER);
+            header.scaleToFit(650, 100);
+            header.setAlignment(Chunk.ALIGN_LEFT);
 
             //datos para el cliente
             Paragraph parrafo = new Paragraph();
+            
+            //font
+            Font fuente=new Font();
+            fuente.setSize(12);
+            
             parrafo.setAlignment(Paragraph.ALIGN_CENTER);
             parrafo.add("Información del cliente. \n \n");
-            parrafo.setFont(FontFactory.getFont("Tahoma", 14, Font.BOLD, BaseColor.DARK_GRAY));
-
+            parrafo.setFont(FontFactory.getFont("Tahoma", 12, Font.BOLD, BaseColor.BLACK));
+            
             documento.open();
             documento.add(header);
             documento.add(parrafo);
+            documento.add(new Paragraph("DATE:"));
+            documento.add(new Paragraph("CUSTOM NAME:" + vistaFactura.getTxtnombres().getText(),fuente));
+            documento.add(new Paragraph("ADDRESS:" + vistaFactura.getTxtdireccion().getText()));
+            documento.add(new Paragraph("PHONE:" + vistaFactura.getTxttelefono().getText()));
+            documento.add(new Paragraph("EMAIL:" + vistaFactura.getTxtcorreo().getText()));
 
-            PdfPTable tablaCliente = new PdfPTable(5);
-            tablaCliente.addCell("Cedula");
-            tablaCliente.addCell("Nombre");
-            tablaCliente.addCell("email");
-            tablaCliente.addCell("Télefono");
-            tablaCliente.addCell("Dirección");
-
+            PdfPTable tablaProducto = new PdfPTable(4);
+            tablaProducto.addCell("ARTICLES");
+            tablaProducto.addCell("QUANTITY");
+            tablaProducto.addCell("UNIT PRICE");
+            tablaProducto.addCell("TOTAL");
             try {
                 PreparedStatement pst = cn.prepareStatement(
-                        "select * from persona where cedula = '" + vistaFactura.getTxtcedula().getText() + "'");
+                       "SELECT p.id_producto,p.descripcion,p.cantidad FROM producto p INNER JOIN cuerpo_factura c ON "+id_producto+"= c.id_producto;"
+ 
+                );
                 ResultSet rs = pst.executeQuery();
 
                 if (rs.next()) {
                     do {
-                        tablaCliente.addCell(rs.getString(1));
-                        tablaCliente.addCell(rs.getString(2));
-                        tablaCliente.addCell(rs.getString(3));
-                        tablaCliente.addCell(rs.getString(4));
-                        tablaCliente.addCell(rs.getString(5));
+                        tablaProducto.addCell(rs.getString(1));
+                        tablaProducto.addCell(rs.getString(2));
+                        tablaProducto.addCell(rs.getString(3));
+                        tablaProducto.addCell(rs.getString(4));
+                        
 
                     } while (rs.next());
 
-                    documento.add(tablaCliente);
+                    documento.add(tablaProducto);
                 }
 
             } catch (Exception e) {
