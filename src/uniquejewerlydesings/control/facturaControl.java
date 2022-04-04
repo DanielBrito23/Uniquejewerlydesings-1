@@ -392,20 +392,20 @@ public class facturaControl extends validacion {
 
             //datos para el cliente
             Paragraph parrafo = new Paragraph();
-            
+
             //font
-            Font fuente=new Font();
+            Font fuente = new Font();
             fuente.setSize(12);
-            
+
             parrafo.setAlignment(Paragraph.ALIGN_CENTER);
             parrafo.add("Información del cliente. \n \n");
             parrafo.setFont(FontFactory.getFont("Tahoma", 12, Font.BOLD, BaseColor.BLACK));
-            
+
             documento.open();
             documento.add(header);
             documento.add(parrafo);
             documento.add(new Paragraph("DATE:"));
-            documento.add(new Paragraph("CUSTOM NAME:" + vistaFactura.getTxtnombres().getText(),fuente));
+            documento.add(new Paragraph("CUSTOM NAME:" + vistaFactura.getTxtnombres().getText(), fuente));
             documento.add(new Paragraph("ADDRESS:" + vistaFactura.getTxtdireccion().getText()));
             documento.add(new Paragraph("PHONE:" + vistaFactura.getTxttelefono().getText()));
             documento.add(new Paragraph("EMAIL:" + vistaFactura.getTxtcorreo().getText()));
@@ -417,8 +417,12 @@ public class facturaControl extends validacion {
             tablaProducto.addCell("TOTAL");
             try {
                 PreparedStatement pst = cn.prepareStatement(
-                       "SELECT p.id_producto,p.descripcion,p.cantidad FROM producto p INNER JOIN cuerpo_factura c ON "+id_producto+"= c.id_producto;"
- 
+                        "select c.reparacion,per.nombres"+id_producto
+                        + "from cuerpo_factura c\n"
+                        + "inner join producto p on c.id_producto=c.id_producto\n"
+                        + "inner join encabezado e on e.id_encabezado=c.id_encabezado\n"
+                        + "inner join cliente cli on cli.id_cliente=e.id_cliente\n"
+                        + "inner join persona per on per.id_persona=cli.id_persona;"
                 );
                 ResultSet rs = pst.executeQuery();
 
@@ -428,7 +432,6 @@ public class facturaControl extends validacion {
                         tablaProducto.addCell(rs.getString(2));
                         tablaProducto.addCell(rs.getString(3));
                         tablaProducto.addCell(rs.getString(4));
-                        
 
                     } while (rs.next());
 
