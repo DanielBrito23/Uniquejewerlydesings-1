@@ -382,7 +382,7 @@ public class facturaControl extends validacion {
             String ruta = System.getProperty("user.home");
             PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Downloads/" + vistaFactura.getTxtnombres().getText() + ".pdf"));
 
-            com.itextpdf.text.Image header = com.itextpdf.text.Image.getInstance("src/images/logo.jpg");
+            com.itextpdf.text.Image header = com.itextpdf.text.Image.getInstance("src/images/prueba.jpg");
             header.scaleToFit(650, 100);
             header.setAlignment(Chunk.ALIGN_LEFT);
 
