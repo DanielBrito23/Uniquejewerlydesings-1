@@ -382,7 +382,7 @@ public class facturaControl extends validacion {
             String ruta = System.getProperty("user.home");
             PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Downloads/" + vistaFactura.getTxtnombres().getText() + ".pdf"));
 
-            com.itextpdf.text.Image header = com.itextpdf.text.Image.getInstance("src/images/prueba.jpg");
+            com.itextpdf.text.Image header = com.itextpdf.text.Image.getInstance("src/images/aprobado.jpg");
             header.scaleToFit(650, 100);
             header.setAlignment(Chunk.ALIGN_LEFT);
 
@@ -391,10 +391,11 @@ public class facturaControl extends validacion {
             parrafo.setAlignment(Paragraph.ALIGN_CENTER);
             parrafo.add("Información del cliente. \n \n");
             parrafo.setFont(FontFactory.getFont("Tahoma", 12, Font.BOLD, BaseColor.BLACK));
-
+           
             documento.open();
             documento.add(header);
             documento.add(parrafo);
+            
             documento.add(Chunk.NEWLINE);
             documento.add(new Paragraph("DATE:"));
             documento.add(new Paragraph("CUSTOM NAME:" + vistaFactura.getTxtnombres().getText()));
@@ -403,10 +404,10 @@ public class facturaControl extends validacion {
             documento.add(new Paragraph("EMAIL:" + vistaFactura.getTxtcorreo().getText()));
 
             PdfPTable tablaProducto = new PdfPTable(4);
-            tablaProducto.addCell("ARTICLES");
-            tablaProducto.addCell("QUANTITY");
-            tablaProducto.addCell("UNIT PRICE");
-            tablaProducto.addCell("TOTAL");
+            tablaProducto.addCell("Articles");
+            tablaProducto.addCell("Quantity");
+            tablaProducto.addCell("Unit price");
+            tablaProducto.addCell("Total");
 
             documento.add(Chunk.NEWLINE);
 
@@ -430,7 +431,7 @@ public class facturaControl extends validacion {
             documento.add(Chunk.NEWLINE);
             documento.add(new Paragraph("TOTAL:" + vistaFactura.getTxtpricetotal().getText()));
             documento.add(new Paragraph("ADVANCE:" + vistaFactura.getTxtAbono().getText()));
-            documento.add(new Paragraph("BALANCE:" + vistaFactura.getTxtValorPediente().getText()));
+            documento.add(new Paragraph("BALANCE:" + vistaFactura.getTxtValorPediente().getText(), FontFactory.getFont("arial",10,Font.NORMAL,BaseColor.BLACK)));
 
             documento.close();
             ingresoCliente();
