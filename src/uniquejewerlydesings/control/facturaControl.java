@@ -12,9 +12,6 @@ import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import java.awt.HeadlessException;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.List;
@@ -34,12 +31,7 @@ import uniquejewerlydesings.modelo.persona;
 import uniquejewerlydesings.modelo.producto;
 import uniquejewerlydesings.modelo.validacion;
 import uniquejewerlydesings.vista.Factura;
-import uniquejewerlydesings.vista.ListaProductos;
-import uniquejewerlydesings.vista.PersonaIngreso;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import javax.swing.text.Document;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -63,8 +55,12 @@ public class facturaControl extends validacion {
     double abono;
     double valor_pendiente;
     public static String id_producto;
-    String[] producto2 = new String[4];
+    String article;
+    String cuantity;
+    String price;
+    String totalTabla;
 
+//    String[] producto2 = new String[4];
 //*** conxion 
     private Conexion conecta = new Conexion();
     Connection cn = conecta.conectarBD();
@@ -392,11 +388,6 @@ public class facturaControl extends validacion {
 
             //datos para el cliente
             Paragraph parrafo = new Paragraph();
-
-            //font
-            Font fuente = new Font();
-            fuente.setSize(12);
-
             parrafo.setAlignment(Paragraph.ALIGN_CENTER);
             parrafo.add("Información del cliente. \n \n");
             parrafo.setFont(FontFactory.getFont("Tahoma", 12, Font.BOLD, BaseColor.BLACK));
@@ -404,8 +395,9 @@ public class facturaControl extends validacion {
             documento.open();
             documento.add(header);
             documento.add(parrafo);
+            documento.add(Chunk.NEWLINE);
             documento.add(new Paragraph("DATE:"));
-            documento.add(new Paragraph("CUSTOM NAME:" + vistaFactura.getTxtnombres().getText(), fuente));
+            documento.add(new Paragraph("CUSTOM NAME:" + vistaFactura.getTxtnombres().getText()));
             documento.add(new Paragraph("ADDRESS:" + vistaFactura.getTxtdireccion().getText()));
             documento.add(new Paragraph("PHONE:" + vistaFactura.getTxttelefono().getText()));
             documento.add(new Paragraph("EMAIL:" + vistaFactura.getTxtcorreo().getText()));
@@ -415,39 +407,36 @@ public class facturaControl extends validacion {
             tablaProducto.addCell("QUANTITY");
             tablaProducto.addCell("UNIT PRICE");
             tablaProducto.addCell("TOTAL");
-            try {
-                PreparedStatement pst = cn.prepareStatement(
-                        "select c.reparacion,per.nombres"+id_producto
-                        + "from cuerpo_factura c\n"
-                        + "inner join producto p on c.id_producto=c.id_producto\n"
-                        + "inner join encabezado e on e.id_encabezado=c.id_encabezado\n"
-                        + "inner join cliente cli on cli.id_cliente=e.id_cliente\n"
-                        + "inner join persona per on per.id_persona=cli.id_persona;"
-                );
-                ResultSet rs = pst.executeQuery();
 
-                if (rs.next()) {
-                    do {
-                        tablaProducto.addCell(rs.getString(1));
-                        tablaProducto.addCell(rs.getString(2));
-                        tablaProducto.addCell(rs.getString(3));
-                        tablaProducto.addCell(rs.getString(4));
+            documento.add(Chunk.NEWLINE);
 
-                    } while (rs.next());
+            for (int i = 0; i < vistaFactura.getTablaFactura().getRowCount(); i++) {
 
-                    documento.add(tablaProducto);
-                }
+                article = vistaFactura.getTablaFactura().getValueAt(i, 1).toString();
+                cuantity = vistaFactura.getTablaFactura().getValueAt(i, 2).toString();
+                price = vistaFactura.getTablaFactura().getValueAt(i, 3).toString();
+                totalTabla = vistaFactura.getTablaFactura().getValueAt(i, 4).toString();
 
-            } catch (Exception e) {
-                System.out.println("Error de los datos de la persona");
+                tablaProducto.addCell(article);
+                tablaProducto.addCell(cuantity);
+                tablaProducto.addCell(price);
+                tablaProducto.addCell(totalTabla);
+
             }
+            documento.add(tablaProducto);
+
+            documento.add(Chunk.NEWLINE);
+            documento.add(new Paragraph("REPAIR:" + vistaFactura.getTxtreparaciones().getText()));
+            documento.add(Chunk.NEWLINE);
+            documento.add(new Paragraph("TOTAL:" + vistaFactura.getTxtpricetotal().getText()));
+            documento.add(new Paragraph("ADVANCE:" + vistaFactura.getTxtAbono().getText()));
+            documento.add(new Paragraph("BALANCE:" + vistaFactura.getTxtValorPediente().getText()));
 
             documento.close();
             ingresoCliente();
             JOptionPane.showMessageDialog(null, "Reporte creado correctamente.");
 
         } catch (Exception e) {
-
             System.err.println("Error en PDF o ruta de imagen" + e);
             JOptionPane.showMessageDialog(null, "Error al generar PDF, contacte al administrador");
         }
