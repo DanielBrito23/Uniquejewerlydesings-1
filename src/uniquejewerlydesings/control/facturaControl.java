@@ -32,6 +32,8 @@ import uniquejewerlydesings.modelo.producto;
 import uniquejewerlydesings.modelo.validacion;
 import uniquejewerlydesings.vista.Factura;
 import java.sql.Connection;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -117,6 +119,12 @@ public class facturaControl extends validacion {
         vistaFactura.getTxtidfac().setVisible(false);
         vistaFactura.getTxtcuerpo().setVisible(false);
         vistaFactura.getTxtIdCliente().setVisible(false);
+        
+        //para poner la fecha
+         DateTimeFormatter fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//        System.out.println("yyyy/MM/dd hh:mm:ss-> "+fecha.format(LocalDateTime.now()));
+        vistaFactura.getTxtFecha().setText(""+fecha.format(LocalDateTime.now()));
+        //
         incrementarId();
 
     }
@@ -397,11 +405,11 @@ public class facturaControl extends validacion {
             documento.add(parrafo);
             
             documento.add(Chunk.NEWLINE);
-            documento.add(new Paragraph("DATE:"));
-            documento.add(new Paragraph("CUSTOM NAME:" + vistaFactura.getTxtnombres().getText()));
-            documento.add(new Paragraph("ADDRESS:" + vistaFactura.getTxtdireccion().getText()));
-            documento.add(new Paragraph("PHONE:" + vistaFactura.getTxttelefono().getText()));
-            documento.add(new Paragraph("EMAIL:" + vistaFactura.getTxtcorreo().getText()));
+            documento.add(new Paragraph("DATE:"  + vistaFactura.getTxtFecha().getText()));
+            documento.add(new Paragraph("CUSTOM NAME:"  + vistaFactura.getTxtnombres().getText()));
+            documento.add(new Paragraph("ADDRESS:"  + vistaFactura.getTxtdireccion().getText()));
+            documento.add(new Paragraph("PHONE:"  + vistaFactura.getTxttelefono().getText()));
+            documento.add(new Paragraph("EMAIL:"  + vistaFactura.getTxtcorreo().getText()));
 
             PdfPTable tablaProducto = new PdfPTable(4);
             tablaProducto.addCell("Articles");
