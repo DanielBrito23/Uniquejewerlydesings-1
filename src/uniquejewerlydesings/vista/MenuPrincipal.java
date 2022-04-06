@@ -31,6 +31,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.content = content;
     }
 
+    public JMenuItem getBtnInvoiceList() {
+        return btnInvoiceList;
+    }
+
+    public void setBtnInvoiceList(JMenuItem btnInvoiceList) {
+        this.btnInvoiceList = btnInvoiceList;
+    }
+
+    
     public JMenuItem getBtnEditPro() {
         return btnEditPro;
     }
@@ -113,11 +122,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     public JMenuItem getJmInvoiceList() {
-        return JmInvoiceList;
+        return btnInvoiceList;
     }
 
     public void setJmInvoiceList(JMenuItem JmInvoiceList) {
-        this.JmInvoiceList = JmInvoiceList;
+        this.btnInvoiceList = JmInvoiceList;
     }
 
     public JMenu getJminventory() {
@@ -308,7 +317,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         JMInvoice = new javax.swing.JMenu();
         btnnewInvoice = new javax.swing.JMenuItem();
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
-        JmInvoiceList = new javax.swing.JMenuItem();
+        btnInvoiceList = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         btnNewEmple = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -430,14 +439,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jSeparator7.setForeground(new java.awt.Color(0, 0, 0));
         JMInvoice.add(jSeparator7);
 
-        JmInvoiceList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconsMenu/list Invoice.png"))); // NOI18N
-        JmInvoiceList.setText("Invoice List");
-        JmInvoiceList.addActionListener(new java.awt.event.ActionListener() {
+        btnInvoiceList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconsMenu/list Invoice.png"))); // NOI18N
+        btnInvoiceList.setText("Invoice List");
+        btnInvoiceList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JmInvoiceListActionPerformed(evt);
+                btnInvoiceListActionPerformed(evt);
             }
         });
-        JMInvoice.add(JmInvoiceList);
+        JMInvoice.add(btnInvoiceList);
 
         jMenuBar1.add(JMInvoice);
 
@@ -491,9 +500,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_JDeleteCustomActionPerformed
 
-    private void JmInvoiceListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmInvoiceListActionPerformed
+    private void btnInvoiceListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInvoiceListActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_JmInvoiceListActionPerformed
+    }//GEN-LAST:event_btnInvoiceListActionPerformed
 
     private void JnewInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JnewInvoiceActionPerformed
         
@@ -570,10 +579,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu JMCustoms;
     private javax.swing.JMenu JMInvoice;
     private javax.swing.JMenu JProducts;
-    private javax.swing.JMenuItem JmInvoiceList;
     private javax.swing.JMenu Jminventory;
     private javax.swing.JMenuItem btnDeletePro;
     private javax.swing.JMenuItem btnEditPro;
+    private javax.swing.JMenuItem btnInvoiceList;
     private javax.swing.JMenuItem btnListProveedor;
     private javax.swing.JMenuItem btnNewCustom;
     private javax.swing.JMenuItem btnNewEmple;

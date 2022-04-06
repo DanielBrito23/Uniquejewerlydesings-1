@@ -57,6 +57,8 @@ public class facturaControl extends validacion {
     double abono;
     double valor_pendiente;
     public static String id_producto;
+  
+
     String article;
     String cuantity;
     String price;
@@ -119,11 +121,11 @@ public class facturaControl extends validacion {
         vistaFactura.getTxtidfac().setVisible(false);
         vistaFactura.getTxtcuerpo().setVisible(false);
         vistaFactura.getTxtIdCliente().setVisible(false);
-        
+
         //para poner la fecha
-         DateTimeFormatter fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 //        System.out.println("yyyy/MM/dd hh:mm:ss-> "+fecha.format(LocalDateTime.now()));
-        vistaFactura.getTxtFecha().setText(""+fecha.format(LocalDateTime.now()));
+        vistaFactura.getTxtFecha().setText("" + fecha.format(LocalDateTime.now()));
         //
         incrementarId();
 
@@ -357,8 +359,9 @@ public class facturaControl extends validacion {
 
         for (int i = 0; i < vistaFactura.getTablaFactura().getRowCount(); i++) {
             id_producto = vistaFactura.getTablaFactura().getValueAt(i, 0).toString();
+            id_producto = vistaFactura.getTablaFactura().getValueAt(i, 0).toString();
             System.out.println("salio id " + id_producto);
-//            producto2[0]= id_producto;
+//            producto2[0] = id_producto;
 
         }
         cuerpoDB.setId_cuerpo(Integer.parseInt(vistaFactura.getTxtcuerpo().getText()));
@@ -391,7 +394,7 @@ public class facturaControl extends validacion {
             PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Downloads/" + vistaFactura.getTxtnombres().getText() + ".pdf"));
 
             com.itextpdf.text.Image header = com.itextpdf.text.Image.getInstance("src/images/aprobado.jpg");
-            header.scaleToFit(650, 100);
+            header.scaleToFit(100, 100);
             header.setAlignment(Chunk.ALIGN_LEFT);
 
             //datos para el cliente
@@ -399,17 +402,17 @@ public class facturaControl extends validacion {
             parrafo.setAlignment(Paragraph.ALIGN_CENTER);
             parrafo.add("Información del cliente. \n \n");
             parrafo.setFont(FontFactory.getFont("Tahoma", 12, Font.BOLD, BaseColor.BLACK));
-           
+
             documento.open();
             documento.add(header);
             documento.add(parrafo);
-            
+
             documento.add(Chunk.NEWLINE);
-            documento.add(new Paragraph("DATE:"  + vistaFactura.getTxtFecha().getText()));
-            documento.add(new Paragraph("CUSTOM NAME:"  + vistaFactura.getTxtnombres().getText()));
-            documento.add(new Paragraph("ADDRESS:"  + vistaFactura.getTxtdireccion().getText()));
-            documento.add(new Paragraph("PHONE:"  + vistaFactura.getTxttelefono().getText()));
-            documento.add(new Paragraph("EMAIL:"  + vistaFactura.getTxtcorreo().getText()));
+            documento.add(new Paragraph("DATE:" + vistaFactura.getTxtFecha().getText()));
+            documento.add(new Paragraph("CUSTOM NAME:" + vistaFactura.getTxtnombres().getText()));
+            documento.add(new Paragraph("ADDRESS:" + vistaFactura.getTxtdireccion().getText()));
+            documento.add(new Paragraph("PHONE:" + vistaFactura.getTxttelefono().getText()));
+            documento.add(new Paragraph("EMAIL:" + vistaFactura.getTxtcorreo().getText()));
 
             PdfPTable tablaProducto = new PdfPTable(4);
             tablaProducto.addCell("Articles");
@@ -439,7 +442,7 @@ public class facturaControl extends validacion {
             documento.add(Chunk.NEWLINE);
             documento.add(new Paragraph("TOTAL:" + vistaFactura.getTxtpricetotal().getText()));
             documento.add(new Paragraph("ADVANCE:" + vistaFactura.getTxtAbono().getText()));
-            documento.add(new Paragraph("BALANCE:" + vistaFactura.getTxtValorPediente().getText(), FontFactory.getFont("arial",10,Font.NORMAL,BaseColor.BLACK)));
+            documento.add(new Paragraph("BALANCE:" + vistaFactura.getTxtValorPediente().getText()));
 
             documento.close();
             ingresoCliente();

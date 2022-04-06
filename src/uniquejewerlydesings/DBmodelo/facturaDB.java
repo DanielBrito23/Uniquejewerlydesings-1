@@ -23,6 +23,7 @@ import uniquejewerlydesings.modelo.persona;
 public class facturaDB extends encabezadoFactura {
 
     private Conexion conecta = new Conexion();
+    
 
     public facturaDB(int id_encabezado, int id_cliente, int id_persona, String cedula, String nombres, String direccion, String telefono, String correo) {
         super(id_encabezado, id_cliente, id_persona, cedula, nombres, direccion, telefono, correo);

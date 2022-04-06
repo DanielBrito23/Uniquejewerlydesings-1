@@ -16,6 +16,7 @@ import uniquejewerlydesings.DBmodelo.productoDB;
 import uniquejewerlydesings.DBmodelo.proveedorDB;
 import uniquejewerlydesings.modelo.persona;
 import uniquejewerlydesings.vista.Factura;
+import uniquejewerlydesings.vista.ListaFactura;
 import uniquejewerlydesings.vista.ListaPersonas;
 import uniquejewerlydesings.vista.ListaProductos;
 import uniquejewerlydesings.vista.MenuPrincipal;
@@ -57,6 +58,11 @@ public class menuControl {
     clienteDB clienteDB = new clienteDB();
     cuerpoFacturaDB cuerpoDB=new cuerpoFacturaDB();
     facturaControl controlfactura = new facturaControl(vistaFactura, factura, productodb, personaDB, clienteDB,cuerpoDB);
+    
+    //instancias para la lista de la factura
+    ListaFactura vistaLista = new ListaFactura();
+    cuerpoFacturaDB cuerpoBD=new cuerpoFacturaDB();
+    listaFacturaControl control=new listaFacturaControl(cuerpoBD, vistaLista);
 
     // instancias para el empleado
     empleadoDB modeloEmple = new empleadoDB();
@@ -79,6 +85,7 @@ public class menuControl {
         menu.getJListCustom().addActionListener(e -> listaPersona());
         menu.getBtnListProducts().addActionListener(e -> listaProdcutos());
         menu.getBtnnewInvoice().addActionListener(e -> factura());
+        menu.getBtnInvoiceList().addActionListener(e -> listaFactura());
 
         //botones para las opcines del producto
         menu.getBtnNewProduct().addActionListener(e -> btnNuevoProducto());
@@ -143,15 +150,20 @@ public class menuControl {
     }
     // --- metodos finaliza opciones para el prodcuto
 
+    // metodos de la factura
     public void factura() {
         controlfactura.iniciarControl();
     }
+     public void listaFactura(){
+         control.inciaControl();
+     }
+     // -- fin metodos para la factura
 
     //-- metodos para el empleado
     public void btnNuevoEmpleado() {
         controlEmple.iniciarControl();
     }
-
+// -- fin metodos para el empleado
     public void listaEmpleados() {
         controlCrudEmple.iniciarControl();
     }

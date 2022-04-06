@@ -17,6 +17,7 @@ import uniquejewerlydesings.modelo.cliente;
 public class clienteDB extends cliente {
 
     private Conexion conecta = new Conexion();
+    
 
     public clienteDB() {
     }
