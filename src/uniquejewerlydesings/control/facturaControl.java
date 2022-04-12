@@ -57,14 +57,13 @@ public class facturaControl extends validacion {
     double abono;
     double valor_pendiente;
     public static String id_producto;
-  
 
     String article;
     String cuantity;
     String price;
     String totalTabla;
 
-//    String[] producto2 = new String[4];
+    String[] producto2 = new String[4];
 //*** conxion 
     private Conexion conecta = new Conexion();
     Connection cn = conecta.conectarBD();
@@ -359,11 +358,10 @@ public class facturaControl extends validacion {
 
         for (int i = 0; i < vistaFactura.getTablaFactura().getRowCount(); i++) {
             id_producto = vistaFactura.getTablaFactura().getValueAt(i, 0).toString();
-            id_producto = vistaFactura.getTablaFactura().getValueAt(i, 0).toString();
+           
             System.out.println("salio id " + id_producto);
-//            producto2[0] = id_producto;
-
         }
+
         cuerpoDB.setId_cuerpo(Integer.parseInt(vistaFactura.getTxtcuerpo().getText()));
         cuerpoDB.setId_encabezado(Integer.parseInt(vistaFactura.getTxtidfac().getText()));
         cuerpoDB.setTotal_reparacion(Double.parseDouble(vistaFactura.getTxtReparacion().getText()));
