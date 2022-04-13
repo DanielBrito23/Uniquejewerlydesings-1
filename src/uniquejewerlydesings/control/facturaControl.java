@@ -34,6 +34,7 @@ import uniquejewerlydesings.vista.Factura;
 import java.sql.Connection;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -207,7 +208,7 @@ public class facturaControl extends validacion {
         }
     }
 // metodo para pasar los datos de una tabla a otra
-
+    ArrayList<String> idsProd = new ArrayList<String>();
     public void seleccion() {
 
         int filaSleccionada = vistaFactura.getTablaProductos().getSelectedRow();
@@ -236,7 +237,7 @@ public class facturaControl extends validacion {
                 modeloTab = (DefaultTableModel) vistaFactura.getTablaFactura().getModel();
                 String filaElementos[] = {id, descripcion, cantidad, precioUni, importe};
                 modeloTab.addRow(filaElementos);
-
+                idsProd.add(id);
                 calcula = (Double.parseDouble(precioUni) * Integer.parseInt(vistaFactura.getTxtcantidad().getText()));
                 System.out.println("calcula.." + calcula);
 
