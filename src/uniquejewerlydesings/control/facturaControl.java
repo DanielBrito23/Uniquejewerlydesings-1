@@ -35,6 +35,7 @@ import java.sql.Connection;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -209,6 +210,7 @@ public class facturaControl extends validacion {
     }
 // metodo para pasar los datos de una tabla a otra
     ArrayList<String> idsProd = new ArrayList<String>();
+
     public void seleccion() {
 
         int filaSleccionada = vistaFactura.getTablaProductos().getSelectedRow();
@@ -339,7 +341,8 @@ public class facturaControl extends validacion {
             Logger.getLogger(UniqueJewerlyDesings.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+    int valor = 0; 
     public void ingresoCliente() {
         //ingerso cliente
         clienteDB.setId_persona(Integer.parseInt(vistaFactura.getTxtid().getText()));
@@ -359,21 +362,26 @@ public class facturaControl extends validacion {
 
         for (int i = 0; i < vistaFactura.getTablaFactura().getRowCount(); i++) {
             id_producto = vistaFactura.getTablaFactura().getValueAt(i, 0).toString();
-           
+
             System.out.println("salio id " + id_producto);
         }
-
-        cuerpoDB.setId_cuerpo(Integer.parseInt(vistaFactura.getTxtcuerpo().getText()));
+        valor = Integer.parseInt(vistaFactura.getTxtcuerpo().getText());
+        cuerpoDB.setId_cuerpo(valor);
         cuerpoDB.setId_encabezado(Integer.parseInt(vistaFactura.getTxtidfac().getText()));
-        cuerpoDB.setTotal_reparacion(Double.parseDouble(vistaFactura.getTxtReparacion().getText()));
-        cuerpoDB.setReparacion(vistaFactura.getTxtreparaciones().getText());
-        cuerpoDB.setTotal(Double.parseDouble(vistaFactura.getTxtpricetotal().getText()));
-        cuerpoDB.setAbono(Double.parseDouble(vistaFactura.getTxtAbono().getText()));
-        cuerpoDB.setValor_pendiente(Double.parseDouble(vistaFactura.getTxtValorPediente().getText()));
+        //cuerpoDB.setTotal_reparacion(Double.parseDouble(vistaFactura.getTxtReparacion().getText()));
+        //cuerpoDB.setReparacion(vistaFactura.getTxtreparaciones().getText());
+        //cuerpoDB.setTotal(Double.parseDouble(vistaFactura.getTxtpricetotal().getText()));
+        //cuerpoDB.setAbono(Double.parseDouble(vistaFactura.getTxtAbono().getText()));
+        //cuerpoDB.setValor_pendiente(Double.parseDouble(vistaFactura.getTxtValorPediente().getText()));
 //        cuerpoDB.setProducto(vistaFactura.getTxtpricetotal().setText(id_producto));
 
-        if (cuerpoDB.insertarCuerpo()) {
-            // JOptionPane.showMessageDialog(null, "Added successfully");
+        Iterator<String> iterator = idsProd.iterator();
+        while (iterator.hasNext()) {
+            String codProd = iterator.next();
+            if (cuerpoDB.insertarCuerpo(codProd, valor)) {
+                valor++;
+                // JOptionPane.showMessageDialog(null, "Added successfully");
+            }
         }
 
     }
