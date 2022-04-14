@@ -536,6 +536,8 @@ public class Factura extends javax.swing.JFrame {
         txtValorPediente = new javax.swing.JLabel();
         txtFecha = new javax.swing.JLabel();
 
+        dialiogproducto.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
         tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

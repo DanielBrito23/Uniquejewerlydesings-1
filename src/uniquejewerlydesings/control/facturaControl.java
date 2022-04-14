@@ -36,6 +36,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.swing.WindowConstants;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -168,11 +169,20 @@ public class facturaControl extends validacion {
         return id;
     }
 
-    private void cargarLista() {
-        int canFilas = vistaFactura.getTablaProductos().getRowCount();
+    public void limpiarTabla() {
+        int canFilas = vistaFactura.getTablaProductos().getRowCount()-1;
+        modeloTab.setRowCount(0);
+        System.out.println("llegoooo");
         for (int i = canFilas - 1; i >= 0; i--) {
-            modeloTab.removeRow(i);
+            System.out.println("i: "+i+" Filas: "+canFilas);
+                modeloTab.removeRow(i);
         }
+    }
+
+    private void cargarLista() {
+        
+        //limpiarTabla(canFilas);
+        
         modeloTab = (DefaultTableModel) vistaFactura.getTablaProductos().getModel();
         List<producto> lista;
         //  modelo.setIdpersona(vista.getTxtBuscar().getText());
@@ -223,7 +233,7 @@ public class facturaControl extends validacion {
                 JOptionPane.showMessageDialog(null, "Select a row", "check", JOptionPane.WARNING_MESSAGE);
             } else {
                 modeloTab = (DefaultTableModel) vistaFactura.getTablaProductos().getModel();
-
+                
                 // valores que tiene la tabla 
                 id = vistaFactura.getTablaProductos().getValueAt(filaSleccionada, 0).toString();
                 descripcion = vistaFactura.getTablaProductos().getValueAt(filaSleccionada, 2).toString();
@@ -341,8 +351,8 @@ public class facturaControl extends validacion {
             Logger.getLogger(UniqueJewerlyDesings.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    int valor = 0; 
+
+    int valor = 0;
     public void ingresoCliente() {
         //ingerso cliente
         clienteDB.setId_persona(Integer.parseInt(vistaFactura.getTxtid().getText()));
