@@ -2,28 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/control/listaControl.java</file>
-            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/control/facturaControl.java</file>
-            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/control/listaFacturaControl.java</file>
-            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/vista/MenuPrincipal.java</file>
-            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/vista/Factura.java</file>
-            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/modelo/cliente.java</file>
-            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/DBmodelo/cuerpoFacturaDB.java</file>
-            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/DBmodelo/productoDB.java</file>
-            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/DBmodelo/facturaDB.java</file>
-            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/control/registrarProductoControl.java</file>
-            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/vista/ListaFactura.java</file>
-            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/test/uniquejewerlydesings/modelo/cuerpoFacturaTest.java</file>
-            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/modelo/encabezadoFactura.java</file>
-            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/vista/ListaProductos.java</file>
-            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/vista/VistaNuevoEmpleado.java</file>
-            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/DBmodelo/personaDB.java</file>
-            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/control/listaPerControl.java</file>
-            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/modelo/material.java</file>
-            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/DBmodelo/clienteDB.java</file>
-            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/control/proveedorControl.java</file>
-            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/control/menuControl.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
