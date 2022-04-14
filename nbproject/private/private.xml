@@ -3,11 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/willi/Documents/Programacion/Netbeans/JoyeriaP/Uniquejewerlydesings/src/uniquejewerlydesings/vista/Factura.java</file>
             <file>file:/C:/Users/willi/Documents/Programacion/Netbeans/JoyeriaP/Uniquejewerlydesings/test/uniquejewerlydesings/modelo/cuerpoFacturaTest.java</file>
             <file>file:/C:/Users/willi/Documents/Programacion/Netbeans/JoyeriaP/Uniquejewerlydesings/src/uniquejewerlydesings/control/facturaControl.java</file>
             <file>file:/C:/Users/willi/Documents/Programacion/Netbeans/JoyeriaP/Uniquejewerlydesings/src/uniquejewerlydesings/DBmodelo/personaDB.java</file>
             <file>file:/C:/Users/willi/Documents/Programacion/Netbeans/JoyeriaP/Uniquejewerlydesings/src/uniquejewerlydesings/DBmodelo/cuerpoFacturaDB.java</file>
+=======
+            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/control/facturaControl.java</file>
+            <file>file:/C:/Users/corin/OneDrive/Escritorio/Joyeria1/Proyecto%20Joyeria/src/uniquejewerlydesings/control/listaFacturaControl.java</file>
+>>>>>>> 59d22ebbc4215a14541a4d0ba700ab84c5842b70
         </group>
     </open-files>
 </project-private>

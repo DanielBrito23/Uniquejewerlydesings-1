@@ -33,7 +33,7 @@ public class Conexion {
 
    private final static String cadenaConexion = "jdbc:postgresql://localhost:5432/joyeria";
     private final static String pgUsuario = "postgres";
-    private final static String pgPass = "123";
+    private final static String pgPass = "1256";
     private Connection con;//conexion
     private Statement st;// comando:sql
     private ResultSet rs;//Resultados de la consulta
