@@ -37,12 +37,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.WindowConstants;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.view.JasperViewer;
+
 import uniquejewerlydesings.DBmodelo.cuerpoFacturaDB;
 
 /**
@@ -56,7 +51,6 @@ public class facturaControl extends validacion {
     static double total;
     static double totalp;
     static double totalabono;
-    
 
     double abono;
     double valor_pendiente;
@@ -331,26 +325,6 @@ public class facturaControl extends validacion {
         vistaFactura.getTxtNombres().addKeyListener(validarLetras(vistaFactura.getTxtNombres()));
     }
 
-    public void reporte() {
-        JasperReport reporte;
-        String path = "/factura/factura.jasper";
-
-//        String path = "F:\\ARCHIVOS\\programacion Visual\\CrudMvc1\\src\\Reporte\\Ejemplo_Reporte.jasper";
-        try {
-            reporte = (JasperReport) JRLoader.loadObject(getClass().getResource(path)); //Cargo el reporte al objeto
-            Map<String, Object> params = new HashMap<String, Object>();
-//            String aguja = vistaFactura.getTxtparametro().getText();
-            params.put("cedula", vistaFactura.getTxtcedula());
-            JasperPrint jprint = JasperFillManager.fillReport(reporte, params, cn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
-            JasperViewer viewer = new JasperViewer(jprint, false); //Creamos la vista del Reporte
-            viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Le agregamos que se cierre solo el reporte cuando lo cierre el usuario
-            viewer.setVisible(true); //Inicializamos la vista del Reporte
-
-            //mapaa de parametros
-        } catch (JRException ex) {
-            Logger.getLogger(UniqueJewerlyDesings.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
     public void ingresoCliente() {
         //ingerso cliente
         clienteDB.setId_persona(Integer.parseInt(vistaFactura.getTxtid().getText()));
@@ -373,11 +347,11 @@ public class facturaControl extends validacion {
         }
         cuerpoDB.setId_cuerpo(IdCuerpo());
         cuerpoDB.setId_encabezado(Integer.parseInt(vistaFactura.getTxtidfac().getText()));
-        //cuerpoDB.setTotal_reparacion(Double.parseDouble(vistaFactura.getTxtReparacion().getText()));
-        //cuerpoDB.setReparacion(vistaFactura.getTxtreparaciones().getText());
-        //cuerpoDB.setTotal(Double.parseDouble(vistaFactura.getTxtpricetotal().getText()));
-        //cuerpoDB.setAbono(Double.parseDouble(vistaFactura.getTxtAbono().getText()));
-        //cuerpoDB.setValor_pendiente(Double.parseDouble(vistaFactura.getTxtValorPediente().getText()));
+        cuerpoDB.setTotal_reparacion(Double.parseDouble(vistaFactura.getTxtReparacion().getText()));
+        cuerpoDB.setReparacion(vistaFactura.getTxtreparaciones().getText());
+        cuerpoDB.setTotal(Double.parseDouble(vistaFactura.getTxtpricetotal().getText()));
+        cuerpoDB.setAbono(Double.parseDouble(vistaFactura.getTxtAbono().getText()));
+        cuerpoDB.setValor_pendiente(Double.parseDouble(vistaFactura.getTxtValorPediente().getText()));
 //        cuerpoDB.setProducto(vistaFactura.getTxtpricetotal().setText(id_producto));
 
         insertarDetallesFactura();
@@ -386,14 +360,14 @@ public class facturaControl extends validacion {
 
     public void insertarDetallesFactura() {
         Iterator<String> iterator = idsProd.iterator();
-        int valor=IdCuerpo();
+        int valor = IdCuerpo();
         System.out.println("iterator: " + iterator.toString());
         while (iterator.hasNext()) {
             String codProd = iterator.next();
             System.out.println("codProd: " + codProd);
             if (cuerpoDB.insertarCuerpo(codProd, valor, Integer.parseInt(vistaFactura.getTxtidfac().getText()))) {
-                valor=IdCuerpo()+1;
-                System.out.println("valor: "+valor);
+                valor = IdCuerpo() + 1;
+                System.out.println("valor: " + valor);
                 // JOptionPane.showMessageDialog(null, "Added successfully");
             }
         }
