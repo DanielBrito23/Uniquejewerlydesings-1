@@ -3,9 +3,6 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Container class="javax.swing.JDialog" name="dialiogproducto">
-      <Properties>
-        <Property name="defaultCloseOperation" type="int" value="2"/>
-      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -391,8 +388,8 @@
                                   <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
                                   <Component id="jLabel13" min="-2" pref="68" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="txtFecha" min="-2" pref="117" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="192" max="-2" attributes="0"/>
+                                  <Component id="txtFecha" min="-2" pref="176" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>

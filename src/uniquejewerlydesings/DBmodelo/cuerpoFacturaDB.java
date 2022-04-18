@@ -27,9 +27,12 @@ public class cuerpoFacturaDB extends cuerpoFactura {
     private PreparedStatement PS = null;
     private ResultSet RS;
 
-    private final String SQL_SELECT_INVENTARIO = "select c.reparacion,p.nombres,pro.descripcion\n"
-            + "            from cuerpo_factura c, encabezado e,persona p,producto pro\n"
-            + "			where e.id_encabezado=c.id_encabezado;";
+    private final String SQL_SELECT_INVENTARIO = "SELECT e.fecha ||' - '|| e.hora as Fecha, p.cedula ,p.nombres,"
+            + "e.id_encabezado,p.direccion, p.telefono, p.correo \n"
+            + "FROM persona p\n"
+            + "JOIN cliente cl ON p.id_persona=cl.id_persona \n"
+            + "JOIN encabezado e ON e.id_cliente=cl.id_cliente \n"
+            + "ORDER BY 1 desc";
 
     public cuerpoFacturaDB() {
 
@@ -39,10 +42,10 @@ public class cuerpoFacturaDB extends cuerpoFactura {
         super(id_cuerpo, total, abono, valor_pendiente, reparacion, total_reparacion, producto, id_encabezado, id_cliente, id_persona, cedula, nombres, direccion, telefono, correo);
     }
 
-    public boolean insertarCuerpo(String codProd, int idCuerpo) {
+    public boolean insertarCuerpo(String codProd, int idCuerpo, int idEncabezado) {
 
         String sql = "insert into cuerpo_factura (id_cuerpo, id_encabezado, id_producto, total, abono, valor_pendiente,reparacion,total_reparacion) "
-                + "values (" + idCuerpo + ", '" + getId_encabezado() + "','" + codProd + "','" + getTotal() + "','" + getAbono() + "','" + getValor_pendiente() + "','" + getReparacion() + "','" + getTotal_reparacion() + "');";
+                + "values (" + idCuerpo + ", '" + idEncabezado+ "','" + codProd + "','" + getTotal() + "','" + getAbono() + "','" + getValor_pendiente() + "','" + getReparacion() + "','" + getTotal_reparacion() + "');";
 
         System.out.println("insert Cuerpo: " + sql);
         PreparedStatement ps = conecta.getPs(sql);
@@ -88,26 +91,33 @@ public class cuerpoFacturaDB extends cuerpoFactura {
 
         };
 //        DT.addColumn("Identification");
-        DT.addColumn("Custom");
-        DT.addColumn("Repair");
-        DT.addColumn("Description");
+        DT.addColumn("Date");
+        DT.addColumn("Identification");
+        DT.addColumn("Names");
+        DT.addColumn("IDFACTURA");
+        DT.addColumn("direccion");
+        DT.addColumn("telefono");
+        DT.addColumn("correo");
         return DT;
     }
 // con la consulta agrega a la tabla los datos
 // muestre numero de cedula antes de que me muestra antes 
     //
+
     public DefaultTableModel getDatosInventario() {
         try {
             setTitulosInventario();
             PS = conecta.conectarBD().prepareStatement(SQL_SELECT_INVENTARIO);
             RS = PS.executeQuery();
-            Object[] fila = new Object[3];
+            Object[] fila = new Object[7];
             while (RS.next()) {
-                fila[0] = RS.getString(2);
-                fila[1] = RS.getString(1);
+                fila[0] = RS.getString(1);
+                fila[1] = RS.getString(2);
                 fila[2] = RS.getString(3);
-//                fila[3] = RS.getString(4);
-
+                fila[3] = RS.getString(4);
+                fila[4] = RS.getString(5);
+                fila[5] = RS.getString(6);
+                fila[6] = RS.getString(7);
                 DT.addRow(fila);
             }
         } catch (SQLException e) {

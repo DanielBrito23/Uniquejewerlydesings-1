@@ -62,7 +62,13 @@ public class menuControl {
     //instancias para la lista de la factura
     ListaFactura vistaLista = new ListaFactura();
     cuerpoFacturaDB cuerpoBD=new cuerpoFacturaDB();
-    listaFacturaControl control=new listaFacturaControl(cuerpoBD, vistaLista);
+    Factura vistaFac = new Factura();
+    facturaDB facDB = new facturaDB(); 
+    productoDB proDb = new productoDB(); 
+    cuerpoFacturaDB cuerpoFactDB = new cuerpoFacturaDB(); 
+    
+    facturaControl factCtrl = new facturaControl(vistaFac,facDB,proDb,personaDB,clienteDB,cuerpoFactDB); 
+    listaFacturaControl control=new listaFacturaControl(cuerpoBD, vistaLista, vistaFac, factCtrl);
 
     // instancias para el empleado
     empleadoDB modeloEmple = new empleadoDB();

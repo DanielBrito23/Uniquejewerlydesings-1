@@ -56,6 +56,7 @@ public class facturaControl extends validacion {
     static double total;
     static double totalp;
     static double totalabono;
+    
 
     double abono;
     double valor_pendiente;
@@ -170,19 +171,18 @@ public class facturaControl extends validacion {
     }
 
     public void limpiarTabla() {
-        int canFilas = vistaFactura.getTablaProductos().getRowCount()-1;
+        int canFilas = vistaFactura.getTablaProductos().getRowCount() - 1;
         modeloTab.setRowCount(0);
         System.out.println("llegoooo");
         for (int i = canFilas - 1; i >= 0; i--) {
-            System.out.println("i: "+i+" Filas: "+canFilas);
-                modeloTab.removeRow(i);
+            System.out.println("i: " + i + " Filas: " + canFilas);
+            modeloTab.removeRow(i);
         }
     }
 
-    private void cargarLista() {
-        
+    public void cargarLista() {
+
         //limpiarTabla(canFilas);
-        
         modeloTab = (DefaultTableModel) vistaFactura.getTablaProductos().getModel();
         List<producto> lista;
         //  modelo.setIdpersona(vista.getTxtBuscar().getText());
@@ -233,7 +233,7 @@ public class facturaControl extends validacion {
                 JOptionPane.showMessageDialog(null, "Select a row", "check", JOptionPane.WARNING_MESSAGE);
             } else {
                 modeloTab = (DefaultTableModel) vistaFactura.getTablaProductos().getModel();
-                
+
                 // valores que tiene la tabla 
                 id = vistaFactura.getTablaProductos().getValueAt(filaSleccionada, 0).toString();
                 descripcion = vistaFactura.getTablaProductos().getValueAt(filaSleccionada, 2).toString();
@@ -351,8 +351,6 @@ public class facturaControl extends validacion {
             Logger.getLogger(UniqueJewerlyDesings.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    int valor = 0;
     public void ingresoCliente() {
         //ingerso cliente
         clienteDB.setId_persona(Integer.parseInt(vistaFactura.getTxtid().getText()));
@@ -372,28 +370,33 @@ public class facturaControl extends validacion {
 
         for (int i = 0; i < vistaFactura.getTablaFactura().getRowCount(); i++) {
             id_producto = vistaFactura.getTablaFactura().getValueAt(i, 0).toString();
-
-            System.out.println("salio id " + id_producto);
         }
-        valor = Integer.parseInt(vistaFactura.getTxtcuerpo().getText());
-        cuerpoDB.setId_cuerpo(valor);
+        cuerpoDB.setId_cuerpo(IdCuerpo());
         cuerpoDB.setId_encabezado(Integer.parseInt(vistaFactura.getTxtidfac().getText()));
-        cuerpoDB.setTotal_reparacion(Double.parseDouble(vistaFactura.getTxtReparacion().getText()));
-        cuerpoDB.setReparacion(vistaFactura.getTxtreparaciones().getText());
-        cuerpoDB.setTotal(Double.parseDouble(vistaFactura.getTxtpricetotal().getText()));
-        cuerpoDB.setAbono(Double.parseDouble(vistaFactura.getTxtAbono().getText()));
-        cuerpoDB.setValor_pendiente(Double.parseDouble(vistaFactura.getTxtValorPediente().getText()));
+        //cuerpoDB.setTotal_reparacion(Double.parseDouble(vistaFactura.getTxtReparacion().getText()));
+        //cuerpoDB.setReparacion(vistaFactura.getTxtreparaciones().getText());
+        //cuerpoDB.setTotal(Double.parseDouble(vistaFactura.getTxtpricetotal().getText()));
+        //cuerpoDB.setAbono(Double.parseDouble(vistaFactura.getTxtAbono().getText()));
+        //cuerpoDB.setValor_pendiente(Double.parseDouble(vistaFactura.getTxtValorPediente().getText()));
 //        cuerpoDB.setProducto(vistaFactura.getTxtpricetotal().setText(id_producto));
 
+        insertarDetallesFactura();
+
+    }
+
+    public void insertarDetallesFactura() {
         Iterator<String> iterator = idsProd.iterator();
+        int valor=IdCuerpo();
+        System.out.println("iterator: " + iterator.toString());
         while (iterator.hasNext()) {
             String codProd = iterator.next();
-            if (cuerpoDB.insertarCuerpo(codProd, valor)) {
-                valor++;
+            System.out.println("codProd: " + codProd);
+            if (cuerpoDB.insertarCuerpo(codProd, valor, Integer.parseInt(vistaFactura.getTxtidfac().getText()))) {
+                valor=IdCuerpo()+1;
+                System.out.println("valor: "+valor);
                 // JOptionPane.showMessageDialog(null, "Added successfully");
             }
         }
-
     }
 
     public void incrementarId() {
