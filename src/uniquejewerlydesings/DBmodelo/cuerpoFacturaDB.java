@@ -42,10 +42,10 @@ public class cuerpoFacturaDB extends cuerpoFactura {
         super(id_cuerpo, total, abono, valor_pendiente, reparacion, total_reparacion, producto, id_encabezado, id_cliente, id_persona, cedula, nombres, direccion, telefono, correo);
     }
 
-    public boolean insertarCuerpo(String codProd, int idCuerpo, int idEncabezado) {
+    public boolean insertarCuerpo(String codProd, int idCuerpo, int idEncabezado,cuerpoFacturaDB BD) {
 
         String sql = "insert into cuerpo_factura (id_cuerpo, id_encabezado, id_producto, total, abono, valor_pendiente,reparacion,total_reparacion) "
-                + "values (" + idCuerpo + ", '" + idEncabezado+ "','" + codProd + "','" + getTotal() + "','" + getAbono() + "','" + getValor_pendiente() + "','" + getReparacion() + "','" + getTotal_reparacion() + "');";
+                + "values (" + idCuerpo + ", '" + idEncabezado+ "','" + codProd + "','" + BD.getTotal() + "','" + BD.getAbono() + "','" + BD.getValor_pendiente() + "','" + BD.getReparacion() + "','" + BD.getTotal_reparacion() + "');";
 
         System.out.println("insert Cuerpo: " + sql);
         PreparedStatement ps = conecta.getPs(sql);
