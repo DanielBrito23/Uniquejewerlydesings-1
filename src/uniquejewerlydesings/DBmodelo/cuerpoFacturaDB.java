@@ -42,10 +42,10 @@ public class cuerpoFacturaDB extends cuerpoFactura {
         super(id_cuerpo, total, abono, valor_pendiente, reparacion, total_reparacion, producto, id_encabezado, id_cliente, id_persona, cedula, nombres, direccion, telefono, correo);
     }
 
-    public boolean insertarCuerpo(String codProd, int idCuerpo, int idEncabezado,cuerpoFacturaDB BD) {
+    public boolean insertarCuerpo(String codProd, int idCuerpo, int idEncabezado) {
 
         String sql = "insert into cuerpo_factura (id_cuerpo, id_encabezado, id_producto, total, abono, valor_pendiente,reparacion,total_reparacion) "
-                + "values (" + idCuerpo + ", '" + idEncabezado+ "','" + codProd + "','" + BD.getTotal() + "','" + BD.getAbono() + "','" + BD.getValor_pendiente() + "','" + BD.getReparacion() + "','" + BD.getTotal_reparacion() + "');";
+                + "values (" + idCuerpo + ", '" + idEncabezado + "','" + codProd + "','" + getTotal() + "','" + getAbono() + "','" + getValor_pendiente() + "','" + getReparacion() + "','" + getTotal_reparacion() + "');";
 
         System.out.println("insert Cuerpo: " + sql);
         PreparedStatement ps = conecta.getPs(sql);
@@ -130,4 +130,20 @@ public class cuerpoFacturaDB extends cuerpoFactura {
         return DT;
     }
 
+    public boolean editarDetFactReparaciones(cuerpoFacturaDB BD) {
+        String sql = "UPDATE cuerpo_factura cf SET "
+                + "reparacion = '"+BD.getReparacion()+"'"
+                + ", total_reparacion=" + BD.getTotal_reparacion()
+                + ", total=" + BD.getTotal()
+                + ", abono=" + BD.getAbono()
+                + ", valor_pendiente=" + BD.getValor_pendiente()
+                + " from encabezado e\n"
+                + "WHERE e.id_encabezado=cf.id_encabezado and cf.id_encabezado=" + BD.getId_encabezado();
+        System.out.println("update cuerpo_factura: " + sql);
+        if (conecta.noQuery(sql) == null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

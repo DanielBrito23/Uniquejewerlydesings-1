@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import uniquejewerlydesings.DBmodelo.cuerpoFacturaDB;
 import javax.swing.table.TableColumnModel;
@@ -68,6 +69,7 @@ public class listaFacturaControl {
         vistaFactura.getBtnbuscar().addActionListener(e -> editDatosFactura());
         vistaFactura.getBuscarProdcuto().addActionListener(e -> listaProductoDialogo());
         vistaFactura.getBtnselecionado().addActionListener(e -> seleccion());
+        vistaFactura.getBtnimprimir().addActionListener(e -> facContrl.datosImprimir());
     }
 
     public void ocultarColumnasTabla(JTable tbl, int columna[]) {
@@ -159,7 +161,7 @@ public class listaFacturaControl {
         DefaultTableModel modelTabla = (DefaultTableModel) vistaLista.getJtblista().getModel();
         int fsel = vistaLista.getJtblista().getSelectedRow();
         if (fsel == -1) {
-            JOptionPane.showMessageDialog(null, "Select a row", "Verificación", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Select a row", "Verification", JOptionPane.WARNING_MESSAGE);
         } else {
             limpiarAllFactura();
             String fecha = modelTabla.getValueAt(vistaLista.getJtblista().getSelectedRow(), 0).toString();
@@ -177,19 +179,25 @@ public class listaFacturaControl {
             vistaFactura.getTxttelefono().setText(telf);
             vistaFactura.getTxtcorreo().setText(correo);
             vistaFactura.getTxtidfac().setText(idFactura);
+            //vistaFactura.getTxtcuerpo().setText(telf);
 
             ArrayList<Object> listObjects = facturaDB.buscarFactura(ced, idFactura);
             persona per = (persona) listObjects.get(0);
             encabezadoFactura ef = (encabezadoFactura) listObjects.get(1);
             cuerpoFactura cf = (cuerpoFactura) listObjects.get(2);
             producto pro = (producto) listObjects.get(3);
-
+            
             vistaFactura.getTxtreparaciones().setText(cf.getReparacion());
             vistaFactura.getTxtReparacion().setText(String.valueOf(cf.getTotal_reparacion()));
             vistaFactura.getTxtpricetotal().setText(String.valueOf(cf.getTotal()));
             vistaFactura.getTxtAbono().setText(String.valueOf(cf.getAbono()));
             vistaFactura.getTxtValorPediente().setText(String.valueOf(cf.getValor_pendiente()));
             vistaFactura.getTxtcuerpo().setText(String.valueOf(facContrl.IdCuerpo()));
+            //List<cuerpoFactura> codFact = new ArrayList<cuerpoFactura>();
+            //codFact = (List<cuerpoFactura>) cf; 
+            //for (int i = 0; i < codFact.size(); i++) {
+                vistaFactura.getTxtCuepFact().setText(String.valueOf(cf.getId_cuerpo()));
+            //}
             modeloTabDlReg = (DefaultTableModel) vistaFactura.getTablaFactura().getModel();
 
             listarTabFact(ced, idFactura);
@@ -228,21 +236,29 @@ public class listaFacturaControl {
     public void editDatosFactura() {
         personaDB pDB = new personaDB();
         facturaDB facturaDB = new facturaDB();
-        
 
         pDB.setCedula(vistaFactura.getTxtcedula().getText());
         pDB.setNombres(vistaFactura.getTxtnombres().getText());
         pDB.setDireccion(vistaFactura.getTxtdireccion().getText());
         pDB.setCorreo(vistaFactura.getTxtcorreo().getText());
         pDB.setTelefono(vistaFactura.getTxttelefono().getText());
-        
-       
+
+        cuerpoFacturaDB BD = new cuerpoFacturaDB();
+        BD.setReparacion(vistaFactura.getTxtreparaciones().getText());
+        BD.setTotal_reparacion(Double.parseDouble(vistaFactura.getTxtReparacion().getText()));
+        BD.setTotal(Double.parseDouble(vistaFactura.getTxtpricetotal().getText()));
+        BD.setAbono(Double.parseDouble(vistaFactura.getTxtAbono().getText()));
+        BD.setValor_pendiente(Double.parseDouble(vistaFactura.getTxtValorPediente().getText()));
+        BD.setId_cuerpo(Integer.parseInt(vistaFactura.getTxtCuepFact().getText()));
+        BD.setId_encabezado(Integer.parseInt(vistaFactura.getTxtidfac().getText()));
 
         if (facturaDB.editarPersonas(vistaFactura.getTxtcedula().getText(), pDB)) {
             facContrl.insertarDetallesFactura();
-            JOptionPane.showMessageDialog(null, "Successfully Edited");
-            vistaFactura.setVisible(false);
-            listar();
+            if (cuerpoBD.editarDetFactReparaciones(BD)) {
+                JOptionPane.showMessageDialog(null, "Successfully Edited");
+                vistaFactura.setVisible(false);
+                listar();
+            }
         }
     }
 

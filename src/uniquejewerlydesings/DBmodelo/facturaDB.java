@@ -126,7 +126,7 @@ public class facturaDB extends encabezadoFactura {
         ArrayList<Object> datos = new ArrayList<>();
         String sql = "select e.id_encabezado,prod.id_producto, p.cedula, p.id_persona, p.nombres,p.direccion,p.telefono,p.correo, \n"
                 + "cf.reparacion,prod.descripcion,\n"
-                + "cf.total_reparacion,cf.abono,cf.valor_pendiente, prod.fecha_compra \n"
+                + "cf.total_reparacion,cf.abono,cf.valor_pendiente, prod.fecha_compra,cf.id_cuerpo \n"
                 + "FROM persona p \n"
                 + "JOIN cliente cl on p.id_persona=cl.id_persona \n"
                 + "JOIN encabezado e on e.id_cliente= cl.id_cliente\n"
@@ -155,6 +155,7 @@ public class facturaDB extends encabezadoFactura {
                 cf.setTotal_reparacion(rs.getDouble("total_reparacion"));
                 cf.setAbono(rs.getDouble("abono"));
                 cf.setValor_pendiente(rs.getDouble("valor_pendiente"));
+                cf.setId_cuerpo(rs.getInt("id_cuerpo"));
 
             }
         } catch (SQLException ex) {

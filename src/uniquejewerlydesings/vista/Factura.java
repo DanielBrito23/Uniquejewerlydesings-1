@@ -37,6 +37,14 @@ public class Factura extends javax.swing.JFrame {
 
     }
 
+    public JLabel getTxtCuepFact() {
+        return txtCuepFact;
+    }
+
+    public void setTxtCuepFact(JLabel txtCuepFact) {
+        this.txtCuepFact = txtCuepFact;
+    }
+
     public JButton getBtnNewUser() {
         return btnNewUser;
     }
@@ -535,6 +543,7 @@ public class Factura extends javax.swing.JFrame {
         txtAbono = new javax.swing.JTextField();
         txtValorPediente = new javax.swing.JLabel();
         txtFecha = new javax.swing.JLabel();
+        txtCuepFact = new javax.swing.JLabel();
 
         tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -727,7 +736,6 @@ public class Factura extends javax.swing.JFrame {
             .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(" Invoice");
 
         jLabel6.setText("Repairs");
@@ -927,6 +935,8 @@ public class Factura extends javax.swing.JFrame {
 
         txtFecha.setText("jLabel23");
 
+        txtCuepFact.setText("0");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -962,7 +972,10 @@ public class Factura extends javax.swing.JFrame {
                                 .addGap(2, 2, 2)
                                 .addComponent(txtcuerpo, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSeparator3)))
+                                .addComponent(jSeparator3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCuepFact, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(78, 78, 78)))
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1014,6 +1027,7 @@ public class Factura extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCuepFact)
                     .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtcuerpo)
@@ -1169,6 +1183,7 @@ public class Factura extends javax.swing.JFrame {
     private javax.swing.JTextField txtAbono;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtCorreo;
+    private javax.swing.JLabel txtCuepFact;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JLabel txtFecha;
     private javax.swing.JTextField txtID;

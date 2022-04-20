@@ -347,34 +347,30 @@ public class facturaControl extends validacion {
         }
         cuerpoDB.setId_cuerpo(IdCuerpo());
         cuerpoDB.setId_encabezado(Integer.parseInt(vistaFactura.getTxtidfac().getText()));
-        cuerpoDB.setTotal_reparacion(Double.parseDouble(vistaFactura.getTxtReparacion().getText()));
-        cuerpoDB.setReparacion(vistaFactura.getTxtreparaciones().getText());
-        cuerpoDB.setTotal(Double.parseDouble(vistaFactura.getTxtpricetotal().getText()));
-        cuerpoDB.setAbono(Double.parseDouble(vistaFactura.getTxtAbono().getText()));
-        cuerpoDB.setValor_pendiente(Double.parseDouble(vistaFactura.getTxtValorPediente().getText()));
+//        cuerpoDB.setTotal_reparacion(Double.parseDouble(vistaFactura.getTxtReparacion().getText()));
+cuerpoDB.setTotal_reparacion(100.0);
+//        cuerpoDB.setReparacion(vistaFactura.getTxtreparaciones().getText());
+cuerpoDB.setReparacion("holaaaa");
+//        cuerpoDB.setTotal(Double.parseDouble(vistaFactura.getTxtpricetotal().getText()));
+cuerpoDB.setTotal(100.50);
+//        cuerpoDB.setAbono(Double.parseDouble(vistaFactura.getTxtAbono().getText()));
+cuerpoDB.setAbono(20);
+//        cuerpoDB.setValor_pendiente(Double.parseDouble(vistaFactura.getTxtValorPediente().getText()));
+cuerpoDB.setValor_pendiente(90);
 //        cuerpoDB.setProducto(vistaFactura.getTxtpricetotal().setText(id_producto));
-
+        System.out.println("lleeeeegoooooooo");
         insertarDetallesFactura();
 
     }
 
     public void insertarDetallesFactura() {
-        
-        cuerpoFacturaDB BD = new cuerpoFacturaDB();
-        
-        BD.setReparacion(vistaFactura.getTxtreparaciones().getText());
-        BD.setTotal_reparacion(Double.parseDouble(vistaFactura.getTxtReparacion().getText()));
-        BD.setTotal(Double.parseDouble(vistaFactura.getTxtpricetotal().getText()));
-        BD.setAbono(Double.parseDouble(vistaFactura.getTxtAbono().getText()));
-        BD.setValor_pendiente(Double.parseDouble(vistaFactura.getTxtValorPediente().getText()));
-        
         Iterator<String> iterator = idsProd.iterator();
         int valor = IdCuerpo();
         System.out.println("iterator: " + iterator.toString());
         while (iterator.hasNext()) {
             String codProd = iterator.next();
             System.out.println("codProd: " + codProd);
-            if (cuerpoDB.insertarCuerpo(codProd, valor, Integer.parseInt(vistaFactura.getTxtidfac().getText()),BD)) {
+            if (cuerpoDB.insertarCuerpo(codProd, valor, Integer.parseInt(vistaFactura.getTxtidfac().getText()))) {
                 valor = IdCuerpo() + 1;
                 System.out.println("valor: " + valor);
                 // JOptionPane.showMessageDialog(null, "Added successfully");
