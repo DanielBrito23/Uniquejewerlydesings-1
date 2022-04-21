@@ -340,14 +340,14 @@
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="8" rowCount="0">
-                    <Column editable="false" title="ID Producto" type="java.lang.Object"/>
-                    <Column editable="false" title="Calculo utilidad" type="java.lang.Object"/>
-                    <Column editable="false" title="Descripcion" type="java.lang.Object"/>
-                    <Column editable="false" title="Fecha Compra" type="java.lang.Object"/>
-                    <Column editable="false" title="Cantidad" type="java.lang.Object"/>
-                    <Column editable="false" title="Peso metal" type="java.lang.Object"/>
-                    <Column editable="false" title="Tipo metal" type="java.lang.Object"/>
-                    <Column editable="false" title="Precio unitario" type="java.lang.Object"/>
+                    <Column editable="false" title="IDENTIFICATION" type="java.lang.Object"/>
+                    <Column editable="false" title="UTILITYCALCULATION" type="java.lang.Object"/>
+                    <Column editable="false" title="DESCRIPTION" type="java.lang.Object"/>
+                    <Column editable="false" title="PURCHASE DATE" type="java.lang.Object"/>
+                    <Column editable="false" title="QUANTITY" type="java.lang.Object"/>
+                    <Column editable="false" title="METAL WEIGHT" type="java.lang.Object"/>
+                    <Column editable="false" title="METAL TYPE " type="java.lang.Object"/>
+                    <Column editable="false" title="UNIT PRICE " type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -440,7 +440,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/images/iconsbotones/cancel.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Delete"/>
+            <Property name="text" type="java.lang.String" value="Delete Product"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteActionPerformed"/>
@@ -451,7 +451,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/images/iconsbotones/guardar.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Nuevo Pro"/>
+            <Property name="text" type="java.lang.String" value="New Product"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnEditPro">
@@ -459,7 +459,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/images/iconsbotones/edit2.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Edit pro "/>
+            <Property name="text" type="java.lang.String" value="Edit Product"/>
           </Properties>
         </Component>
       </SubComponents>

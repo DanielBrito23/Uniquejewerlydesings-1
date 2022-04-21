@@ -82,8 +82,8 @@ public class listaFacturaControl {
 
     public void popTableMenu() {
         JPopupMenu pM = new JPopupMenu();
-        JMenuItem itEditar = new JMenuItem("EDITAR");
-        JMenuItem itEliminar = new JMenuItem("BORRAR");
+        JMenuItem itEditar = new JMenuItem("EDIT");
+        JMenuItem itEliminar = new JMenuItem("DELETE");
         itEditar.addActionListener((ActionEvent e) -> {
             cargarFactura();
         });

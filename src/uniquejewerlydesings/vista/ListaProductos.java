@@ -505,7 +505,7 @@ public class ListaProductos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID Producto", "Calculo utilidad", "Descripcion", "Fecha Compra", "Cantidad", "Peso metal", "Tipo metal", "Precio unitario"
+                "IDENTIFICATION", "UTILITYCALCULATION", "DESCRIPTION", "PURCHASE DATE", "QUANTITY", "METAL WEIGHT", "METAL TYPE ", "UNIT PRICE "
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -534,7 +534,7 @@ public class ListaProductos extends javax.swing.JFrame {
         lbCantidad.setText("jLabel2");
 
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconsbotones/cancel.png"))); // NOI18N
-        btnDelete.setText("Delete");
+        btnDelete.setText("Delete Product");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
@@ -542,10 +542,10 @@ public class ListaProductos extends javax.swing.JFrame {
         });
 
         btnNewPro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconsbotones/guardar.png"))); // NOI18N
-        btnNewPro.setText("Nuevo Pro");
+        btnNewPro.setText("New Product");
 
         btnEditPro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconsbotones/edit2.png"))); // NOI18N
-        btnEditPro.setText("Edit pro ");
+        btnEditPro.setText("Edit Product");
 
         javax.swing.GroupLayout pnlContProLayout = new javax.swing.GroupLayout(pnlContPro);
         pnlContPro.setLayout(pnlContProLayout);

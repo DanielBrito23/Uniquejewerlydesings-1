@@ -92,13 +92,13 @@ public class cuerpoFacturaDB extends cuerpoFactura {
 
         };
 //        DT.addColumn("Identification");
-        DT.addColumn("Date");
-        DT.addColumn("Identification");
-        DT.addColumn("Names");
-        DT.addColumn("IDFACTURA");
-        DT.addColumn("direccion");
-        DT.addColumn("telefono");
-        DT.addColumn("correo");
+        DT.addColumn("DATE");
+        DT.addColumn("IDENTIFICATION");
+        DT.addColumn("CUSTOM NAME");
+        DT.addColumn("ID_FACTURA");
+        DT.addColumn("ADDRESS");
+        DT.addColumn("PHONE");
+        DT.addColumn("EMAIL");
         return DT;
     }
 // con la consulta agrega a la tabla los datos
