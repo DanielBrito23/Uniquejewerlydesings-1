@@ -68,6 +68,7 @@ public class cuerpoFacturaDB extends cuerpoFactura {
             re = ps.executeQuery();
             while (re.next()) {
                 id = re.getInt(1) + 1;
+                System.out.println("iddddddCuerpo: "+id);
             }
         } catch (Exception e) {
             System.out.println("error" + e.getMessage());

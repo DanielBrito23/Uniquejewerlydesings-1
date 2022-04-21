@@ -7,17 +7,11 @@ package uniquejewerlydesings.control;
 
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import static javax.management.Query.lt;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
-import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import uniquejewerlydesings.DBmodelo.cuerpoFacturaDB;
 import javax.swing.table.TableColumnModel;

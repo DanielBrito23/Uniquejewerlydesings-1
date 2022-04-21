@@ -5,9 +5,15 @@
  */
 package uniquejewerlydesings.control;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.lang.reflect.Array;
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import uniquejewerlydesings.DBmodelo.productoDB;
 import uniquejewerlydesings.extra.PlaceHolder;
@@ -22,24 +28,24 @@ import uniquejewerlydesings.vista.RegistroProductos;
  * @author LENOVO
  */
 public class productsStocksControl extends validacion {
-    
+
     private final productoDB modelo;
     private final ListaProductos vista;
     DefaultTableModel modeloTab;
-    
+
     String idp = null;
-    
+
     public productsStocksControl(productoDB modelo, ListaProductos vista) {
         this.modelo = modelo;
         this.vista = vista;
     }
-    
+
     public void iniciarControl() {
 
         //botones
         vista.getBtnBuscar().addActionListener(e -> buscar());
         vista.getBtnDelete().addActionListener(e -> eliminar());
-        
+
         vista.getBtnNewPro().addActionListener(e -> abrirDialogo(0));
         vista.getBtnGuardar().addActionListener(e -> nuevoProducto());
         vista.getBtnEditPro().addActionListener(e -> abrirDialogo(1));
@@ -51,7 +57,7 @@ public class productsStocksControl extends validacion {
         placeHolderFecha();
         vista.getTxtID().setText(String.valueOf(idProducto()));
     }
-    
+
     private void cargarLista() {
         int canFilas = vista.getTablaProductos().getRowCount();
         for (int i = canFilas - 1; i >= 0; i--) {
@@ -63,7 +69,9 @@ public class productsStocksControl extends validacion {
         try {
             lista = modelo.listaProductos();
             int columnas = modeloTab.getColumnCount();
+
             for (int i = 0; i < lista.size(); i++) {
+
                 modeloTab.addRow(new Object[columnas]);
                 vista.getTablaProductos().setValueAt(lista.get(i).getId_producto(), i, 0);
                 vista.getTablaProductos().setValueAt(lista.get(i).getCalculo_utilidad(), i, 1);
@@ -73,14 +81,21 @@ public class productsStocksControl extends validacion {
                 vista.getTablaProductos().setValueAt(lista.get(i).getPeso_metal(), i, 5);
                 vista.getTablaProductos().setValueAt(lista.get(i).getTipo_metal(), i, 6);
                 vista.getTablaProductos().setValueAt(lista.get(i).getPrecio_unitario(), i, 7);
+
+                int numero = (Integer) vista.getTablaProductos().getValueAt(i, 4);
+                //if (numero <= 2) {
+                vista.getTablaProductos().setDefaultRenderer(Object.class, new pintarTabla());
+
+                //setForeground(Color.BLACK);
+                //}
             }
             vista.getLbCantidad().setText("Cargados: " + lista.size() + " registros");
-            
+
         } catch (Exception ex) {
             System.out.println("Error en el buscar control: " + ex.getMessage());
         }
     }
-    
+
     public void buscar() {
         int canFilas = vista.getTablaProductos().getRowCount();
         for (int i = canFilas - 1; i >= 0; i--) {
@@ -104,12 +119,12 @@ public class productsStocksControl extends validacion {
                 vista.getTablaProductos().setValueAt(lista.get(i).getPrecio_unitario(), i, 7);
             }
             vista.getLbCantidad().setText("Cargados: " + lista.size() + " registros");
-            
+
         } catch (Exception ex) {
             System.out.println("Error en el buscar control: " + ex.getMessage());
         }
     }
-    
+
     private void eliminar() {
         int fsel = vista.getTablaProductos().getSelectedRow();
         if (fsel == -1) {
@@ -128,17 +143,17 @@ public class productsStocksControl extends validacion {
             }
         }
     }
-    
+
     public void ventana() {
         vista.setVisible(true);
         vista.setLocationRelativeTo(null);
         vista.setTitle("Products Stocks");
     }
-    
+
     public void placeHolder() {
         PlaceHolder txtbuscar = new PlaceHolder("Buscar", vista.getTxtBuscar());
     }
-    
+
     public void abrirDialogo(int b) {
         if (b == 0) {
             vista.getDlgProducto().setVisible(true);
@@ -170,7 +185,7 @@ public class productsStocksControl extends validacion {
                 vista.getTxtPeso().setText(peso);
                 vista.getTxtTipo().setText(tipo);
                 vista.getTxtPrecio().setText(precio);
-                
+
                 //-----------------------------
                 vista.getDlgProducto().setVisible(true);
                 vista.getDlgProducto().setLocationRelativeTo(null);
@@ -212,12 +227,12 @@ public class productsStocksControl extends validacion {
             }
         }
     }
-    
+
     public int idProducto() {
         int id = modelo.id_autopro();
         return id;
     }
-    
+
     public void limpiarCampos() {
         vista.getTxtCalculo().setText("");
         vista.getTxtDescripcio().setText("");
@@ -228,14 +243,16 @@ public class productsStocksControl extends validacion {
         vista.getTxtPrecio().setText("");
         vista.getDlgProducto().setVisible(false);
     }
-    
+
     public void validarCampos() {
         vista.getTxtCalculo().addKeyListener(validarNumeros(vista.getTxtCalculo()));
         vista.getTxtDescripcio().addKeyListener(validarLetras(vista.getTxtDescripcio()));
         vista.getTxtTipo().addKeyListener(validarLetras(vista.getTxtTipo()));
     }
-    
+
     public void placeHolderFecha() {
         PlaceHolder txtbuscar = new PlaceHolder("dd/mm/AA", vista.getTxtFecha());
     }
+
+    
 }

@@ -17,7 +17,6 @@ import uniquejewerlydesings.modelo.cliente;
 public class clienteDB extends cliente {
 
     private Conexion conecta = new Conexion();
-    
 
     public clienteDB() {
     }
@@ -27,23 +26,21 @@ public class clienteDB extends cliente {
     }
 
     public boolean insertarCliente() {
-
-        String sql = "insert into cliente (id_persona, id_cliente) "
-                + "values (" + getId_persona() + ", " + getId_cliente() + ");";
-
-        System.out.println("insert Cliente: " + sql);
-        PreparedStatement ps = conecta.getPs(sql);
-
         try {
+            String sql = "insert into cliente (id_persona, id_cliente) "
+                    + "values (" + getId_persona() + ", " + getId_cliente() + ");";
+
+            System.out.println("insert Cliente: " + sql);
+            PreparedStatement ps = conecta.getPs(sql);
             conecta.noQuery(ps);
             return true;
         } catch (Exception e) {
             System.out.println("Error insertar cliente: " + e.getMessage());
             return false;
         }
- 
+
     }
-    
+
     public int id_autoCli() {
         PreparedStatement ps = null;
         ResultSet re = null;
@@ -53,6 +50,7 @@ public class clienteDB extends cliente {
             re = ps.executeQuery();
             while (re.next()) {
                 id = re.getInt(1) + 1;
+                System.out.println("idCli(): " + id);
             }
         } catch (Exception e) {
             System.out.println("error" + e.getMessage());

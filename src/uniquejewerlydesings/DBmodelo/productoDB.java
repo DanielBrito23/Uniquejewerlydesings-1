@@ -112,7 +112,7 @@ public class productoDB extends producto {
                 + "cantidad = " + getCantidad() + ", "
                 + "peso_metal=" + getPeso_metal() + ", "
                 + "precio_unitario=" + getPrecio_unitario() + ", "
-                + "tipo_metal='" + getTipo_metal()+ "', "
+                + "tipo_metal='" + getTipo_metal() + "', "
                 + "estado = 'a' "
                 + "where id_producto = " + getId_producto() + "";
         if (conecta.noQuery(sql) == null) {
@@ -154,4 +154,73 @@ public class productoDB extends producto {
         return id;
     }
 
+    public boolean restarProductos(int menos, int idProd) {
+        ResultSet re = null;
+        int resta = 1;
+        String sql2 = "";
+        String good = "";
+
+        try {
+            String sql = "select pro.cantidad-" + menos
+                    + " from producto pro\n"
+                    + "WHERE pro.id_producto=" + idProd + " and pro.estado = 'a'";
+            System.out.println("sql restarProductos:" + sql);
+            re = conecta.query(sql);
+            while (re.next()) {
+                resta = re.getInt(1);
+                System.out.println("resta: " + resta);
+            }
+            if (resta >= 0) {
+                sql2 = "UPDATE producto pro SET cantidad=" + resta
+                        + " WHERE pro.id_producto=" + idProd + " and pro.estado = 'a'";
+                System.out.println("sql2" + sql2);
+            } else {
+                JOptionPane.showMessageDialog(null, "Error, No se dispone de esa cantidad");
+                System.out.println("return false fin");
+                return false;
+
+            }
+
+        } catch (SQLException e) {
+            good = "error";
+            System.out.println(good + e.getMessage());
+        }
+        if (good.equals("error")) {
+            return false;
+        } else {
+            System.out.println("return true y null fin");
+            return conecta.noQuery(sql2) == null;
+
+        }
+    }
+
+    public boolean restarCalProd(int menos, int idProd) {
+        ResultSet re = null;
+        int resta = 1;
+        boolean val = false;
+        String good = "";
+
+        try {
+            String sql = "select pro.cantidad-" + menos
+                    + " from producto pro\n"
+                    + "WHERE pro.id_producto=" + idProd + " and pro.estado = 'a'";
+            System.out.println("sql restarProductos:" + sql);
+            re = conecta.query(sql);
+            while (re.next()) {
+                resta = re.getInt(1);
+                System.out.println(" restarCalProd resta: " + resta);
+                val = true;
+            }
+            if ( resta<0) {
+                JOptionPane.showMessageDialog(null, "Error, No se dispone de esa cantidad");
+                System.out.println("return false fin");
+                val = false;
+            }
+
+        } catch (SQLException e) {
+            good = "error";
+            System.out.println(good + e.getMessage());
+        }
+        return val;
+    }
 }
