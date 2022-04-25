@@ -83,6 +83,9 @@ public class menuControl {
     proveedorDB proveedorDB = new proveedorDB();
     RegistroProveedor vistaProveedor = new RegistroProveedor();
     proveedorControl controlProvee = new proveedorControl(proveedorDB, vistaProveedor);
+    
+    
+    
 
     public void iniciarControl() {
         menu.setVisible(true);
@@ -90,7 +93,7 @@ public class menuControl {
         menu.getBtnNewCustom().addActionListener(e -> btnPersona());
         menu.getJListCustom().addActionListener(e -> listaPersona());
         menu.getBtnListProducts().addActionListener(e -> listaProdcutos());
-        menu.getBtnnewInvoice().addActionListener(e -> factura());
+        menu.getBtnnewInvoice().addActionListener(e -> btnFactura());
         menu.getBtnInvoiceList().addActionListener(e -> listaFactura());
 
         //botones para las opcines del producto
@@ -103,6 +106,7 @@ public class menuControl {
 
         //botones para las opciones del proveedor 
         menu.getBtnListProveedor().addActionListener(e -> btnNuevoProveedor());
+        
     }
 
     private void showPanel(JPanel p) {
@@ -180,6 +184,13 @@ public class menuControl {
         showPanel(vistaProveedor.getPnlRegisProvedor());
         controlProvee.iniciarControl();
     }
-
+    // fin metodos para el proveedor 
+    
+    
+     // -- metodos para el proveedor 
+    public void btnFactura() {
+        showPanel(vistaFactura.getPnlFactura());
+        controlfactura.iniciarControl();
+    }
     // fin metodos para el proveedor 
 }

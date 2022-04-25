@@ -103,10 +103,22 @@ public class facturaControl extends validacion {
         vistaFactura.getBtnClear().addActionListener(e -> limpiarCamposInvoice());
         vistaFactura.getTxtcantidad().addKeyListener(validarNumeros(vistaFactura.getTxtcantidad()));
 //        vistaFactura.getBtnimprimir().addActionListener(e -> reporte());
+        vistaFactura.setTitle("Invoice");
+        vistaFactura.getTxtidfac().setVisible(false);
+         vistaFactura.getTxtIdCliente().setText(String.valueOf(IdCli()));
+        vistaFactura.getTxtcuerpo().setText(String.valueOf(IdCuerpo()));
+        vistaFactura.getTxtcuerpo().setVisible(false);
+        vistaFactura.getTxtIdCliente().setVisible(false);
 
+        //para poner la fecha
+        DateTimeFormatter fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//        System.out.println("yyyy/MM/dd hh:mm:ss-> "+fecha.format(LocalDateTime.now()));
+        vistaFactura.getTxtFecha().setText("" + fecha.format(LocalDateTime.now()));
+        //
+        incrementarId();
         validarCampos();
         cargarLista();
-        ventana();
+        //ventana();
         inhabilitarCamposInvoice();
 
     }
@@ -526,12 +538,12 @@ public class facturaControl extends validacion {
                     total.add(vistaFactura.getTxtpricetotal().getText());
                     total.getFont().setStyle(Font.BOLD);
                     total.getFont().setSize(10);
-                    
+
                     Paragraph advance = new Paragraph("ADVANCE:");
                     advance.add(vistaFactura.getTxtAbono().getText());
                     advance.getFont().setStyle(Font.BOLD);
                     advance.getFont().setSize(10);
-                    
+
                     Paragraph balance = new Paragraph("BALANCE:");
                     balance.add(vistaFactura.getTxtValorPediente().getText());
                     balance.getFont().setStyle(Font.BOLD);
@@ -540,7 +552,7 @@ public class facturaControl extends validacion {
                     documento.add(total);
                     documento.add(advance);
                     documento.add(balance);
-                    
+
                     documento.close();
                     ingresoCliente();
                     JOptionPane.showMessageDialog(null, "Invoice created successfully");
