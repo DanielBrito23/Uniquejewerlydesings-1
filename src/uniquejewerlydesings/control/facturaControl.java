@@ -416,7 +416,7 @@ public class facturaControl extends validacion {
     }
 
     // metodo imprimir datos test
-    public void datosImprimir() {
+    /*public void datosImprimir() {
         if (vistaFactura.getTxtcedula().getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Enter values in identification", "Empty fields", JOptionPane.WARNING_MESSAGE);
         } else {
@@ -591,6 +591,93 @@ public class facturaControl extends validacion {
             tblFact.setRowCount(0);
         }
 
+    }*/
+    
+    public void datosImprimir() {
+         if (vistaFactura.getTxtcedula().getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter values in identification", "Empty fields", JOptionPane.WARNING_MESSAGE);
+        } else {
+            if (vistaFactura.getTxtid().getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Enter values", "Empty fields", JOptionPane.WARNING_MESSAGE);
+            } else {
+//                if (vistaFactura.getTxtreparaciones().getText().isEmpty()) {
+//                    JOptionPane.showMessageDialog(null, "Enter values in repation", "Empty fields", JOptionPane.WARNING_MESSAGE);
+//                } else {
+                com.itextpdf.text.Document documento = new com.itextpdf.text.Document();
+
+                try {
+
+                    String ruta = System.getProperty("user.home");
+                    PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Downloads/" + vistaFactura.getTxtnombres().getText() + ".pdf"));
+
+                    com.itextpdf.text.Image header = com.itextpdf.text.Image.getInstance("src/images/aprobado.jpg");
+                    header.scaleToFit(100, 100);
+                    header.setAlignment(Chunk.ALIGN_LEFT);
+
+                    //datos para el cliente
+                    Paragraph parrafo = new Paragraph();
+                    parrafo.setAlignment(Paragraph.ALIGN_CENTER);
+                    parrafo.add("Información del cliente. \n \n");
+                    parrafo.setFont(FontFactory.getFont("Tahoma", 12, Font.BOLD, BaseColor.BLACK));
+
+                    documento.open();
+                    documento.add(header);
+                    documento.add(parrafo);
+
+                    documento.add(Chunk.NEWLINE);
+                    documento.add(new Paragraph("DATE:" + vistaFactura.getTxtFecha().getText()));
+                    documento.add(new Paragraph("CUSTOM NAME:" + vistaFactura.getTxtnombres().getText()));
+                    documento.add(new Paragraph("ADDRESS:" + vistaFactura.getTxtdireccion().getText()));
+                    documento.add(new Paragraph("PHONE:" + vistaFactura.getTxttelefono().getText()));
+                    documento.add(new Paragraph("EMAIL:" + vistaFactura.getTxtcorreo().getText()));
+
+                    PdfPTable tablaProducto = new PdfPTable(4);
+                    tablaProducto.addCell("Articles");
+                    tablaProducto.addCell("Quantity");
+                    tablaProducto.addCell("Unit price");
+                    tablaProducto.addCell("Total");
+
+                    documento.add(Chunk.NEWLINE);
+
+                    for (int i = 0; i < vistaFactura.getTablaFactura().getRowCount(); i++) {
+                        String id = vistaFactura.getTablaFactura().getValueAt(i, 0).toString();
+                        article = vistaFactura.getTablaFactura().getValueAt(i, 1).toString();
+                        cuantity = vistaFactura.getTablaFactura().getValueAt(i, 2).toString();
+                        price = vistaFactura.getTablaFactura().getValueAt(i, 3).toString();
+                        totalTabla = vistaFactura.getTablaFactura().getValueAt(i, 4).toString();
+
+                        tablaProducto.addCell(article);
+                        tablaProducto.addCell(cuantity);
+                        tablaProducto.addCell(price);
+                        tablaProducto.addCell(totalTabla);
+
+                        modelo.restarProductos(Integer.parseInt(cuantity), Integer.parseInt(id));
+                    }
+                    documento.add(tablaProducto);
+
+                    documento.add(Chunk.NEWLINE);
+                    documento.add(new Paragraph("REPAIR:" + vistaFactura.getTxtreparaciones().getText()));
+                    documento.add(Chunk.NEWLINE);
+                    documento.add(new Paragraph("TOTAL:" + vistaFactura.getTxtpricetotal().getText()));
+                    documento.add(new Paragraph("ADVANCE:" + vistaFactura.getTxtAbono().getText()));
+                    documento.add(new Paragraph("BALANCE:" + vistaFactura.getTxtValorPediente().getText()));
+
+                    documento.close();
+                    ingresoCliente();
+                    cargarLista();
+                    JOptionPane.showMessageDialog(null, "Reporte creado correctamente.");
+                    vistaFactura.getTxtcuerpo().setText(String.valueOf(IdCuerpo()));
+                    vistaFactura.getTxtIdCliente().setText(String.valueOf(IdCli()));
+                    int sumaId = Integer.parseInt(vistaFactura.getTxtidfac().getText());
+                    sumaId++;
+                    vistaFactura.getTxtidfac().setText(String.valueOf(sumaId));
+                } catch (Exception e) {
+                    System.err.println("Error en PDF o ruta de imagen" + e);
+                    JOptionPane.showMessageDialog(null, "Error al generar PDF, contacte al administrador");
+                }
+            }
+//            }
+        }
     }
 
     public void inhabilitarCamposInvoice() {
@@ -623,5 +710,29 @@ public class facturaControl extends validacion {
         };
         return kn;
     }
-
+ public void limpiarCamposInvoice() {
+        if (vistaFactura.getTxtid().getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Enter valid values ​​in identification", "Empty fields", JOptionPane.WARNING_MESSAGE);
+        } else {
+            vistaFactura.getTxtcedula().setText("");
+            vistaFactura.getTxtid().setText("");
+            vistaFactura.getTxtnombres().setText("");
+            vistaFactura.getTxtdireccion().setText("");
+            vistaFactura.getTxttelefono().setText("");
+            vistaFactura.getTxtcorreo().setText("");
+            vistaFactura.getTxtcedula().setText("");
+            vistaFactura.getTxtidfac().setText("");
+            vistaFactura.getTxtFecha().setText("");
+            vistaFactura.getTxtReparacion().setText("");
+            vistaFactura.getTxtreparaciones().setText("");
+            vistaFactura.getTxtpricetotal().setText("");
+            vistaFactura.getTxtAbono().setText("");
+            vistaFactura.getTxtValorPediente().setText("");
+            vistaFactura.getTxtcuerpo().setText("");
+            vistaFactura.getTxtcuerpo().setText(String.valueOf(IdCuerpo()));
+            vistaFactura.getTxtIdCliente().setText(String.valueOf(IdCli()));
+            DefaultTableModel tblFact = (DefaultTableModel) vistaFactura.getTablaFactura().getModel();
+            tblFact.setRowCount(0);
+        }
+        }
 }

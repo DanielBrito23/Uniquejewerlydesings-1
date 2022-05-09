@@ -203,3 +203,4 @@ public class listaControl extends validacion {
         vista.getTxtNombres().addKeyListener(validarLetras(vista.getTxtNombres()));
     }
 }
+        
