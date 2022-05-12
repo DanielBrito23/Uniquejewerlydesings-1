@@ -24,6 +24,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         return content;
     }
 
+    public JMenu getBtnQr() {
+        return btnQr;
+    }
+
+    public void setBtnQr(JMenu btnQr) {
+        this.btnQr = btnQr;
+    }
+
+    
     /**
      * Creates new form MenuPrincipal
      */
@@ -322,6 +331,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btnNewEmple = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         btnListProveedor = new javax.swing.JMenuItem();
+        btnQr = new javax.swing.JMenu();
+        btnGenerarQr = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -476,6 +487,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        btnQr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconsMenu/QR.png"))); // NOI18N
+        btnQr.setText("QR");
+
+        btnGenerarQr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconsMenu/QR.png"))); // NOI18N
+        btnGenerarQr.setText("Generate QR");
+        btnGenerarQr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarQrActionPerformed(evt);
+            }
+        });
+        btnQr.add(btnGenerarQr);
+
+        jMenuBar1.add(btnQr);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -528,6 +553,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnListProveedorActionPerformed
 
+    private void btnGenerarQrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarQrActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGenerarQrActionPerformed
+
+    public JMenuItem getBtnGenerarQr() {
+        return btnGenerarQr;
+    }
+
+    public void setBtnGenerarQr(JMenuItem btnGenerarQr) {
+        this.btnGenerarQr = btnGenerarQr;
+    }
+
+    
     public JMenuItem getBtnListProveedor() {
         return btnListProveedor;
     }
@@ -582,11 +620,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu Jminventory;
     private javax.swing.JMenuItem btnDeletePro;
     private javax.swing.JMenuItem btnEditPro;
+    private javax.swing.JMenuItem btnGenerarQr;
     private javax.swing.JMenuItem btnInvoiceList;
     private javax.swing.JMenuItem btnListProveedor;
     private javax.swing.JMenuItem btnNewCustom;
     private javax.swing.JMenuItem btnNewEmple;
     private javax.swing.JMenuItem btnNewProduct;
+    private javax.swing.JMenu btnQr;
     private javax.swing.JMenuItem btnnewInvoice;
     private javax.swing.JPanel content;
     private javax.swing.JMenu jMenu1;

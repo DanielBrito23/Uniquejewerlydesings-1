@@ -16,6 +16,7 @@ import uniquejewerlydesings.DBmodelo.productoDB;
 import uniquejewerlydesings.DBmodelo.proveedorDB;
 import uniquejewerlydesings.modelo.persona;
 import uniquejewerlydesings.vista.Factura;
+import uniquejewerlydesings.vista.GenerarQR;
 import uniquejewerlydesings.vista.ListaFactura;
 import uniquejewerlydesings.vista.ListaPersonas;
 import uniquejewerlydesings.vista.ListaProductos;
@@ -84,7 +85,9 @@ public class menuControl {
     RegistroProveedor vistaProveedor = new RegistroProveedor();
     proveedorControl controlProvee = new proveedorControl(proveedorDB, vistaProveedor);
     
-    
+    // instacias para el boton de QR
+    GenerarQR qr = new GenerarQR();
+    QRControl controlQr = new QRControl(qr);
     
 
     public void iniciarControl() {
@@ -107,6 +110,9 @@ public class menuControl {
         //botones para las opciones del proveedor 
         menu.getBtnListProveedor().addActionListener(e -> btnNuevoProveedor());
         
+        
+        //botones para las opciones del QR 
+        menu.getBtnGenerarQr().addActionListener(e -> btnQR());
     }
 
     private void showPanel(JPanel p) {
@@ -193,4 +199,14 @@ public class menuControl {
         controlfactura.iniciarControl();
     }
     // fin metodos para el proveedor 
+
+
+      // -- metodos para el QR
+    public void btnQR() {
+        showPanel(qr.getPnlQr());
+        controlQr.iniciarControl();
+    }
+    // fin metodos para el QR   
 }
+
+
